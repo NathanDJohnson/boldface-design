@@ -47,3 +47,6 @@ local-config.php
 # Compiled CSS and JS (if using build tools)
 *.min.css
 *.min.js
+
+# Webpack/build output
+assets/js/main.js
