@@ -110,9 +110,16 @@ $all_projects = $projects_query->posts;
                         $project_skills = wp_get_post_terms( $project->ID, 'skills', array( 'fields' => 'ids' ) );
                         $skills_data = implode( ',', $project_skills );
                         $grid_class = $column_span === '2' ? 'md:col-span-2' : ( $column_span === '3' ? 'md:col-span-3' : '' );
+
+                        /**
+                         * Logic Check: Link Override
+                         * Check for an associated Case Study before falling back to the Project permalink.
+                         */
+                        $case_study_id = get_field( 'case_study_link', $project->ID );
+                        $target_url    = $case_study_id ? get_permalink( $case_study_id ) : get_permalink( $project->ID );
 					?>
 					<a 
-						href="<?php echo esc_url( get_permalink( $project->ID ) ); ?>" 
+						href="<?php echo esc_url( $target_url ); ?>" 
 						class="portfolio-item group relative overflow-hidden rounded h-300px md:h-400px flex items-end <?php echo esc_attr( $grid_class ); ?>"
 				        data-skills="<?php echo esc_attr( $skills_data ); ?>">
 						<?php if ( has_post_thumbnail( $project->ID ) ) : ?>

@@ -73,7 +73,7 @@ if ( isset( $block['anchor'] ) ) {
 						<?php endif; ?>
 
 						<?php if ( $description ) : ?>
-							<p class="text-white"><?php echo wp_kses_post( $description ); ?></p>
+							<p class="text-white"><?php echo wp_kses_post( nl2br( $description ) ); ?></p>
 						<?php endif; ?>
 					</div>
 				<?php endforeach; ?>

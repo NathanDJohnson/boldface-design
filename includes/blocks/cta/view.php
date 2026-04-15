@@ -46,7 +46,7 @@ if ( isset( $block['anchor'] ) ) {
                      $description_class .= ' text-h3';
                 }
             ?>
-			<p class="<?php echo $description_class; ?>"><?php echo wp_kses_post( $description ); ?></p>
+			<p class="<?php echo $description_class; ?>"><?php echo wp_kses_post( nl2br( $description ) ); ?></p>
 		<?php endif; ?>
 
 		<?php if ( 'below' === $heading_placement && $heading ) : ?>

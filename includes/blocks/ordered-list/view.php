@@ -93,7 +93,7 @@ if ( isset( $block['anchor'] ) ) {
 			$img_url = is_array( $image ) ? $image['url'] : $image;
 			$img_alt = is_array( $image ) ? ( $image['alt'] ?: '' ) : '';
 			?>
-			<div class="rounded overflow-hidden h-[160px] md:h-300px w-full">
+			<div class="rounded overflow-hidden h-auto w-full">
 				<img src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $img_alt ); ?>" class="w-full h-auto object-cover" />
 			</div>
 		<?php endif; ?>
