@@ -1,0 +1,22 @@
+{
+    "apiVersion": 3,
+    "name": "boldface-design/team",
+    "title": "Team",
+    "description": "A team section with member photos, names, roles, and bios",
+    "category": "boldface-blocks",
+    "icon": "groups",
+    "keywords": [
+        "team",
+        "members",
+        "staff"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "view.php"
+    },
+    "supports": {
+        "align": [
+            "full"
+        ]
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "apiVersion": 3,
+    "name": "boldface-design/testimonials",
+    "title": "Testimonials",
+    "description": "Display client testimonials with quotes and author details",
+    "category": "boldface-blocks",
+    "icon": "format-quote",
+    "keywords": [
+        "testimonials",
+        "quotes",
+        "reviews"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "view.php"
+    },
+    "supports": {
+        "align": [
+            "full"
+        ]
+    }
+}

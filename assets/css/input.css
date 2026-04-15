@@ -1,0 +1,320 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Calistoga';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/calistoga-v18-latin-regular.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/montserrat-v31-latin-400.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../fonts/montserrat-v31-latin-500.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../fonts/montserrat-v31-latin-700.woff2') format('woff2');
+  }
+  html,
+  body {
+    @apply scroll-smooth;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  h1 {
+    @apply text-h1;
+  }
+
+  h2 {
+    @apply text-h2;
+  }
+
+  h3 {
+    @apply text-h3;
+  }
+
+  h4 {
+    @apply text-h4;
+  }
+
+  p, li, span {
+    @apply font-sans text-body;
+  }
+
+  hr {
+    @apply bg-observatory h-[9px] border-0;
+  }
+}
+/**
+ * WordPress-specific styles
+ */
+@layer components {
+  .is-layout-flex {
+    @apply flex;
+  }
+  /* WordPress alignment classes */
+  .aligncenter {
+    @apply text-center;
+  }
+
+  .alignleft {
+    @apply float-left mr-6 mb-4;
+  }
+
+  .alignright {
+    @apply float-right ml-6 mb-4;
+  }
+
+  /* WordPress block wrapper */
+  .wp-site-blocks {
+    @apply p-0;
+  }
+
+  .wp-block {
+    @apply m-0;
+  }
+
+  /* Screen reader text */
+  .screen-reader-text {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap;
+  }
+}
+
+/**
+ * Fix responsive image styles for WordPress */
+@layer components {
+  img {
+    @apply max-w-full h-auto;
+  }
+
+  .wp-block-image img {
+    @apply block;
+  }
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+  .font-calistoga {
+    font-family: 'Calistoga', cursive;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply block max-md:w-full max-md:text-center md:inline-block px-lg py-xs rounded-[8px] transition-colors duration-300 font-semibold text-[20px];
+  }
+  .btn-sm {
+    @apply px-lg py-xs text-sm;
+  }
+  .btn-lg {
+    @apply px-xl py-md;
+  }
+  .btn-observatory {
+    @apply bg-observatory border-2 border-observatory hover:bg-cyprus text-white;
+  }
+  .btn-sulfur {
+    @apply bg-sulfur border-2 border-sulfur hover:bg-conifer text-abbey;
+  }
+  .btn-outline-observatory {
+    @apply bg-transparent border-2 border-observatory hover:bg-observatory hover:text-white;
+  }
+  .btn-outline-sulfur {
+    @apply bg-transparent border-2 border-sulfur hover:bg-sulfur text-white hover:text-abbey;
+  }
+}
+
+/* WPForms */
+.wpforms-container {
+  /* @apply max-w-[500px] mx-auto my-2xl; */
+}
+
+.wpforms-submit {
+  @apply btn btn-lg btn-observatory;
+}
+.wpforms-field {
+  @apply w-full flex flex-col mb-md;
+}
+
+.wsf-field-wrapper {
+  @apply mb-md;
+}
+.wsf-field {
+  @apply w-full flex flex-col;
+}
+.wsf-label {
+  @apply sr-only;
+}
+.wsf-button {
+  @apply btn btn-lg btn-observatory;
+}
+
+/**
+ * Responsive utility overrides
+ */
+@media (max-width: 640px) {
+  .alignleft,
+  .alignright {
+    @apply float-none mr-0 ml-0 mb-4;
+  }
+}
+
+.current-menu-item a {
+  @apply pointer-events-none;
+}
+.menu-item a {
+  @apply inline-block;
+}
+.menu-item a::after {
+  background-color: currentColor;
+  content: '';
+  width: 0;
+  height: 1px;
+  display: block;
+  transition: width 0.3s ease-in-out;
+}
+.current-menu-item a::after,
+.menu-item:hover a::after {
+  width: 100%;
+}
+
+.is-front-page #masthead {
+  /* @apply hidden; */
+}
+
+.prose, .prose * {
+  color: inherit;
+}
+
+/* Ensure full-width blocks stretch edge-to-edge */
+body.is-front-page header#masthead > div,
+section.wp-block-boldface-design-case-study,
+section.wp-block-boldface-design-case-study-details,
+section.wp-block-boldface-design-clients,
+section.wp-block-boldface-design-cta,
+section.wp-block-boldface-design-features,
+section.wp-block-boldface-design-hero,
+section.wp-block-boldface-design-ordered-list,
+section.wp-block-boldface-design-portfolio,
+section.wp-block-boldface-design-portfolio-grid,
+section.wp-block-boldface-design-team,
+section.wp-block-boldface-design-testimonials,
+section.wp-block-boldface-design-text-media,
+section.wp-block-boldface-design-value-props,
+section.wp-block-boldface-design-wysiwyg
+{
+  @apply relative w-screen left-[50%] -translate-x-1/2;
+}
+
+#primary-menu {
+  @apply max-md:block max-md:fixed max-md:left-0 max-md:right-0 max-md:top-0 max-md:h-screen max-md:z-50 max-md:w-screen max-md:bg-white max-md:p-20 max-md:transition max-md:translate-x-[-100%];
+}
+#primary-menu.toggled {
+  @apply max-md:translate-x-0
+}
+#primary-menu ul {
+  @apply max-md:flex max-md:flex-col max-md:gap-10;
+}
+.md-hidden {
+  @apply md:!hidden;
+}
+
+/**
+ * Infinite scrolling logos animation
+ */
+@keyframes logoScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(var(--logo-width) * var(--logo-count) * -1));
+  }
+}
+
+.clients-scroll-mask {
+  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+.clients-scroll-container {
+  animation: logoScroll calc(var(--logo-count) * 2.5s) linear infinite;
+  will-change: transform;
+}
+
+.clients-scroll-container:hover {
+  animation-play-state: paused;
+}
+
+.scroll-item {
+  width: var(--logo-width);
+  min-width: var(--logo-width);
+  max-width: var(--logo-width);
+  flex-basis: var(--logo-width);
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.is-front-page .hero-block .text-h3,
+.is-front-page .hero-block h1,
+.is-front-page .hero-block h2,
+.is-front-page .hero-block .text-body {
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    @apply hidden;
+  }
+  .hero-overlay {
+    @apply block;
+  }
+  #hero-logo {
+    filter: brightness(0) invert(1);
+  }
+}
+
+.hero-video.ended {
+  @apply opacity-100 blur-3xl;
+}
+
+body.is-front-page header.sticky-active {
+  @apply fixed top-0 left-0 right-0 z-50;
+}
+
+.wp-block-boldface-design-wysiwyg ul {
+  @apply list-disc pl-5 md:columns-2 xl:columns-3 gap-lg;
+}
+
+input:where([type='text']), input:where(:not([type])), input:where([type='email']), input:where([type='url']), input:where([type='password']), input:where([type='number']), input:where([type='date']), input:where([type='datetime-local']), input:where([type='month']), input:where([type='search']), input:where([type='tel']), input:where([type='time']), input:where([type='week']), select:where([multiple]), textarea, select {
+  @apply border border-abbey rounded-md px-sm py-xs text-body focus:outline-none focus:ring-2 focus:ring-observatory focus:border-transparent transition-colors duration-200;
+}
+
+.wpforms-label-hide {
+  @apply sr-only;
+}
+textarea {
+  height: 9rem;
+}
+
+.filter-btn.active {
+  @apply btn-observatory;
+}

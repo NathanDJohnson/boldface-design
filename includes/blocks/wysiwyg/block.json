@@ -1,0 +1,22 @@
+{
+    "apiVersion": 3,
+    "name": "boldface-design/wysiwyg",
+    "title": "WYSIWYG",
+    "description": "A rich text editor block for adding formatted content with a WYSIWYG interface",
+    "category": "boldface-blocks",
+    "icon": "editor-paragraph",
+    "keywords": [
+        "wysiwyg",
+        "editor",
+        "rich text"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "view.php"
+    },
+    "supports": {
+        "align": [
+            "full"
+        ]
+    }
+}

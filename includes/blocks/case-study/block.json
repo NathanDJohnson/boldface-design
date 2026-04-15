@@ -1,0 +1,22 @@
+{
+  "apiVersion": 3,
+  "name": "boldface-design/case-study",
+  "title": "Case Study",
+  "description": "Display a featured case study with label, title, description, and CTA link",
+  "category": "boldface-blocks",
+  "icon": "format-aside",
+  "keywords": [
+    "case study", 
+    "portfolio",
+    "spotlight"
+  ],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "view.php"
+  },
+  "supports": {
+    "align": [
+        "full"
+    ]
+  }
+}

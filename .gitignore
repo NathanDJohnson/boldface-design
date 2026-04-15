@@ -1,0 +1,49 @@
+# Dependency directories
+node_modules/
+vendor/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build and distribution files
+dist/
+build/
+.cache/
+
+# Package manager lock files
+# package-lock.json
+# composer.lock
+
+# WordPress specific
+wp-config.php
+wp-content/plugins/
+wp-content/uploads/
+
+# Local development
+local-config.php
+*.local
+
+# ACF JSON exports (optional - uncomment if you want to version control them)
+# acf-json/
+
+# Compiled CSS and JS (if using build tools)
+*.min.css
+*.min.js

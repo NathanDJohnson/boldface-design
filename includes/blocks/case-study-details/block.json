@@ -1,0 +1,24 @@
+{
+  "apiVersion": 3,
+  "name": "boldface-design/case-study-details",
+  "title": "Case Study Details",
+  "description": "Display details about a case study, such as client, industry, and services provided.",
+  "category": "boldface-blocks",
+  "icon": "admin-post",
+  "keywords": [
+    "case study",
+    "details",
+    "client",
+    "industry",
+    "services"
+  ],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "view.php"
+  },
+  "supports": {
+    "align": [
+        "full"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+    "apiVersion": 3,
+    "name": "boldface-design/ordered-list",
+    "title": "Ordered List",
+    "description": "An ordered list block with customizable numbering styles and spacing options",
+    "category": "boldface-blocks",
+    "icon": "editor-ol",
+    "keywords": [
+        "ordered",
+        "list",
+        "numbering"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "view.php"
+    },
+    "supports": {
+        "align": [
+            "full"
+        ]
+    }
+}

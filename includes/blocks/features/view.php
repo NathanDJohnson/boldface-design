@@ -1,0 +1,90 @@
+<?php
+/**
+ * Features Block Template
+ *
+ * @package boldface-design
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+// Get field values
+$background       = get_field( 'background' ) ?: 'bg-white';
+$service_items    = get_field( 'service_items' ) ?: array();
+$description      = get_field( 'description' ) ?: '';
+$content          = get_field( 'content' ) ?: '';
+
+// Determine text color based on background
+$text_color_class = 'text-mine-shaft';
+if ( in_array( $background, array( 'bg-gradient-abyss' , 'bg-denim', 'bg-mine-shaft' ), true ) ) {
+	$text_color_class = 'text-white';
+}
+
+// Build class name
+$class_name = "wp-block-boldface-design-features not-prose max-w-none w-full px-sm md:px-lg py-2xl {$background} {$text_color_class}";
+
+if ( isset( $block['align'] ) ) {
+	$class_name .= ' align' . $block['align'];
+}
+
+if ( isset( $block['className'] ) ) {
+	$class_name .= ' ' . $block['className'];
+}
+
+// Build ID
+$id = '';
+if ( isset( $block['anchor'] ) ) {
+	$id = 'id="' . esc_attr( $block['anchor'] ) . '"';
+}
+?>
+
+<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?>>
+	<div class="container mx-auto">
+		<div class="text-left">
+			<?php if ( $description ) : ?>
+				<h2 class="mb-lg"><?php echo wp_kses_post( $description ); ?></h2>
+			<?php endif; ?>
+
+			<?php if ( $content ) : ?>
+				<div class="text-body [&_p]:mb-md">
+					<?php echo wp_kses_post( $content ); ?>
+				</div>
+			<?php endif; ?>
+		</div>
+		<?php if ( ! empty( $service_items ) ) : ?>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg lg:gap-2xl">
+				<?php foreach ( $service_items as $item ) : ?>
+					<?php
+					$image   = $item['image'] ?? '';
+					$title   = $item['title'] ?? '';
+					$item_content = $item['content'] ?? '';
+					?>
+					<div class="overflow-hidden">
+						<?php if ( $image ) : ?>
+							<div class="h-300px w-full rounded-xl overflow-hidden">
+								<?php
+								if ( is_array( $image ) ) {
+									echo wp_kses_post( wp_get_attachment_image( $image['ID'], 'large', false, array( 'class' => 'w-full h-full object-cover' ) ) );
+								} else {
+									echo wp_kses_post( wp_get_attachment_image( $image, 'large', false, array( 'class' => 'w-full h-full object-cover' ) ) );
+								}
+								?>
+							</div>
+						<?php endif; ?>
+
+						<div class="pt-lg">
+							<?php if ( $title ) : ?>
+								<h3 class="font-sans md:text-h4 mb-sm"><?php echo wp_kses_post( $title ); ?></h3>
+							<?php endif; ?>
+
+							<?php if ( $item_content ) : ?>
+								<p class="text-body"><?php echo wp_kses_post( $item_content ); ?></p>
+							<?php endif; ?>
+						</div>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+	</div>
+</section>

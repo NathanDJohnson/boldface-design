@@ -1,0 +1,23 @@
+{
+  "apiVersion": 3,
+  "name": "boldface-design/archive",
+  "title": "Archive",
+  "description": "Display a list of posts from a specific category or custom post type, with options for layout and styling",
+  "category": "boldface-blocks",
+  "icon": "archive",
+  "keywords": [
+    "archive",
+    "posts",
+    "category",
+    "custom post type"
+  ],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "view.php"
+  },
+  "supports": {
+    "align": [
+        "full"
+    ]
+  }
+}

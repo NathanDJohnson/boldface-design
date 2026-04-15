@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService", 
+  "@id": "https://boldface-2026.local/#organization",
+  "name": "Boldface Design Group",
+  "url": "https://boldface-2026.local/",
+  "logo": "https://boldface-2026.local/wp-content/themes/boldface-design/assets/images/boldface-design-logo.png",
+  "image": "https://boldface-2026.local/wp-content/uploads/2026/03/boldface-design-brand-strategy.jpg",
+  "telephone": "+1-303-506-6650",
+  "email": "hello@boldfacedesign.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "4678 White Rock Cir., #5",
+    "addressLocality": "Boulder",
+    "addressRegion": "CO",
+    "postalCode": "80301",
+    "addressCountry": "US"
+  },
+  "areaServed": ["Boulder, CO", "Denver, CO", "Colorado", "United States"],
+  "knowsAbout": ["brand identity design", "web design", "WordPress development", "CPG packaging design", "environmental branding"],
+  "foundingDate": "1996",
+  "founders": [
+    {
+      "@type": "Person",
+      "name": "Carolyn McHale",
+      "jobTitle": "Founder & Creative Director"
+    }
+  ],
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.0545, 
+    "longitude": -105.2101
+  },
+  "sameAs": [
+    "https://www.facebook.com/BoldfaceDesign/",
+    "https://www.linkedin.com/in/boldface/"
+  ],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://boldface-2026.local/"
+  }
+}

@@ -1,0 +1,22 @@
+{
+    "apiVersion": 3,
+    "name": "boldface-design/value-props",
+    "title": "Value Props",
+    "description": "A section for displaying value propositions with icons and descriptions",
+    "category": "boldface-blocks",
+    "icon": "format-image",
+    "keywords": [
+        "value",
+        "props",
+        "gallery"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "view.php"
+    },
+    "supports": {
+        "align": [
+            "full"
+        ]
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "apiVersion": 3,
+    "name": "boldface-design/contact-form",
+    "title": "Contact Form",
+    "description": "A contact form block with fields for name, email, message, and a submit button",
+    "category": "boldface-blocks",
+    "icon": "email",
+    "keywords": [
+        "contact",
+        "form"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "view.php"
+    },
+    "supports": {
+        "align": [
+            "full"
+        ]
+    }
+}

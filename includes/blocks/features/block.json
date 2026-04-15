@@ -1,0 +1,22 @@
+{
+    "apiVersion": 3,
+    "name": "boldface-design/features",
+    "title": "Features",
+    "description": "A section to showcase key features or services",
+    "category": "boldface-blocks",
+    "icon": "star-filled",
+    "keywords": [
+        "features",
+        "services",
+        "benefits"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "view.php"
+    },
+    "supports": {
+        "align": [
+            "full"
+        ]
+    }
+}

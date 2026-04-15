@@ -1,0 +1,22 @@
+{
+    "apiVersion": 3,
+    "name": "boldface-design/hero",
+    "title": "Hero",
+    "description": "A hero section with a background image and call-to-action buttons",
+    "category": "boldface-blocks",
+    "icon": "layout",
+    "keywords": [
+        "hero",
+        "banner",
+        "call-to-action"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "view.php"
+    },
+    "supports": {
+        "align": [
+            "full"
+        ]
+    }
+}

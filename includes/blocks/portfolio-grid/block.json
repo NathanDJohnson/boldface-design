@@ -1,0 +1,22 @@
+{
+    "apiVersion": 3,
+    "name": "boldface-design/portfolio-grid",
+    "title": "Portfolio Grid",
+    "description": "A grid layout for displaying portfolio projects",
+    "category": "boldface-blocks",
+    "icon": "grid-view",
+    "keywords": [
+        "portfolio",
+        "grid",
+        "projects"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "view.php"
+    },
+    "supports": {
+        "align": [
+            "full"
+        ]
+    }
+}

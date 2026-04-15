@@ -1,0 +1,21 @@
+{
+    "apiVersion": 3,
+    "name": "boldface-design/clients",
+    "title": "Clients",
+    "description": "A section to showcase client logos",
+    "category": "boldface-blocks",
+    "icon": "groups",
+    "keywords": [
+        "clients",
+        "logos"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "view.php"
+    },
+    "supports": {
+        "align": [
+            "full"
+        ]
+    }
+}

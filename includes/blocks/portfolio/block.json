@@ -1,0 +1,22 @@
+{
+    "apiVersion": 3,
+    "name": "boldface-design/portfolio",
+    "title": "Portfolio",
+    "description": "A portfolio section with project images, titles, and descriptions",
+    "category": "boldface-blocks",
+    "icon": "format-gallery",
+    "keywords": [
+        "portfolio",
+        "projects",
+        "gallery"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "view.php"
+    },
+    "supports": {
+        "align": [
+            "full"
+        ]
+    }
+}

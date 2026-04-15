@@ -1,0 +1,24 @@
+{
+    "apiVersion": 3,
+    "name": "boldface-design/text-media",
+    "title": "Text & Media",
+    "description": "A section for displaying text content alongside media such as images or videos, with options for layout and styling",
+    "category": "boldface-blocks",
+    "icon": "align-left",
+    "keywords": [
+        "text",
+        "media",
+        "image",
+        "video",
+        "content"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "view.php"
+    },
+    "supports": {
+        "align": [
+            "full"
+        ]
+    }
+}
