@@ -19,6 +19,19 @@ acf_add_local_field_group( array(
 	'fields'                => array(
 		...boldface_design_get_common_block_fields( 'ordered-list' ),
 		array(
+			'key'               => 'field_ordered_list_columns',
+			'label'             => esc_html__( 'Ordered List Columns', 'boldface-design' ),
+			'name'              => 'ordered_list_columns',
+			'type'              => 'select',
+			'required'          => 0,
+			'choices'           => array(
+				'one'  => esc_html__( 'One Column', 'boldface-design' ),
+				'two'   => esc_html__( 'Two Columns', 'boldface-design' ),
+			),
+			'default_value'     => 'two',
+			'layout'            => 'horizontal',
+		),
+		array(
 			'key'               => 'field_ordered_list_heading',
 			'label'             => esc_html__( 'Heading', 'boldface-design' ),
 			'name'              => 'heading',

@@ -1994,10 +1994,6 @@ img {
   height: 100px;
 }
 
-.h-\[160px\] {
-  height: 160px;
-}
-
 .h-\[400px\] {
   height: 400px;
 }
@@ -2072,6 +2068,10 @@ img {
 
 .max-w-2xl {
   max-width: 42rem;
+}
+
+.max-w-\[250px\] {
+  max-width: 250px;
 }
 
 .max-w-full {
@@ -2541,6 +2541,10 @@ img {
   font-weight: 700;
 }
 
+.font-medium {
+  font-weight: 500;
+}
+
 .font-semibold {
   font-weight: 600;
 }
@@ -2568,6 +2572,11 @@ img {
 .text-abbey {
   --tw-text-opacity: 1;
   color: rgb(69 69 69 / var(--tw-text-opacity, 1));
+}
+
+.text-denim {
+  --tw-text-opacity: 1;
+  color: rgb(0 90 135 / var(--tw-text-opacity, 1));
 }
 
 .text-mine-shaft {
@@ -2605,11 +2614,6 @@ img {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
-.text-black {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
-}
-
 .underline {
   text-decoration-line: underline;
 }
@@ -2638,10 +2642,6 @@ img {
 
 .opacity-90 {
   opacity: 0.9;
-}
-
-.opacity-25 {
-  opacity: 0.25;
 }
 
 .mix-blend-difference {
@@ -3256,10 +3256,6 @@ textarea {
 
   .md\:hidden {
     display: none;
-  }
-
-  .md\:h-300px {
-    height: 300px;
   }
 
   .md\:w-\[calc\(25\%-1rem\)\] {

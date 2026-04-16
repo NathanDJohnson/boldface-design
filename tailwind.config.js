@@ -8,6 +8,12 @@ module.exports = {
   ],
   safelist: [
     '.is-layout-flex',
+    'bg-gradient-abyss',
+		'bg-denim',
+		'bg-mine-shaft',
+		'bg-observatory',
+    'text-white',
+    'text-mine-shaft',
   ],
   theme: {
     extend: {

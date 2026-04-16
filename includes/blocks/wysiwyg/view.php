@@ -21,7 +21,7 @@ if ( in_array( $background, array( 'bg-gradient-abyss' , 'bg-denim', 'bg-mine-sh
 }
 
 // Build class name
-$class_name = "wp-block-boldface-design-wysiwyg not-prose max-w-none w-full px-sm md:px-lg py-2xl {$background} {$text_color_class}";
+$class_name = "wp-block-boldface-design-wysiwyg max-w-none w-full px-sm md:px-lg py-2xl {$background} {$text_color_class}";
 
 if ( isset( $block['align'] ) ) {
 	$class_name .= ' align' . $block['align'];
@@ -44,7 +44,7 @@ if ( isset( $block['anchor'] ) ) {
             <h2 class="mb-lg"><?php echo wp_kses_post( $heading ); ?></h2>
         <?php endif; ?>
 		<?php if ( $content ) : ?>
-            <div class="text-body [&_p]:mb-md">
+            <div class="text-body prose [&_p]:mb-md">
 			    <?php echo wp_kses_post( wpautop( $content ) ); ?>
             </div>
 		<?php endif; ?>

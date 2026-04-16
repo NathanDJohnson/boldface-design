@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get field values
+$columns  = get_field( 'ordered_list_columns' ) ?: 'two';
 $heading = get_field( 'heading' ) ?: '';
 $content = get_field( 'content' ) ?: '';
 $items = get_field( 'items' ) ?: array();
@@ -57,7 +58,13 @@ if ( isset( $block['anchor'] ) ) {
 
 		<!-- List Items Grid -->
 		<?php if ( ! empty( $items ) ) : ?>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-lg lg:gap-2xl mb-2xl">
+			<?php
+			$grid_cols = 'grid grid-cols-1 gap-lg lg:gap-2xl mb-2xl';
+			if ( $columns === 'two' ) {
+				$grid_cols .= ' md:grid-cols-2';
+			}
+			?>
+			<div class="<?php echo esc_attr( $grid_cols ); ?>">
 				<?php foreach ( $items as $index => $item ) : ?>
 					<?php
 					$item_title = $item['title'] ?? '';

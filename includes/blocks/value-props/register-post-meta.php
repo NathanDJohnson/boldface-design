@@ -17,6 +17,7 @@ acf_add_local_field_group( array(
 	'key'                   => 'group_value_props_block',
 	'title'                 => esc_html__( 'Value Props Block', 'boldface-design' ),
 	'fields'                => array(
+		...boldface_design_get_common_block_fields( 'value_props', 'bg-observatory' ),
 		array(
 			'key'               => 'field_value_props_intro_heading',
 			'label'             => esc_html__( 'Intro Heading', 'boldface-design' ),
@@ -74,12 +75,38 @@ acf_add_local_field_group( array(
 			'button_label' => esc_html__( 'Add Value Prop', 'boldface-design' ),
 			'sub_fields' => array(
 				array(
+					'key' => 'field_value_prop_highlight',
+					'label' => esc_html__( 'Highlight', 'boldface-design' ),
+					'name' => 'highlight',
+					'type'          => 'true_false',
+					'required'      => 0,
+					'ui'            => 1,
+				),
+				array(
+					'key'               => 'field_value_prop_image',
+					'label'             => esc_html__( 'Image', 'boldface-design' ),
+					'name'              => 'image',
+					'type'              => 'image',
+					'required'          => 0,
+					'return_format'     => 'array',
+					'preview_size'      => 'medium',
+					'instructions'      => esc_html__( 'Optional image to display above the value prop.', 'boldface-design' ),
+				),
+				array(
 					'key' => 'field_value_prop_title',
 					'label' => esc_html__( 'Title', 'boldface-design' ),
 					'name' => 'title',
 					'type' => 'text',
 					'required' => 1,
 					'placeholder' => esc_html__( 'e.g., Beautiful, functional design', 'boldface-design' ),
+				),
+				array(
+					'key' => 'field_value_prop_subtitle',
+					'label' => esc_html__( 'Subtitle', 'boldface-design' ),
+					'name' => 'subtitle',
+					'type' => 'text',
+					'required' => 0,
+					'placeholder' => esc_html__( 'e.g., Creative Director', 'boldface-design' ),
 				),
 				array(
 					'key' => 'field_value_prop_description',

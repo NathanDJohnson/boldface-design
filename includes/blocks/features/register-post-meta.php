@@ -19,6 +19,21 @@ acf_add_local_field_group( array(
 	'fields'                => array(
 		...boldface_design_get_common_block_fields( 'features' ),
 		array(
+			'key'               => 'field_features_columns',
+			'label'             => esc_html__( 'Features Columns', 'boldface-design' ),
+			'name'              => 'features_columns',
+			'type'              => 'select',
+			'required'          => 0,
+			'choices'           => array(
+				'one'  => esc_html__( 'One Column', 'boldface-design' ),
+				'two'   => esc_html__( 'Two Columns', 'boldface-design' ),
+				'three' => esc_html__( 'Three Columns', 'boldface-design' ),
+				'four'  => esc_html__( 'Four Columns', 'boldface-design' ),
+			),
+			'default_value'     => 'four',
+			'layout'            => 'horizontal',
+		),
+		array(
 			'key'               => 'field_features_service_items',
 			'label'             => esc_html__( 'Service Items', 'boldface-design' ),
 			'name'              => 'service_items',
@@ -34,7 +49,7 @@ acf_add_local_field_group( array(
 					'label'         => esc_html__( 'Image', 'boldface-design' ),
 					'name'          => 'image',
 					'type'          => 'image',
-					'required'      => 1,
+					'required'      => 0,
 					'return_format' => 'array',
 					'preview_size'  => 'medium',
 				),

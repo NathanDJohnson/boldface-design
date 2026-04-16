@@ -296,7 +296,7 @@ function boldface_design_the_breadcrumbs() {
 }
 
 
-function boldface_design_get_common_block_fields( $block_name ) {
+function boldface_design_get_common_block_fields( $block_name, $default_value = 'bg-white' ) {
 	return array(
 		array(
 			'key'               => "field_{$block_name}_background_color",
@@ -307,13 +307,28 @@ function boldface_design_get_common_block_fields( $block_name ) {
 				'bg-white'          => esc_html__( 'White', 'boldface-design' ),
 				'bg-whisper'        => esc_html__( 'Whisper (Light Gray)', 'boldface-design' ),
 				'bg-denim'          => esc_html__( 'Denim (Dark Blue)', 'boldface-design' ),
+				'bg-observatory'    => esc_html__( 'Observatory', 'boldface-design' ),
 				'bg-mine-shaft'     => esc_html__( 'Mine Shaft (Dark)', 'boldface-design' ),
 				'bg-gradient-abyss' => esc_html__( 'Gradient Abyss', 'boldface-design' ),
 			),
-			'default_value'     => 'bg-white',
+			'default_value'     => $default_value,
 			'required'          => 1,
 		),
 	);
+}
+
+function boldface_design_is_dark_background( $background_color ) {
+	$dark_backgrounds = [
+		'bg-gradient-abyss',
+		'bg-denim',
+		'bg-mine-shaft',
+		'bg-observatory',
+	];
+	return in_array( $background_color, $dark_backgrounds, true );
+}
+
+function boldface_design_get_text_color_from_background_color( $background_color ) {
+	return boldface_design_is_dark_background( $background_color ) ? 'text-white' : 'text-mine-shaft';
 }
 
 function boldface_design_get_block_common_classes( string $block_name, array $block ) {
