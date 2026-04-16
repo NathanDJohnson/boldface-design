@@ -22,6 +22,8 @@ $background_video_fallback = get_field( 'background_video_fallback' );
 $cta_url                   = get_field( 'cta_url' ) ?: '';
 $secondary_cta_url		   = get_field( 'secondary_cta_url' ) ?: '';
 
+$poster_url = ( ! empty( $background_image ) ) ? $background_image['url'] : '';
+
 // Build class name
 $class_name = 'wp-block-boldface-design-hero bg-[#fdf8fc] not-prose relative w-full flex items-center justify-center bg-cover bg-center overflow-hidden hero-block';
 
@@ -73,18 +75,19 @@ $class_name .= ' ' . $min_height;
 
 <section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?> data-hero-video="<?php echo esc_attr( $video_url ); ?>">
 	<?php if ( $background_image ) : ?>
-		<?php echo wp_get_attachment_image( $background_image['ID'], 'full', false, array( 'class' => 'absolute inset-0 w-full h-full object-cover' ) ); ?>
+		<?php echo wp_get_attachment_image( $background_image['ID'], 'full', false, array( 'class' => 'absolute inset-0 w-full h-full object-cover', 'fetchpriority' => 'high' ) ); ?>
 	<?php endif; ?>
 	
-	<?php if ( ! empty( $video_url ) ) : ?>
-		<video class="hero-video absolute inset-0 w-full h-full object-cover opacity-0" autoplay muted playsinline loop>
-			<?php if ( ! empty( $video_url ) ) : ?>
-        		<source src="<?php echo esc_url( $video_url ); ?>" type="video/webm">
-			<?php endif; ?>
-			
-			<?php if ( ! empty( $video_url_fallback ) 	) : ?>
-				<source src="<?php echo esc_url( $video_url_fallback ); ?>" type="video/mp4">
-			<?php endif; ?>
+	<?php if ( ! empty( $video_url ) || ! empty( $video_url_fallback ) ) : ?>
+		<video 
+			class="hero-video absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-200 opacity-0" 
+			autoplay 
+			muted 
+			playsinline 
+			loop
+			poster="<?php echo esc_url( $poster_url ); ?>"
+			data-webm="<?php echo esc_url( $video_url ); ?>"
+			data-mp4="<?php echo esc_url( $video_url_fallback ); ?>">
 		</video>
 	<?php endif; ?>
 
@@ -94,17 +97,16 @@ $class_name .= ' ' . $min_height;
 
 	<div class="relative z-20 text-center px-lg py-xl lg:py-2xl text-white">
 		<?php if ( $logo ) : ?>
-			<?php if ( is_array( $logo ) ) : ?>
-				<img src="<?php echo esc_url( $logo['url'] ); ?>" alt="<?php echo esc_attr( $logo['alt'] ?? 'Logo' ); ?>" class="mx-auto mb-lg h-200px w-auto object-contain mix-blend-difference">
-			<?php else : ?>
-				<?php echo wp_get_attachment_image( $logo, 'medium', false, array( 'class' => 'mx-auto mb-lg h-200px w-auto object-contain mix-blend-difference' ) ); ?>
-			<?php endif; ?>
+		<?php
+			$logo_id = is_array( $logo ) ? $logo['ID'] : $logo;
+			echo wp_get_attachment_image( $logo_id, 'medium', false, array( 'class' => 'mx-auto mb-lg h-200px w-auto object-contain mix-blend-difference' ) );
+		?>
 		<?php endif; ?>
 
 		<div class="container flex flex-col">
 
 			<?php if ( $tagline ) : ?>
-				<p class="text-h3 mb-md"><?php echo wp_kses_post( $tagline ); ?></p>
+				<div class="text-h3 mb-md"><?php echo wp_kses_post( $tagline ); ?></div>
 			<?php endif; ?>
 
 			<?php if ( $subtitle ) : ?>
@@ -148,6 +150,12 @@ $class_name .= ' ' . $min_height;
 <?php endif; ?>
 
 <?php get_template_part( 'template-parts/breadcrumbs' ); ?>
+
+<?php
+if ( is_front_page() ) {
+	get_template_part( 'template-parts/nav' );
+}
+?>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {

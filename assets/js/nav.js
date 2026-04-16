@@ -1,62 +1,42 @@
-(function(){
-    // Only run on the homepage
+(function() {
+    'use strict';
     if (!document.body.classList.contains('is-front-page')) return;
 
     const header = document.getElementById('masthead');
-    if (!header) return;
-
-    const firstSection = document.querySelector('section:first-of-type');
-    if (!firstSection) return;
-
-    // Place the header after the first section
-    firstSection.after(header);
-    // header.style.display = 'block';
-
-    // Create the placeholder once; we'll insert/remove it as needed
-    const placeholder = document.createElement('div');
-    placeholder.setAttribute('aria-hidden', 'true');
-    placeholder.style.display = 'none';
-
+    const firstSection = document.querySelector('.hero-block');
     const portfolioLink = document.getElementById('portfolio-link');
-    if (portfolioLink) {
-        portfolioLink.style.opacity = '0';
-    }
+    if (!header || !firstSection) return;
 
-    let isSticky = false;
-
-    function update() {
-        const headerTop = header.getBoundingClientRect().top;
-
-        if (!isSticky && headerTop <= 0) {
-            const height = header.offsetHeight;
-            const width = header.offsetWidth;
-
-            placeholder.style.display = 'block';
-            placeholder.style.height = height + 'px';
-            placeholder.style.width = width + 'px';
-
-            header.insertAdjacentElement('afterend', placeholder);
-
-            header.classList.add('sticky-active');
-            isSticky = true;
-
-            portfolioLink.style.opacity = '1';
-
-        } else if (isSticky) {
-            const placeholderTop = placeholder.getBoundingClientRect().top;
-
-            if (placeholderTop > 0) {
-                header.classList.remove('sticky-active');
-                placeholder.style.display = 'none';
-                placeholder.remove();
-                isSticky = false;
-
-                portfolioLink.style.opacity = '0';
-            }
+    /**
+     * SENIOR FIX: Use ResizeObserver instead of offsetHeight/resize listeners.
+     * This is asynchronous and prevents "Forced Reflow" penalties.
+     */
+    const ro = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            // entry.contentRect.height is calculated off-main-thread
+            const height = entry.contentRect.height;
+            document.documentElement.style.setProperty('--header-height', `${height}px`);
         }
-    }
+    });
+    ro.observe(header);
 
-    window.addEventListener('scroll', update, { passive: true });
+    /**
+     * Sticky Logic via Intersection Observer
+     */
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                header.classList.add('sticky-active');
+                if (portfolioLink) portfolioLink.style.opacity = '1';
+            } else {
+                header.classList.remove('sticky-active');
+                if (portfolioLink) portfolioLink.style.opacity = '0';
+            }
+        });
+    }, { 
+        threshold: 0,
+        rootMargin: '-10px 0px 0px 0px' 
+    });
 
-    update();
+    observer.observe(firstSection);
 })();

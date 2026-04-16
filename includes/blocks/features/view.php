@@ -41,6 +41,8 @@ if ( isset( $block['anchor'] ) ) {
 		<div class="text-left">
 			<?php if ( $description ) : ?>
 				<h2 class="medium mb-lg"><?php echo wp_kses_post( $description ); ?></h2>
+			<?php else : ?>
+				<h2 class="sr-only">Features</h2>
 			<?php endif; ?>
 
 			<?php if ( $content ) : ?>

@@ -29,20 +29,13 @@ require_once BOLDFACE_DESIGN_INC . '/schema.php';
 require_once BOLDFACE_DESIGN_INC . '/acf-blocks.php';
 
 /**
- * Enqueue theme styles and scripts
+ * Enqueue theme scripts
  * 
- * - Main stylesheet (style.css)
  * - Hero block script (hero.js) only on the front page
  * - Navigation script (nav.js) only on the front page
+ * - CSS is inlined in the head for better performance
  */
 function boldface_design_enqueue_assets() {
-	wp_enqueue_style(
-		'boldface-design-style',
-		BOLDFACE_DESIGN_URI . '/assets/css/style.css',
-		[],
-		BOLDFACE_DESIGN_VERSION
-	);
-
 	// ?? Is there a way to only load when the hero block contains a video background? Maybe we can add a class to the body when a hero block with video is present and target that class here? For now, we'll just load on the front page since that's the only place we have the hero block with video.
 	if( is_front_page() ) {
 		wp_enqueue_script(
@@ -77,6 +70,37 @@ function boldface_design_enqueue_assets() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'boldface_design_enqueue_assets' );
+
+/**
+ * Minify CSS by removing comments, extra whitespace, and unnecessary characters
+ * 
+ * @param string $css The CSS to minify
+ * @return string Minified CSS
+ */
+function boldface_design_minify_css( $css ) {
+	// Remove comments
+	$css = preg_replace( '!/\*[^*]*\*+(?:[^/*][^*]*\*+)*/!', '', $css );
+	// Remove whitespace around special characters
+	$css = preg_replace( '/\s*([{}:;,])\s*/', '$1', $css );
+	// Remove extra whitespace
+	$css = preg_replace( '/\s+/', ' ', $css );
+	// Remove leading/trailing whitespace
+	$css = trim( $css );
+	return $css;
+}
+
+/**
+ * Inline minified CSS in the head for better performance
+ */
+add_action( 'wp_head', function() {
+	$css_file = BOLDFACE_DESIGN_DIR . '/assets/css/style.css';
+	
+	if ( file_exists( $css_file ) ) {
+		$css = file_get_contents( $css_file );
+		$minified_css = boldface_design_minify_css( $css );
+		echo '<style>' . $minified_css . '</style>' . "\n";
+	}
+});
 
 /**
  * Enqueue admin styles (Editor/Dashboard)
@@ -330,3 +354,12 @@ add_filter( 'post_class', 'boldface_post_class' );
 //     }
 //     return $data;
 // } );
+
+add_action( 'wp_head', function() {
+	if ( ! is_front_page() ) return;
+	?>
+	<link rel="preload" fetchpriority="high" as="image" href="https://boldfacedesign.com/wp-content/uploads/2026/03/hero-poster-scaled.jpg">
+	<?php
+});
+
+add_filter( 'wp_calculate_image_srcset', '__return_false' );

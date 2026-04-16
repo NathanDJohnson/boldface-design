@@ -121,6 +121,7 @@
 
 @layer components {
   .btn {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
     @apply block max-md:w-full max-md:text-center md:inline-block px-lg py-xs rounded-[8px] transition-colors duration-300 font-semibold text-[20px];
   }
   .btn-sm {
@@ -317,4 +318,25 @@ textarea {
 
 .filter-btn.active {
   @apply btn-observatory;
+}
+
+/* Reserve the space in the document flow */
+.header-placeholder {
+    display: none;
+    visibility: hidden;
+}
+
+.is-front-page .header-placeholder {
+    display: block; /* It exists, but it's 0px tall initially */
+    height: var(--header-height, 0px);
+}
+
+/* Ensure the sticky header doesn't cause a layout repaint */
+#masthead.sticky-active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    transform: translateZ(0); /* Hardware acceleration */
 }

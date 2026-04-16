@@ -1,82 +1,70 @@
 /**
- * Hero Block - Background Video Handler
+ * Hero Block - High Performance Video Loader
  * 
- * Handles loading and displaying background videos in hero blocks.
- * The video replaces the background image once it's loaded.
+ * Handles dynamic injection of video sources to prevent 12MB payloads
+ * and ensures visibility on iOS Low Power Mode.
  */
-
 (function() {
 	'use strict';
 
-	function initHeroVideo() {
-        const heroBlocks = document.querySelectorAll('.hero-block');
+	const initHeroVideos = () => {
+		const heroVideos = document.querySelectorAll('.hero-video[data-webm]');
+		
+		heroVideos.forEach(video => {
+			// Connection Check: Gating for slow speeds or Data Saver
+			const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+			const isSlow = conn && (conn.saveData || ['slow-2g', '2g', '3g'].includes(conn.effectiveType));
 
-        heroBlocks.forEach(function(heroBlock) {
-            const video = heroBlock.querySelector('.hero-video');
-            if (!video) return;
+			// Safety Reveal: Show the poster/video container after 2s no matter what
+			const revealTimeout = setTimeout(() => {
+				video.classList.replace('opacity-0', 'opacity-100');
+			}, 2000);
 
-            // Listen for the 'playing' event
-            // 'canplay' triggers when enough is buffered, 
-            // 'playing' triggers when the first frame actually hits the screen.
-            video.addEventListener('playing', function() {
-                // Remove the opacity-0 class and let Tailwind's transition-opacity take over
-                video.classList.remove('opacity-0');
-                video.classList.add('opacity-100');
-                
-                // Slightly dim or hide the poster image underneath to save GPU resources
-                const poster = heroBlock.querySelector('img.absolute');
-                if (poster) {
-                    poster.style.transition = 'opacity 2s ease';
-                    poster.style.opacity = '0.5';
-                }
-            }, { once: true });
+			if (isSlow) {
+				video.classList.replace('opacity-0', 'opacity-100');
+				return; // Exit early: Don't fetch video files on slow connections
+			}
 
-            // Data Saver / Battery Check
-            // If the user has "Save Data" on, don't force a 12.9MB download
-            if (navigator.connection && navigator.connection.saveData) {
-                video.remove(); 
-                return;
-            }
+			// Inject Sources: Prevents the browser pre-parser from "double-dipping"
+			const webmSrc = video.dataset.webm;
+			const mp4Src = video.dataset.mp4;
 
-            // Graceful Error Handling
-            video.addEventListener('error', function() {
-                video.remove();
-            });
+			if (webmSrc) {
+				const s = document.createElement('source');
+				s.src = webmSrc;
+				s.type = 'video/webm';
+				video.appendChild(s);
+			}
 
-            // Emergency Timeout (5s for that 12MB file)
-            setTimeout(function() {
-                if (video.paused) {
-                    video.classList.remove('opacity-0');
-                    video.classList.add('opacity-100');
-                }
-            }, 5000);
-        });
-    }
+			if (mp4Src) {
+				const s = document.createElement('source');
+				s.src = mp4Src;
+				s.type = 'video/mp4';
+				video.appendChild(s);
+			}
 
-	// Initialize when DOM is ready
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', initHeroVideo);
-	} else {
-		initHeroVideo();
-	}
+			// Load and Play Logic
+			video.load();
 
-	// Re-initialize if new hero blocks are added dynamically (e.g., AJAX)
-	if (window.MutationObserver) {
-		const observer = new MutationObserver(function(mutations) {
-			mutations.forEach(function(mutation) {
-				if (mutation.addedNodes.length) {
-					mutation.addedNodes.forEach(function(node) {
-						if (node.nodeType === 1 && node.classList && node.classList.contains('hero-block')) {
-							initHeroVideo();
-						}
-					});
-				}
+			// The 'playing' event is the most reliable "visual" start point
+			video.addEventListener('playing', () => {
+				clearTimeout(revealTimeout);
+				video.classList.replace('opacity-0', 'opacity-100');
+			}, { once: true });
+
+			// Handle iOS "Low Power Mode" or Autoplay blocks
+			video.play().catch(() => {
+				clearTimeout(revealTimeout);
+				video.classList.replace('opacity-0', 'opacity-100');
+				console.log('Autoplay blocked: Showing poster fallback.');
 			});
 		});
+	};
 
-		observer.observe(document.body, {
-			childList: true,
-			subtree: true
-		});
+	// Run on load
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initHeroVideos);
+	} else {
+		initHeroVideos();
 	}
 })();
