@@ -117,7 +117,7 @@ $class_name .= ' ' . $min_height;
 				<?php
 					$h1_class = 'mb-lg';
 					if( ! empty( $subtitle ) ) {
-						$h1_class .= ' text-base font-montserrat';
+						$h1_class .= ' text-lead font-montserrat';
 					} else {
 						$h1_class .= ' text-h1';
 					}

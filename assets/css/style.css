@@ -1773,6 +1773,14 @@ img {
   color: rgb(69 69 69 / var(--tw-text-opacity, 1));
 }
 
+.prose p {
+  margin-bottom: 1.25rem;
+}
+
+.prose p:last-of-type {
+  margin-bottom: 0px;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -1882,10 +1890,6 @@ img {
 
 .mt-\[-8px\] {
   margin-top: -8px;
-}
-
-.mt-\[4rem\] {
-  margin-top: 4rem;
 }
 
 .mt-auto {
@@ -2331,6 +2335,10 @@ img {
   background-color: rgb(199 218 58 / var(--tw-bg-opacity, 1));
 }
 
+.bg-transparent {
+  background-color: transparent;
+}
+
 .bg-whisper {
   --tw-bg-opacity: 1;
   background-color: rgb(245 245 245 / var(--tw-bg-opacity, 1));
@@ -2476,11 +2484,6 @@ img {
 
 .font-sans {
   font-family: Montserrat, system-ui, sans-serif;
-}
-
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
 }
 
 .text-body {

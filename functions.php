@@ -43,7 +43,7 @@ function boldface_design_enqueue_assets() {
 			BOLDFACE_DESIGN_URI . '/assets/js/hero.js',
 			[],
 			BOLDFACE_DESIGN_VERSION,
-			true
+			[ 'strategy' => 'defer', 'in_footer' => true ],
 		);
 	}
 
@@ -65,7 +65,7 @@ function boldface_design_enqueue_assets() {
 			BOLDFACE_DESIGN_URI . '/assets/js/nav.js',
 			[],
 			BOLDFACE_DESIGN_VERSION,
-			true
+			[ 'strategy' => 'defer', 'in_footer' => true ],
 		);
 	}
 }
@@ -363,3 +363,19 @@ add_action( 'wp_head', function() {
 });
 
 add_filter( 'wp_calculate_image_srcset', '__return_false' );
+
+add_action('wp_footer', function() {
+	// GA4_ID should include G-
+    if (defined('GA4_ID')) {
+		$id = GA4_ID;
+		?>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $id; ?>"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', '<?php echo $id; ?>');
+		</script>
+        <?php
+    }
+}, 20);

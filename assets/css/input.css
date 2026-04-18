@@ -8,7 +8,7 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('../fonts/calistoga-v18-latin-regular.woff2') format('woff2');
+    src: url('/wp-content/themes/boldface-design/assets/fonts/calistoga-v18-latin-regular.woff2') format('woff2');
   }
 
   @font-face {
@@ -16,7 +16,7 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('../fonts/montserrat-v31-latin-400.woff2') format('woff2');
+    src: url('/wp-content/themes/boldface-design/assets/fonts/montserrat-v31-latin-400.woff2') format('woff2');
   }
 
   @font-face {
@@ -24,7 +24,7 @@
     font-style: normal;
     font-weight: 500;
     font-display: swap;
-    src: url('../fonts/montserrat-v31-latin-500.woff2') format('woff2');
+    src: url('/wp-content/themes/boldface-design/assets/fonts/montserrat-v31-latin-500.woff2') format('woff2');
   }
 
   @font-face {
@@ -32,7 +32,7 @@
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: url('../fonts/montserrat-v31-latin-700.woff2') format('woff2');
+    src: url('/wp-content/themes/boldface-design/assets/fonts/montserrat-v31-latin-700.woff2') format('woff2');
   }
   html,
   body {
@@ -141,6 +141,10 @@
   }
   .btn-outline-sulfur {
     @apply bg-transparent border-2 border-sulfur hover:bg-sulfur text-white hover:text-abbey;
+  }
+
+  .prose p {
+    @apply mb-md last-of-type:mb-0;
   }
 }
 

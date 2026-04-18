@@ -9,10 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-	<footer id="colophon" class="site-footer relative border-t-8 border-sulfur bg-white mt-[4rem]">
+	<footer id="colophon" class="site-footer relative border-t-8 border-sulfur bg-white">
 		<div class="container mx-auto px-lg py-xl">
-			<div class="bg-white absolute top-0 transform -translate-y-3/4">
-				<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/boldface-logo-outline.svg' ); ?>" alt="Boldface Design Logo" class="h-16 mx-auto" width="48" height="64">
+			<div class="bg-transparent absolute top-0 transform -translate-y-3/4">
+				<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/boldface-logo-footer.svg' ); ?>" alt="Boldface Design Logo" class="h-16 mx-auto" width="48" height="64">
 			</div>
 
 
