@@ -17,6 +17,7 @@ acf_add_local_field_group( array(
 	'key'                   => 'group_text_media_block',
 	'title'                 => esc_html__( 'Text & Media Block', 'boldface-design' ),
 	'fields'                => array(
+		...boldface_design_get_common_block_fields( 'text_media' ),
 		array(
 			'key'               => 'field_text_media_heading',
 			'label'             => esc_html__( 'Heading', 'boldface-design' ),

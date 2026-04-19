@@ -16,8 +16,16 @@ $image = get_field( 'image' );
 $video_embed = get_field( 'video_embed' ) ?: '';
 $media_position = get_field( 'media_position' ) ?: 'left';
 
+$background = get_field( 'background' ) ?: 'bg-white';
+
+// Determine text color based on background
+$text_color_class = 'text-mine-shaft';
+if ( in_array( $background, array( 'bg-gradient-abyss' , 'bg-denim', 'bg-mine-shaft' ), true ) ) {
+	$text_color_class = 'text-white';
+}
+
 // Build class name
-$class_name = 'wp-block-boldface-design-text-media bg-white w-full px-sm md:px-lg py-2xl';
+$class_name = "wp-block-boldface-design-text-media w-full px-sm md:px-lg py-2xl {$background} {$text_color_class}";
 
 if ( isset( $block['align'] ) ) {
 	$class_name .= ' align' . $block['align'];
@@ -47,7 +55,6 @@ if ( 'right' === $media_position ) {
 	<div class="max-w-1280px mx-auto">
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-lg lg:gap-xl items-start">
 
-			<!-- Media Column -->
 			<div class="<?php echo esc_attr( $media_order ); ?> flex flex-col">
 				<?php if ( $image ) : ?>
 					<?php 
@@ -62,14 +69,13 @@ if ( 'right' === $media_position ) {
 				<?php endif; ?>
 			</div>
 
-			<!-- Text Column -->
 			<div class="<?php echo esc_attr( $text_order ); ?> flex flex-col">
 				<?php if ( $heading ) : ?>
-					<h2 class="mb-lg text-mine-shaft"><?php echo wp_kses_post( $heading ); ?></h2>
+					<h2 class="mb-lg"><?php echo wp_kses_post( $heading ); ?></h2>
 				<?php endif; ?>
 
 				<?php if ( $content ) : ?>
-					<div class="prose prose-sm max-w-none text-abbey">
+					<div class="prose prose-sm max-w-none">
 						<?php echo wp_kses_post( wpautop( $content ) ); ?>
 					</div>
 				<?php endif; ?>

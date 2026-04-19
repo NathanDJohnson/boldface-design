@@ -149,7 +149,11 @@ $class_name .= ' ' . $min_height;
 	<hr class="block not-prose relative w-screen left-[50%] -translate-x-1/2">
 <?php endif; ?>
 
-<?php get_template_part( 'template-parts/breadcrumbs' ); ?>
+<?php
+if( ! is_page_template( 'templates/landing.php' ) ) {
+	get_template_part( 'template-parts/breadcrumbs' );
+}
+?>
 
 <?php
 if ( is_front_page() ) {
