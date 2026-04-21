@@ -46,6 +46,16 @@ acf_add_local_field_group( array(
 			'instructions'      => esc_html__( 'Describe the challenge or problem faced', 'boldface-design' ),
 		),
 		array(
+			'key'               => 'field_case_study_details_process',
+			'label'             => esc_html__( 'Process', 'boldface-design' ),
+			'name'              => 'process',
+			'type'              => 'wysiwyg',
+			'required'          => 1,
+			'toolbar'           => 'full',
+			'media_upload'      => 0,
+			'instructions'      => esc_html__( 'Explain the solution provided', 'boldface-design' ),
+		),
+		array(
 			'key'               => 'field_case_study_details_solution',
 			'label'             => esc_html__( 'Solution', 'boldface-design' ),
 			'name'              => 'solution',

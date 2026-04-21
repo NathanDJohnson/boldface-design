@@ -12,9 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Get field values
 $logo                      = get_field( 'logo' );
 $tagline 				   = get_field( 'tagline' ) ?: '';
-$title                     = get_field( 'title' ) ?: '';
+$title                     = boldface_deorphan( get_field( 'title' ) ) ?: '';
 $subtitle				   = get_field( 'subtitle' ) ?: '';
-$description               = get_field( 'description' ) ?: '';
+$description               = boldface_deorphan( get_field( 'description' ) ) ?: '';
 $description_placement     = get_field( 'description_placement' ) ?: 'above';
 $background_image          = get_field( 'background_image' );
 $background_video          = get_field( 'background_video' );
@@ -122,7 +122,6 @@ $class_name .= ' ' . $min_height;
 						$h1_class .= ' text-h1';
 					}
 				?>
-				<?php $title = str_replace( '—', '<br>—', $title ); ?>
 				<h1 class="<?php echo esc_attr( $h1_class ); ?>"><?php echo wp_kses_post( $title ); ?></h1>
 			<?php endif; ?>
 

@@ -10,9 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get field values
-$heading            = get_field( 'heading' ) ?: '';
+$heading            = boldface_deorphan( get_field( 'heading' ) ) ?: '';
 $heading_placement  = get_field( 'heading_placement' ) ?: 'above';
-$description        = get_field( 'description' ) ?: '';
+$description        = boldface_deorphan( get_field( 'description' ) ) ?: '';
 $cta_buttons        = get_field( 'cta_buttons' ) ?: array();
 
 // Build class name

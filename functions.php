@@ -103,6 +103,78 @@ add_action( 'wp_head', function() {
 });
 
 /**
+ * Inject FAQ schema into head if the current post has FAQ blocks
+ */
+add_action( 'wp_head', function() {
+	if ( ! is_singular() ) {
+		return;
+	}
+
+	$post_id = get_the_ID();
+	$post = get_post( $post_id );
+
+	if ( ! $post || ! has_blocks( $post ) ) {
+		return;
+	}
+
+	// Check if the post has FAQ blocks
+	$blocks = parse_blocks( $post->post_content );
+	$faq_data = boldface_design_extract_faq_blocks( $blocks );
+
+	if ( empty( $faq_data ) ) {
+		return;
+	}
+
+	// Build FAQ schema
+	$faq_schema = array(
+		'@context'   => 'https://schema.org',
+		'@type'      => 'FAQPage',
+		'mainEntity' => array(),
+	);
+
+	foreach ( $faq_data as $faq_item ) {
+		
+		$faq_schema['mainEntity'][] = array(
+			'@type'          => 'Question',
+			'name'           => $faq_item['question'],
+			'acceptedAnswer' => array(
+				'@type' => 'Answer',
+				'text'  => wp_strip_all_tags( $faq_item['answer'] ),
+			),
+		);
+	}
+
+	echo '<script type="application/ld+json">' . wp_json_encode( $faq_schema ) . '</script>' . "\n";
+}, 100 );
+
+/**
+ * Extract FAQ blocks from post blocks recursively
+ * 
+ * @param array $blocks The parsed blocks
+ * @return array Array of FAQ items grouped by block
+ */
+function boldface_design_extract_faq_blocks( $blocks ) {
+	$faq_data = array();
+
+	foreach ( $blocks as $block ) {
+		// Check if this is an FAQ block
+		if ( isset( $block['blockName'] ) && 'boldface-design/faq' === $block['blockName'] ) {
+			$n = $block['attrs']['data']['faq_items'] ?? 0;
+			$faq_items = array();
+
+			for ( $i = 0; $i < $n; $i++ ) {
+				$faq_data[] = array(
+					'question' => $block['attrs']['data']["faq_items_{$i}_question"] ?? '',
+					'answer'   => $block['attrs']['data']["faq_items_{$i}_answer"] ?? '',
+				);
+			}			
+		}
+	}
+
+	return $faq_data;
+}
+
+/**
  * Enqueue admin styles (Editor/Dashboard)
  * Only load on post editing screens to avoid unnecessary loading in other admin areas
  * This stylesheet can be used to style the block editor and admin pages to match the front-end
@@ -379,3 +451,19 @@ add_action('wp_footer', function() {
         <?php
     }
 }, 20);
+
+/** 
+ * Helper function to prevent orphaning the last word in a string by adding a non-breaking space before it
+ * This is used in block views to ensure better typography and prevent single words from being left alone on a new line, which can look awkward. By replacing the last space with a non-breaking space, we ensure that the last two words stay together on the same line. This function can be applied to any string where we want to improve the appearance of text, such as headings or descriptions in our blocks.
+ * 
+ * @param string $text The input text to process
+ * @return string The processed text with a non-breaking space before the last word
+ */
+function boldface_deorphan( $text ) {
+	$words = explode( ' ', $text );
+	if ( count( $words ) > 1 ) {
+		$last_word = array_pop( $words );
+		return implode( ' ', $words ) . '&nbsp;' . $last_word;
+	}
+	return $text;
+}

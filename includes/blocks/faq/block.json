@@ -1,0 +1,22 @@
+{
+    "apiVersion": 3,
+    "name": "boldface-design/faq",
+    "title": "FAQ",
+    "description": "A section for displaying frequently asked questions",
+    "category": "boldface-blocks",
+    "icon": "button",
+    "keywords": [
+        "faq",
+        "frequently asked questions",
+        "questions"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "view.php"
+    },
+    "supports": {
+        "align": [
+            "full"
+        ]
+    }
+}

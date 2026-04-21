@@ -19,11 +19,12 @@ wp_enqueue_script(
 );
 
 // Get field values
-$heading      = get_field( 'heading' ) ?: '';
-$introduction = get_field( 'introduction' ) ?: '';
-$challenge    = get_field( 'challenge' ) ?: '';
-$solution     = get_field( 'solution' ) ?: '';
-$results      = get_field( 'results' ) ?: '';
+$heading      = boldface_deorphan( get_field( 'heading' ) ) ?: '';
+$introduction = boldface_deorphan( get_field( 'introduction' ) ) ?: '';
+$challenge    = boldface_deorphan( get_field( 'challenge' ) ) ?: '';
+$solution     = boldface_deorphan( get_field( 'solution' ) ) ?: '';
+$process      = boldface_deorphan( get_field( 'process' ) ) ?: '';
+$results      = boldface_deorphan( get_field( 'results' ) ) ?: '';
 $gallery      = get_field( 'gallery' ) ?: array();
 $key_stats    = get_field( 'key_stats' ) ?: '';
 
@@ -64,7 +65,7 @@ if ( isset( $block['anchor'] ) ) {
 			
 			<?php if ( $challenge ) : ?>
 				<div>
-					<h3 class="mb-lg">Challenge</h3>
+					<h3 class="text-observatory mb-lg">Challenge</h3>
 					<div class="prose prose-sm max-w-none">
 						<?php echo wp_kses_post( $challenge ); ?>
 					</div>
@@ -73,7 +74,7 @@ if ( isset( $block['anchor'] ) ) {
 
 			<?php if ( $solution ) : ?>
 				<div>
-					<h3 class="mb-lg">Solution</h3>
+					<h3 class="text-observatory  mb-lg">Solution</h3>
 					<div class="prose prose-sm max-w-none">
 						<?php echo wp_kses_post( $solution ); ?>
 					</div>
@@ -101,6 +102,15 @@ if ( isset( $block['anchor'] ) ) {
 							<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
 						</a>
 					<?php endforeach; ?>
+				</div>
+			</div>
+		<?php endif; ?>
+
+		<?php if ( $process ) : ?>
+			<div class="mb-2xl">
+				<h3 class="text-h2 mb-lg">Process</h3>
+				<div class="prose prose-sm max-w-none">
+					<?php echo wp_kses_post( $process ); ?>
 				</div>
 			</div>
 		<?php endif; ?>

@@ -1991,6 +1991,10 @@ img {
   height: 1.25rem;
 }
 
+.h-6 {
+  height: 1.5rem;
+}
+
 .h-8 {
   height: 2rem;
 }
@@ -2009,6 +2013,10 @@ img {
 
 .h-full {
   height: 100%;
+}
+
+.max-h-0 {
+  max-height: 0px;
 }
 
 .min-h-\[calc\(100vh-100px\)\] {
@@ -2037,6 +2045,10 @@ img {
 
 .w-5 {
   width: 1.25rem;
+}
+
+.w-6 {
+  width: 1.5rem;
 }
 
 .w-8 {
@@ -2073,6 +2085,10 @@ img {
 
 .max-w-2xl {
   max-width: 42rem;
+}
+
+.max-w-3xl {
+  max-width: 48rem;
 }
 
 .max-w-\[250px\] {
@@ -2225,6 +2241,12 @@ img {
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
 
+.space-y-md > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
+}
+
 .space-y-xs > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
@@ -2282,6 +2304,10 @@ img {
   border-color: rgb(69 69 69 / var(--tw-border-opacity, 1));
 }
 
+.border-current {
+  border-color: currentColor;
+}
+
 .border-observatory {
   --tw-border-opacity: 1;
   border-color: rgb(7 165 153 / var(--tw-border-opacity, 1));
@@ -2295,6 +2321,10 @@ img {
 .border-whisper {
   --tw-border-opacity: 1;
   border-color: rgb(245 245 245 / var(--tw-border-opacity, 1));
+}
+
+.border-opacity-20 {
+  --tw-border-opacity: 0.2;
 }
 
 .bg-\[\#fdf8fc\] {
@@ -2347,6 +2377,10 @@ img {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.bg-observatory\/10 {
+  background-color: rgb(7 165 153 / 0.1);
 }
 
 .bg-gradient-abyss {
@@ -2901,6 +2935,7 @@ section.wp-block-boldface-design-case-study,
 section.wp-block-boldface-design-case-study-details,
 section.wp-block-boldface-design-clients,
 section.wp-block-boldface-design-cta,
+section.wp-block-boldface-design-faq,
 section.wp-block-boldface-design-features,
 section.wp-block-boldface-design-hero,
 section.wp-block-boldface-design-ordered-list,
@@ -3245,6 +3280,21 @@ textarea {
   outline-offset: 2px;
 }
 
+.focus\:ring-2:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.focus\:ring-observatory:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(7 165 153 / var(--tw-ring-opacity, 1));
+}
+
+.focus\:ring-offset-2:focus {
+  --tw-ring-offset-width: 2px;
+}
+
 .group:hover .group-hover\:scale-105 {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
@@ -3425,6 +3475,10 @@ textarea {
 .\[\&_a\]\:text-base a {
   font-size: 1rem;
   line-height: 1.5rem;
+}
+
+.\[\&_a\]\:underline a {
+  text-decoration-line: underline;
 }
 
 .\[\&_a\]\:hover\:no-underline:hover a {
