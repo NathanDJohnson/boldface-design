@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get field values
-$heading    = boldface_deorphan( boldface_get_field( 'heading' ) ) ?: '';
+$heading    = boldface_deorphan( get_field( 'heading' ) ) ?: '';
 $content    = boldface_deorphan( get_field( 'content' ) ) ?: '';
 $faq_items  = get_field( 'faq_items' ) ?: array();
 $background = get_field( 'background' ) ?: 'bg-white';
