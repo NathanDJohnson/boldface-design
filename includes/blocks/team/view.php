@@ -10,9 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get field values
-$background = get_field( 'background' ) ?: 'bg-white';
-$heading = get_field( 'heading' ) ?: '';
-$description = get_field( 'description' ) ?: '';
+$background   = get_field( 'background' ) ?: 'bg-white';
+$heading      = boldface_deorphan( get_field( 'heading' ) ) ?: '';
+$description  = boldface_deorphan( get_field( 'description' ) ) ?: '';
 $team_members = get_field( 'team_members' ) ?: array();
 
 // Build class name

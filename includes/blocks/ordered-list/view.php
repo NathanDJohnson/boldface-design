@@ -11,8 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Get field values
 $columns  = get_field( 'ordered_list_columns' ) ?: 'two';
-$heading = get_field( 'heading' ) ?: '';
-$content = get_field( 'content' ) ?: '';
+$heading = boldface_deorphan( get_field( 'heading' ) ) ?: '';
+$content = boldface_deorphan( get_field( 'content' ) ) ?: '';
 $items = get_field( 'items' ) ?: array();
 $image = get_field( 'image' );
 $background = get_field( 'background' ) ?: 'bg-white';

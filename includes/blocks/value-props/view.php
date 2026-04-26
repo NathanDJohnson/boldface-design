@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get field values
-$intro_heading        = get_field( 'intro_heading' ) ?: '';
-$intro_description    = get_field( 'intro_description' ) ?: '';
+$intro_heading        = boldface_deorphan( get_field( 'intro_heading' ) ) ?: '';
+$intro_description    = boldface_deorphan( get_field( 'intro_description' ) ) ?: '';
 $value_props_columns  = get_field( 'value_props_columns' ) ?: 'three';
 $text_alignment       = get_field( 'text_alignment' ) ?: 'left';
 $value_props          = get_field( 'value_props' ) ?: array();

@@ -18,20 +18,20 @@ acf_add_local_field_group( array(
 	'title'                 => esc_html__( 'CTA Block', 'boldface-design' ),
 	'fields'                => array(
 		array(
-			'key'               => 'field_cta_description',
-			'label'             => esc_html__( 'Description', 'boldface-design' ),
-			'name'              => 'description',
-			'type'              => 'textarea',
-			'required'          => 0,
-			'placeholder'       => esc_html__( 'e.g., Let\'s work together!', 'boldface-design' ),
-		),
-		array(
 			'key'               => 'field_cta_heading',
 			'label'             => esc_html__( 'Heading', 'boldface-design' ),
 			'name'              => 'heading',
 			'type'              => 'textarea',
 			'required'          => 1,
 			'placeholder'       => esc_html__( 'Enter CTA heading', 'boldface-design' ),
+		),
+		array(
+			'key'               => 'field_cta_description',
+			'label'             => esc_html__( 'Description', 'boldface-design' ),
+			'name'              => 'description',
+			'type'              => 'textarea',
+			'required'          => 0,
+			'placeholder'       => esc_html__( 'e.g., Let\'s work together!', 'boldface-design' ),
 		),
 		array(
 			'key'               => 'field_cta_heading_placement',
@@ -47,6 +47,19 @@ acf_add_local_field_group( array(
 			'layout'            => 'horizontal',
 		),
 		array(
+			'key'               => 'field_cta_display_mode',
+			'label'             => esc_html__( 'Display Mode', 'boldface-design' ),
+			'name'              => 'display_mode',
+			'type'              => 'radio',
+			'required'          => 0,
+			'choices'           => array(
+				'buttons'       => esc_html__( 'Buttons', 'boldface-design' ),
+				'form'          => esc_html__( 'Form', 'boldface-design' ),
+			),
+			'default_value'     => 'buttons',
+			'layout'            => 'horizontal',
+		),
+		array(
 			'key'               => 'field_cta_buttons',
 			'label'             => esc_html__( 'CTA Buttons', 'boldface-design' ),
 			'name'              => 'cta_buttons',
@@ -56,6 +69,15 @@ acf_add_local_field_group( array(
 			'max'               => 0,
 			'layout'            => 'block',
 			'button_label'      => esc_html__( 'Add Button', 'boldface-design' ),
+			'conditional_logic' => array(
+				array(
+					array(
+						'field'    => 'field_cta_display_mode',
+						'operator' => '==',
+						'value'    => 'buttons',
+					),
+				),
+			),
 			'sub_fields'        => array(
 				array(
 					'key'           => 'field_cta_button_link',
@@ -76,6 +98,59 @@ acf_add_local_field_group( array(
 					),
 					'default_value' => 'solid',
 					'layout'        => 'horizontal',
+				),
+			),
+		),
+		array(
+			'key'               => 'field_cta_form_id',
+			'label'             => esc_html__( 'Form ID', 'boldface-design' ),
+			'name'              => 'form_id',
+			'type'              => 'number',
+			'required'          => 0,
+			'placeholder'       => esc_html__( 'e.g., 42', 'boldface-design' ),
+			'conditional_logic' => array(
+				array(
+					array(
+						'field'    => 'field_cta_display_mode',
+						'operator' => '==',
+						'value'    => 'form',
+					),
+				),
+			),
+		),
+		array(
+			'key'               => 'field_cta_form_heading',
+			'label'             => esc_html__( 'Form Heading', 'boldface-design' ),
+			'name'              => 'form_heading',
+			'type'              => 'text',
+			'required'          => 0,
+			'placeholder'       => esc_html__( 'Enter form heading', 'boldface-design' ),
+			'conditional_logic' => array(
+				array(
+					array(
+						'field'    => 'field_cta_display_mode',
+						'operator' => '==',
+						'value'    => 'form',
+					),
+				),
+			),
+		),
+		array(
+			'key'               => 'field_cta_form_content',
+			'label'             => esc_html__( 'Form Content', 'boldface-design' ),
+			'name'              => 'form_content',
+			'type'              => 'wysiwyg',
+			'required'          => 0,
+			'tabs'              => 'all',
+			'toolbar'           => 'full',
+			'media_upload'      => 1,
+			'conditional_logic' => array(
+				array(
+					array(
+						'field'    => 'field_cta_display_mode',
+						'operator' => '==',
+						'value'    => 'form',
+					),
 				),
 			),
 		),

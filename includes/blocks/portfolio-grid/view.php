@@ -10,9 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get field values
-$heading = get_field( 'heading' ) ?: '';
-$content = get_field( 'content' ) ?: '';
-$default_filter = get_field( 'default_filter' ) ?: 'all';
+$heading           = boldface_deorphan( get_field( 'heading' ) ) ?: '';
+$content           = boldface_deorphan( get_field( 'content' ) ) ?: '';
+$default_filter    = get_field( 'default_filter' ) ?: 'all';
 $projects_per_page = intval( get_field( 'projects_per_page' ) ) ?: -1;
 
 // Build class name

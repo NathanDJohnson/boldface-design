@@ -29,10 +29,66 @@ require_once BOLDFACE_DESIGN_INC . '/schema.php';
 require_once BOLDFACE_DESIGN_INC . '/acf-blocks.php';
 
 /**
+ * Check if the current page has a contact form block or a CTA block with form display mode
+ * 
+ * @return bool True if contact form or CTA form block is present
+ */
+function boldface_design_has_contact_form() {
+	if ( ! is_singular() ) {
+		return false;
+	}
+
+	$post = get_post();
+	if ( ! $post || ! has_blocks( $post ) ) {
+		return false;
+	}
+
+	$blocks = parse_blocks( $post->post_content );
+	return boldface_design_check_contact_form_blocks( $blocks );
+}
+
+/**
+ * Recursively check for contact-form or CTA form blocks
+ * 
+ * @param array $blocks The parsed blocks to search
+ * @return bool True if contact form block or CTA with form mode is found
+ */
+function boldface_design_check_contact_form_blocks( $blocks ) {
+	foreach ( $blocks as $block ) {
+		if ( ! isset( $block['blockName'] ) ) {
+			continue;
+		}
+
+		// Check for contact-form block
+		if ( 'boldface-design/contact-form' === $block['blockName'] ) {
+			return true;
+		}
+
+		// Check for CTA block with form display mode
+		if ( 'boldface-design/cta' === $block['blockName'] ) {
+			$display_mode = $block['attrs']['data']['display_mode'] ?? 'buttons';
+			if ( 'form' === $display_mode ) {
+				return true;
+			}
+		}
+
+		// Recursively check inner blocks
+		if ( isset( $block['innerBlocks'] ) && ! empty( $block['innerBlocks'] ) ) {
+			if ( boldface_design_check_contact_form_blocks( $block['innerBlocks'] ) ) {
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+/**
  * Enqueue theme scripts
  * 
  * - Hero block script (hero.js) only on the front page
  * - Navigation script (nav.js) only on the front page
+ * - Chameleon select script if contact form or CTA form block is present
  * - CSS is inlined in the head for better performance
  */
 function boldface_design_enqueue_assets() {
@@ -47,8 +103,8 @@ function boldface_design_enqueue_assets() {
 		);
 	}
 
-	// Contact page
-	if ( is_page( 70 ) ) {
+	// Enqueue chameleon select script if contact form or CTA form block is present
+	if ( boldface_design_has_contact_form() ) {
 		wp_enqueue_script(
 			'boldface-design-contact',
 			BOLDFACE_DESIGN_URI . '/assets/js/chameleon-select.min.js',

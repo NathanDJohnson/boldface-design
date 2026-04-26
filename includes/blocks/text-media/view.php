@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get field values
-$heading = get_field( 'heading' ) ?: '';
-$content = get_field( 'content' ) ?: '';
+$heading = boldface_deorphan( get_field( 'heading' ) ) ?: '';
+$content = boldface_deorphan( get_field( 'content' ) ) ?: '';
 $image = get_field( 'image' );
 $video_embed = get_field( 'video_embed' ) ?: '';
 $media_position = get_field( 'media_position' ) ?: 'left';

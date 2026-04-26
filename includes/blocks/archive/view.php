@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get field values
-$heading = get_field( 'heading' ) ?: '';
-$content = get_field( 'content' ) ?: '';
+$heading = boldface_deorphan( get_field( 'heading' ) ) ?: '';
+$content = boldface_deorphan( get_field( 'content' ) ) ?: '';
 $post_type = get_field( 'post_type' ) ?: 'post';
 $sort_order = get_field( 'sort_order' ) ?: 'newest';
 $posts_per_page = intval( get_field( 'posts_per_page' ) ) ?: 6;

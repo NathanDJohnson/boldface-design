@@ -10,9 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get field values
-$heading       = get_field( 'heading' ) ?: '';
+$heading              = boldface_deorphan( get_field( 'heading' ) ) ?: '';
 $featured_testimonial = get_field( 'featured_testimonial' ) ?: array();
-$testimonials  = get_field( 'testimonials' ) ?: array();
+$testimonials         = get_field( 'testimonials' ) ?: array();
 
 // Build class name
 $class_name = 'wp-block-boldface-design-testimonials bg-white w-full px-sm md:px-lg py-2xl';

@@ -11,9 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Get field values
 $logo                      = get_field( 'logo' );
-$tagline 				   = get_field( 'tagline' ) ?: '';
+$tagline 				   = boldface_deorphan( get_field( 'tagline' ) ) ?: '';
 $title                     = boldface_deorphan( get_field( 'title' ) ) ?: '';
-$subtitle				   = get_field( 'subtitle' ) ?: '';
+$subtitle				   = boldface_deorphan( get_field( 'subtitle' ) ) ?: '';
 $description               = boldface_deorphan( get_field( 'description' ) ) ?: '';
 $description_placement     = get_field( 'description_placement' ) ?: 'above';
 $background_image          = get_field( 'background_image' );

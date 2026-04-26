@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get field values
-$heading = get_field( 'heading' ) ?: '';
-$content = get_field( 'content' ) ?: '';
+$heading = boldface_deorphan( get_field( 'heading' ) ) ?: '';
+$content = boldface_deorphan( get_field( 'content' ) ) ?: '';
 $form_id = get_field( 'form' );
 
 // Build class name

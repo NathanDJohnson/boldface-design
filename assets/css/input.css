@@ -164,6 +164,9 @@
   }
 
   p ~ p,
+  p ~ li,
+  li ~ p,
+  li ~ li,
   p ~ ul {
     @apply mt-md;
   }
@@ -194,6 +197,7 @@
 .wsf-label {
   @apply sr-only;
 }
+
 .wsf-button {
   @apply btn btn-lg btn-observatory;
 }
@@ -210,6 +214,9 @@
 
 .current-menu-item a {
   @apply pointer-events-none;
+}
+.menu-item {
+  @apply mt-0;
 }
 .menu-item a {
   @apply inline-block;

@@ -13,7 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 $heading            = boldface_deorphan( get_field( 'heading' ) ) ?: '';
 $heading_placement  = get_field( 'heading_placement' ) ?: 'above';
 $description        = boldface_deorphan( get_field( 'description' ) ) ?: '';
-$cta_buttons        = get_field( 'cta_buttons' ) ?: array();
+$display_mode       = get_field( 'display_mode' ) ?: 'buttons';
+$cta_buttons        = 'buttons' === $display_mode ? get_field( 'cta_buttons' ) ?: array() : array();
+$form_id            = 'form' === $display_mode ? get_field( 'form_id' ) : 0;
+$form_heading       = 'form' === $display_mode ? get_field( 'form_heading' ) : '';
+$form_content       = 'form' === $display_mode ? get_field( 'form_content' ) : '';
 
 // Build class name
 $class_name = 'wp-block-boldface-design-cta bg-gradient-abyss w-full px-sm md:px-lg py-2xl';
@@ -53,7 +57,7 @@ if ( isset( $block['anchor'] ) ) {
 			<h2 class="text-white mb-lg"><?php echo wp_kses_post( nl2br( $heading ) ); ?></h2>
 		<?php endif; ?>
 
-		<?php if ( ! empty( $cta_buttons ) ) : ?>
+		<?php if ( 'buttons' === $display_mode && ! empty( $cta_buttons ) ) : ?>
 			<div class="flex flex-wrap justify-center gap-md mt-lg">
 				<?php foreach ( $cta_buttons as $button ) : ?>
 					<?php if ( ! empty( $button['button_link'] ) ) : ?>
@@ -70,6 +74,22 @@ if ( isset( $block['anchor'] ) ) {
 						</a>
 					<?php endif; ?>
 				<?php endforeach; ?>
+			</div>
+		<?php elseif ( 'form' === $display_mode && ! empty( $form_id ) ) : ?>
+			<div class="mt-2xl grid grid-cols-1 lg:grid-cols-2 gap-lg lg:gap-xl items-start">
+				<div class="text-left">
+					<?php if ( $form_heading ) : ?>
+						<h3 class="text-white mb-md"><?php echo wp_kses_post( nl2br( $form_heading ) ); ?></h3>
+					<?php endif; ?>
+					<?php if ( $form_content ) : ?>
+						<div class="text-white prose prose-invert max-w-none">
+							<?php echo wp_kses_post( $form_content ); ?>
+						</div>
+					<?php endif; ?>
+				</div>
+				<div class="form-wrapper text-left">
+					<?php echo do_shortcode( '[ws_form id="' . intval( $form_id ) . '"]' ); ?>
+				</div>
 			</div>
 		<?php endif; ?>
 	</div>

@@ -10,10 +10,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get field values
-$intro_heading        = get_field( 'intro_heading' ) ?: '';
-$intro_description    = get_field( 'intro_description' ) ?: '';
+$intro_heading        = boldface_deorphan( get_field( 'intro_heading' ) ) ?: '';
+$intro_description    = boldface_deorphan( get_field( 'intro_description' ) ) ?: '';
 $case_studies_link    = get_field( 'case_studies_link' ) ?: '';
-$services_heading     = get_field( 'services_heading' ) ?: '';
+$services_heading     = boldface_deorphan( get_field( 'services_heading' ) ) ?: '';
 $services_items       = get_field( 'services_items' ) ?: array();
 $gallery_type         = get_field( 'gallery_type' ) ?: 'composite';
 $gallery_composite    = get_field( 'gallery_composite' ) ?: '';

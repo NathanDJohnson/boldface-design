@@ -10,9 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get field values
-$label              = get_field( 'label' ) ?: '';
-$title              = get_field( 'title' ) ?: '';
-$description        = get_field( 'description' ) ?: '';
+$label              = boldface_deorphan( get_field( 'label' ) ) ?: '';
+$title              = boldface_deorphan( get_field( 'title' ) ) ?: '';
+$description        = boldface_deorphan( get_field( 'description' ) ) ?: '';
 $case_study_link    = get_field( 'case_study_link' ) ?: '';
 $image              = get_field( 'image' );
 

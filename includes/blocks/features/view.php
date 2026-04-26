@@ -13,8 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 $background       = get_field( 'background' ) ?: 'bg-white';
 $columns          = get_field( 'features_columns' ) ?: 'four';
 $service_items    = get_field( 'service_items' ) ?: array();
-$description      = get_field( 'description' ) ?: '';
-$content          = get_field( 'content' ) ?: '';
+$description      = boldface_deorphan( get_field( 'description' ) ) ?: '';
+$content          = boldface_deorphan( get_field( 'content' ) ) ?: '';
 
 $text_color_class = boldface_design_get_text_color_from_background_color( $background );
 

@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get field values
-$heading        = get_field( 'heading' ) ?: '';
-$description    = get_field( 'description' ) ?: '';
+$heading        = boldface_deorphan( get_field( 'heading' ) ) ?: '';
+$description    = boldface_deorphan( get_field( 'description' ) ) ?: '';
 $priority_logos = get_field( 'priority_logos' ) ?: array();
 $logos          = get_field( 'logos' ) ?: array();
 $proof_chips    = get_field( 'proof_chips' ) ?: array();

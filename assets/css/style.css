@@ -1052,6 +1052,9 @@ ul:last-of-type {
 }
 
 p ~ p,
+  p ~ li,
+  li ~ p,
+  li ~ li,
   p ~ ul {
   margin-top: 1.25rem;
 }
@@ -2189,6 +2192,10 @@ section a:hover {
   pointer-events: none;
 }
 
+.menu-item {
+  margin-top: 0px;
+}
+
 .menu-item a {
   display: inline-block;
 }
@@ -2721,6 +2728,10 @@ textarea {
 
   .lg\:basis-\[calc\(33\%-1rem\)\] {
     flex-basis: calc(33% - 1rem);
+  }
+
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .lg\:grid-cols-4 {

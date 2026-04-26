@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get field values
-$heading = get_field( 'heading' );
-$content = get_field( 'content' );
+$heading = boldface_deorphan( get_field( 'heading' ) ) ?: '';
+$content = boldface_deorphan( get_field( 'content' ) ) ?: '';
 $background = get_field( 'background' ) ?: 'bg-white';
 
 // Determine text color based on background
