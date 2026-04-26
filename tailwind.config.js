@@ -81,8 +81,6 @@ module.exports = {
             h2: { fontFamily: 'Calistoga' },
             h3: { fontFamily: 'Calistoga' },
             h4: { fontFamily: 'Calistoga' },
-            '--tw-prose-bullets': theme('colors.observatory'),
-            '--tw-prose-links': theme('colors.observatory'),
           },
         },
       }),
@@ -94,7 +92,6 @@ module.exports = {
     },
   },
   plugins: [
-    require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
   ],
   corePlugins: {

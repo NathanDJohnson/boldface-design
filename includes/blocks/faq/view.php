@@ -60,18 +60,28 @@ if ( isset( $block['anchor'] ) ) {
 						$question = $item['question'] ?? '';
 						$answer   = $item['answer'] ?? '';
 						$item_id  = $block_id ? $block_id . '-item-' . $index : 'faq-item-' . $index;
+
+                        $active_class = '';
+                        $aria_expanded = 'false';
+                        $max_h = '0';
+                        if ( $index === 0 ) {
+                            // Add 'active' class to the first item by default
+                            $active_class = 'bg-observatory text-white';
+                            $aria_expanded = 'true';
+                            $max_h = '1000px';
+                        }
 					?>
 					<div class="faq-item border border-current border-opacity-20 rounded-lg overflow-hidden" data-faq-item>
 						<button
 							type="button"
-							class="faq-toggle w-full text-left px-lg py-md font-medium focus:outline-none"
-							aria-expanded="false"
+							class="faq-toggle w-full text-left px-lg py-md font-medium focus:outline-none <?php echo esc_attr( $active_class ); ?>"
+							aria-expanded="<?php echo esc_attr( $aria_expanded ); ?>"
 							aria-controls="<?php echo esc_attr( $item_id . '-answer' ); ?>"
 							data-faq-toggle
 						>
 							<div class="flex items-center justify-between gap-md">
 								<span><?php echo wp_kses_post( $question ); ?></span>
-								<svg class="w-6 h-6 flex-shrink-0 transition-transform duration-200" data-faq-icon fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<svg class="w-6 h-6 flex-shrink-0 transition-transform duration-200" data-faq-icon fill="none" stroke="currentColor" viewBox="0 0 24 24" style="<?php echo $aria_expanded === 'true' ? 'transform: rotate(180deg);' : ''; ?>">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
 								</svg>
 							</div>
@@ -80,9 +90,10 @@ if ( isset( $block['anchor'] ) ) {
 						<div
 							id="<?php echo esc_attr( $item_id . '-answer' ); ?>"
 							class="faq-answer overflow-hidden max-h-0 transition-all duration-300"
+                            style="<?php echo $max_h ? 'max-height:' . $max_h : ''; ?>"
 							data-faq-answer
 						>
-							<div class="px-lg py-md border-t border-current border-opacity-20 text-body prose [&_p]:mb-md max-w-none">
+							<div class="px-lg py-md border-t border-current border-opacity-20 text-body [&_p]:mb-md max-w-none">
 								<?php echo wp_kses_post( wpautop( $answer ) ); ?>
 							</div>
 						</div>

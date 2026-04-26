@@ -121,7 +121,6 @@
 
 @layer components {
   .btn {
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
     @apply block max-md:w-full max-md:text-center md:inline-block px-lg py-xs rounded-[8px] transition-colors duration-300 font-semibold text-[20px];
   }
   .btn-sm {
@@ -131,10 +130,10 @@
     @apply px-xl py-md;
   }
   .btn-observatory {
-    @apply bg-observatory border-2 border-observatory hover:bg-cyprus text-white;
+    @apply bg-observatory border-2 border-observatory hover:bg-cyprus text-white hover:text-white;
   }
   .btn-sulfur {
-    @apply bg-sulfur border-2 border-sulfur hover:bg-conifer text-abbey;
+    @apply bg-sulfur border-2 border-sulfur hover:bg-conifer text-abbey hover:text-abbey;
   }
   .btn-outline-observatory {
     @apply bg-transparent border-2 border-observatory hover:bg-observatory hover:text-white;
@@ -143,8 +142,34 @@
     @apply bg-transparent border-2 border-sulfur hover:bg-sulfur text-white hover:text-abbey;
   }
 
-  .prose p {
-    @apply mb-md last-of-type:mb-0;
+  /* maybe cta??? */
+  .single:not(.is-page) main {
+    @apply my-2xl;
+  }
+  .single:not(.is-page) h1,
+  .single:not(.is-page) h2,
+  .single:not(.is-page) h3,
+  .single:not(.is-page) h4,
+  .single:not(.is-page) h5,
+  .single:not(.is-page) h6 {
+    @apply mt-lg;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply mt-0 mb-md;
+  }
+
+  ul {
+    @apply list-disc pl-5 mb-md last-of-type:mb-0;
+  }
+
+  p ~ p,
+  p ~ ul {
+    @apply mt-md;
+  }
+
+  section a {
+    @apply text-observatory hover:text-cyprus transition-colors duration-200;
   }
 }
 
@@ -206,10 +231,6 @@
   /* @apply hidden; */
 }
 
-.prose, .prose * {
-  color: inherit;
-}
-
 /* Ensure full-width blocks stretch edge-to-edge */
 body.is-front-page header#masthead > div,
 section.wp-block-boldface-design-case-study,
@@ -229,6 +250,14 @@ section.wp-block-boldface-design-value-props,
 section.wp-block-boldface-design-wysiwyg
 {
   @apply relative w-screen left-[50%] -translate-x-1/2;
+}
+
+/* Block editor overrides */
+:root :where(.editor-styles-wrapper)::after {
+  @apply !hidden;
+}
+.block-editor-block-list__block {
+  @apply w-full max-w-none my-0;
 }
 
 #primary-menu {

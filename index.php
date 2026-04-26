@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<main id="main" class="site-main prose max-w-none px-sm">
+<main id="main" class="site-main max-w-none px-sm">
 	<?php
 	if ( have_posts() ) :
 		while ( have_posts() ) :

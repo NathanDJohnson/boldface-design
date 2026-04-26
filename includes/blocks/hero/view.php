@@ -25,7 +25,7 @@ $secondary_cta_url		   = get_field( 'secondary_cta_url' ) ?: '';
 $poster_url = ( ! empty( $background_image ) ) ? $background_image['url'] : '';
 
 // Build class name
-$class_name = 'wp-block-boldface-design-hero bg-[#fdf8fc] not-prose relative w-full flex items-center justify-center bg-cover bg-center overflow-hidden hero-block';
+$class_name = 'wp-block-boldface-design-hero bg-[#fdf8fc] relative w-full flex items-center justify-center bg-cover bg-center overflow-hidden hero-block';
 
 if ( isset( $block['align'] ) ) {
 	$class_name .= ' align' . $block['align'];
@@ -145,7 +145,7 @@ $class_name .= ' ' . $min_height;
 </section>
 
 <?php if( ! is_front_page() ) : ?>
-	<hr class="block not-prose relative w-screen left-[50%] -translate-x-1/2">
+	<hr class="block relative w-screen left-[50%] -translate-x-1/2">
 <?php endif; ?>
 
 <?php

@@ -16,7 +16,7 @@ $description        = boldface_deorphan( get_field( 'description' ) ) ?: '';
 $cta_buttons        = get_field( 'cta_buttons' ) ?: array();
 
 // Build class name
-$class_name = 'wp-block-boldface-design-cta not-prose bg-gradient-abyss w-full px-sm md:px-lg py-2xl';
+$class_name = 'wp-block-boldface-design-cta bg-gradient-abyss w-full px-sm md:px-lg py-2xl';
 
 if ( isset( $block['align'] ) ) {
 	$class_name .= ' align' . $block['align'];

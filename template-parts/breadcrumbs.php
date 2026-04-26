@@ -19,7 +19,7 @@ $crumbs[] = [
 ];
 ?>
 <div class="bg-whisper text-coal-mine w-full">
-	<div class="px-sm py-md max-w-1280px mx-auto prose [&_a]:text-base [&_a]:hover:no-underline [&_span]:text-base">
+	<div class="px-sm py-md max-w-1280px mx-auto [&_a]:text-base [&_a]:hover:no-underline [&_span]:text-base">
 		<?php foreach( $crumbs as $key => $crumb ) : ?>
 			<?php if( $key !== 0 ) : ?>
 				<span> / </span>

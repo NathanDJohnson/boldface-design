@@ -50,9 +50,7 @@ if ( isset( $block['anchor'] ) ) {
 			<?php endif; ?>
 
 			<?php if ( $content ) : ?>
-				<div class="prose prose-sm max-w-none">
-					<?php echo wp_kses_post( wpautop( $content ) ); ?>
-				</div>
+				<?php echo wp_kses_post( wpautop( $content ) ); ?>
 			<?php endif; ?>
 		</div>
 
@@ -84,7 +82,7 @@ if ( isset( $block['anchor'] ) ) {
 							<?php endif; ?>
 
 							<?php if ( $item_description ) : ?>
-								<div class="text-body prose">
+								<div class="text-body">
 									<?php echo wp_kses_post( wpautop( $item_description ) ); ?>
 								</div>
 							<?php endif; ?>

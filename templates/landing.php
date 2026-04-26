@@ -11,7 +11,7 @@
 		<?php the_content(); ?>
 	<?php endwhile; ?>
 
-    <section class="wp-block-boldface-design-cta not-prose bg-gradient-abyss w-full px-sm md:px-lg py-2xl align">
+    <section class="wp-block-boldface-design-cta bg-gradient-abyss w-full px-sm md:px-lg py-2xl align">
         <div class="max-w-1100px mx-auto text-center">
             <h2 class="text-white mb-lg">Schedule now</h2>
             

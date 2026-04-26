@@ -41,7 +41,7 @@ if ( isset( $block['anchor'] ) ) {
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-xl lg:gap-2xl">
 			<div class="flex flex-col justify-start">
 				<?php if ( $content ) : ?>
-					<div class="prose prose-sm max-w-none text-abbey">
+					<div class="text-abbey">
 						<?php echo wp_kses_post( wpautop( $content ) ); ?>
 					</div>
 				<?php endif; ?>

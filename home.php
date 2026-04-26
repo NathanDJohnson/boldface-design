@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<main id="main" class="site-main prose max-w-none px-sm">
+<main id="main" class="site-main max-w-none px-sm">
 	<header class="page-header">
 		<h1 class="page-title">
 			<?php

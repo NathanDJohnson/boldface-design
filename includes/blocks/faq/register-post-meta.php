@@ -40,6 +40,7 @@ acf_add_local_field_group( array(
 			'name'              => 'faq_items',
 			'type'              => 'repeater',
             'layout'            => 'block',
+            'collapsed'         => 'field_faq_question',
 			'required'          => 1,
 			'button_label'      => esc_html__( 'Add FAQ Item', 'boldface-design' ),
 			'min'               => 1,

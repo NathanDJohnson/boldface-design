@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Define theme constants
  */
-define( 'BOLDFACE_DESIGN_VERSION', '1.0.0' );
+define( 'BOLDFACE_DESIGN_VERSION', '1.1.0' );
 define( 'BOLDFACE_DESIGN_DIR', get_template_directory() );
 define( 'BOLDFACE_DESIGN_URI', get_template_directory_uri() );
 define( 'BOLDFACE_DESIGN_INC', BOLDFACE_DESIGN_DIR . '/includes' );
@@ -388,7 +388,10 @@ add_filter( 'upload_mimes', 'boldface_upload_svg_as_image' );
  */
 function boldface_body_class( $classes ) {
 	$classes = [ 'boldface-design' ];
+	if ( is_singular() ) $classes[] = 'single';
 	if ( is_singular( 'post' ) ) $classes[] = 'single-post';
+	if ( is_singular( 'project' ) ) $classes[] = 'single-project';
+	if ( is_singular( 'case_study' ) ) $classes[] = 'single-case-study';
 	if ( is_page() ) $classes[] = 'is-page';
 	if ( is_front_page() ) $classes[] = 'is-front-page';
 	return $classes;

@@ -66,18 +66,14 @@ if ( isset( $block['anchor'] ) ) {
 			<?php if ( $challenge ) : ?>
 				<div>
 					<h3 class="text-observatory mb-lg">Challenge</h3>
-					<div class="prose prose-sm max-w-none">
-						<?php echo wp_kses_post( $challenge ); ?>
-					</div>
+					<?php echo wp_kses_post( $challenge ); ?>
 				</div>
 			<?php endif; ?>
 
 			<?php if ( $solution ) : ?>
 				<div>
 					<h3 class="text-observatory  mb-lg">Solution</h3>
-					<div class="prose prose-sm max-w-none">
-						<?php echo wp_kses_post( $solution ); ?>
-					</div>
+					<?php echo wp_kses_post( $solution ); ?>
 				</div>
 			<?php endif; ?>
 
@@ -109,18 +105,14 @@ if ( isset( $block['anchor'] ) ) {
 		<?php if ( $process ) : ?>
 			<div class="mb-2xl">
 				<h3 class="text-h2 mb-lg">Process</h3>
-				<div class="prose prose-sm max-w-none">
-					<?php echo wp_kses_post( $process ); ?>
-				</div>
+				<?php echo wp_kses_post( $process ); ?>
 			</div>
 		<?php endif; ?>
 
 		<?php if ( $results ) : ?>
 			<div class="bg-ocean-blue text-white p-xl md:p-2xl my-2xl rounded-xl">
 				<h3 class="text-h2 mb-lg">Results</h3>
-				<div class="prose prose-sm max-w-none">
-					<?php echo wp_kses_post( $results ); ?>
-				</div>
+				<?php echo wp_kses_post( $results ); ?>
 			</div>
 		<?php endif; ?>
 

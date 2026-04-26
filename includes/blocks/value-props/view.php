@@ -19,7 +19,13 @@ $case_studies_link    = get_field( 'case_studies_link' ) ?: '';
 
 $background = get_field( 'background' ) ?: 'bg-observatory';
 $text_color = boldface_design_get_text_color_from_background_color( $background );
-$border_color = str_replace( 'text-', 'border-', $text_color );
+
+$border_color = match($background) {
+    'bg-white', 'bg-whisper' => 'border-observatory',
+    'bg-denim', 'bg-mine-shaft', 'bg-gradient-abyss' => 'border-sulfur',
+    'bg-observatory' => 'border-white',
+    default => 'border-observatory',
+};
 
 $column_class = 'shadow-md w-full rounded-lg p-lg';
 if ( 'two' === $value_props_columns ) {
@@ -43,7 +49,7 @@ $card_header_color = boldface_design_is_dark_background( $background ) ? 'text-s
 $card_subtitle_color = boldface_design_is_dark_background( $background ) ? 'text-whisper' : 'text-mine-shaft';
 
 // Build class name
-$class_name = 'wp-block-boldface-design-value-props not-prose w-full px-sm md:px-lg py-2xl';
+$class_name = 'wp-block-boldface-design-value-props w-full px-sm md:px-lg py-2xl';
 $class_name .= " $background $text_color";
 
 if ( isset( $block['align'] ) ) {

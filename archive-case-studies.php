@@ -13,7 +13,7 @@ get_header();
 ?>
 
 <main id="main">
-    <section class="wp-block-boldface-design-hero bg-[#fdf8fc] not-prose relative w-full flex items-center justify-center bg-cover bg-center overflow-hidden hero-block align bg-gradient-abyss min-h-300px">
+    <section class="wp-block-boldface-design-hero bg-[#fdf8fc] relative w-full flex items-center justify-center bg-cover bg-center overflow-hidden hero-block align bg-gradient-abyss min-h-300px">
         <div class="relative z-20 text-center px-lg py-xl lg:py-2xl text-white">
             <div class="container flex flex-col">
                 <h1 class="mb-lg text-h1">Bold Ideas, Real Impact</h1>
@@ -41,7 +41,7 @@ get_header();
         <?php endif; ?>
     </div>
 
-    <section class="wp-block-boldface-design-cta not-prose bg-gradient-abyss w-full px-sm md:px-lg py-2xl align">
+    <section class="wp-block-boldface-design-cta bg-gradient-abyss w-full px-sm md:px-lg py-2xl align">
         <div class="max-w-1100px mx-auto text-center">
             <h2 class="text-white mb-lg">Ready to find out if we’re the right fit?</h2>
             <p class="text-white mb-md">Tell us about your project. We’ll set up a no-obligation discovery call and give you a straight answer about whether Boldface is the right partner for what you’re trying to do.</p>

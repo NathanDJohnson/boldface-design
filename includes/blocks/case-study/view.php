@@ -17,7 +17,7 @@ $case_study_link    = get_field( 'case_study_link' ) ?: '';
 $image              = get_field( 'image' );
 
 // Build class name
-$class_name = 'wp-block-boldface-design-case-study not-prose bg-whisper w-full py-xl lg:py-2xl px-lg';
+$class_name = 'wp-block-boldface-design-case-study bg-whisper w-full py-xl lg:py-2xl px-lg';
 
 if ( isset( $block['align'] ) ) {
 	$class_name .= ' align' . $block['align'];

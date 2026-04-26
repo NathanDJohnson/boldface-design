@@ -15,7 +15,7 @@ get_header();
 <main id="main">
 	<?php while ( have_posts() ) : ?>
 		<?php the_post(); ?>
-        <div class="mt-lg container mx-auto prose">
+        <div class="mt-lg container mx-auto">
             <h1><?php the_title(); ?></h1>
 		    <?php the_content(); ?>
         </div>

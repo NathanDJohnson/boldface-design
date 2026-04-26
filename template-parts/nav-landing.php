@@ -1,4 +1,4 @@
-<header id="masthead" class="not-prose site-header sticky z-50 top-0 w-full">
+<header id="masthead" class="site-header sticky z-50 top-0 w-full">
     <div class="bg-sulfur h-100px flex items-center">
         <div class="container mx-auto px-sm py-sm flex gap-lg items-center justify-between">
             <div class="site-branding flex items-center gap-sm">

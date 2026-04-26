@@ -15,7 +15,7 @@ $featured_testimonial = get_field( 'featured_testimonial' ) ?: array();
 $testimonials  = get_field( 'testimonials' ) ?: array();
 
 // Build class name
-$class_name = 'wp-block-boldface-design-testimonials not-prose bg-white w-full px-sm md:px-lg py-2xl';
+$class_name = 'wp-block-boldface-design-testimonials bg-white w-full px-sm md:px-lg py-2xl';
 
 if ( isset( $block['align'] ) ) {
 	$class_name .= ' align' . $block['align'];

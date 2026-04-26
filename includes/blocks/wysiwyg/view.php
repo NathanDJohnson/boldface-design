@@ -44,7 +44,7 @@ if ( isset( $block['anchor'] ) ) {
             <h2 class="mb-lg"><?php echo wp_kses_post( $heading ); ?></h2>
         <?php endif; ?>
 		<?php if ( $content ) : ?>
-            <div class="text-body prose [&_p]:mb-md">
+            <div class="text-body">
 			    <?php echo wp_kses_post( wpautop( $content ) ); ?>
             </div>
 		<?php endif; ?>

@@ -61,7 +61,7 @@ $all_projects = $projects_query->posts;
                 <?php endif; ?>
 
                 <?php if ( $content ) : ?>
-                    <div class="prose prose-sm max-w-none text-abbey">
+                    <div class="text-abbey">
                         <?php echo wp_kses_post( wpautop( $content ) ); ?>
                     </div>
                 <?php endif; ?>

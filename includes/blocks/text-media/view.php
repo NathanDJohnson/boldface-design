@@ -75,9 +75,7 @@ if ( 'right' === $media_position ) {
 				<?php endif; ?>
 
 				<?php if ( $content ) : ?>
-					<div class="prose prose-sm max-w-none">
-						<?php echo wp_kses_post( wpautop( $content ) ); ?>
-					</div>
+					<?php echo wp_kses_post( wpautop( $content ) ); ?>
 				<?php endif; ?>
 			</div>
 

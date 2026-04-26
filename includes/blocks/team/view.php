@@ -109,7 +109,7 @@ if ( isset( $block['anchor'] ) ) {
                             <?php endif; ?>
 
                             <?php if ( $content ) : ?>
-                                <div class="text-abbey text-caption prose max-w-full">
+                                <div class="text-abbey text-caption">
                                     <?php echo wp_kses_post( $content ); ?>
                                 </div>
                             <?php endif; ?>

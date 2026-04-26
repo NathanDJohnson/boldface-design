@@ -21,7 +21,7 @@ $gallery_images       = get_field( 'gallery_images' ) ?: array();
 $action_buttons       = get_field( 'action_buttons' ) ?: array();
 
 // Build class name
-$class_name = 'wp-block-boldface-design-portfolio not-prose bg-observatory w-full px-sm md:px-lg py-2xl';
+$class_name = 'wp-block-boldface-design-portfolio bg-observatory w-full px-sm md:px-lg py-2xl';
 
 if ( isset( $block['align'] ) ) {
 	$class_name .= ' align' . $block['align'];

@@ -17,7 +17,7 @@ $logos          = get_field( 'logos' ) ?: array();
 $proof_chips    = get_field( 'proof_chips' ) ?: array();
 
 // Build class name
-$class_name = 'wp-block-boldface-design-clients not-prose bg-whisper text-mine-shaft w-full px-sm md:px-lg py-2xl';
+$class_name = 'wp-block-boldface-design-clients bg-whisper text-mine-shaft w-full px-sm md:px-lg py-2xl';
 
 if ( isset( $block['align'] ) ) {
 	$class_name .= ' align' . $block['align'];
