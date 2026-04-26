@@ -93,7 +93,7 @@ if ( isset( $block['anchor'] ) ) {
                             style="<?php echo $max_h ? 'max-height:' . $max_h : ''; ?>"
 							data-faq-answer
 						>
-							<div class="px-lg py-md border-t border-current border-opacity-20 text-body [&_p]:mb-md max-w-none">
+							<div class="px-lg py-md border-t border-current border-opacity-20 text-body max-w-none">
 								<?php echo wp_kses_post( wpautop( $answer ) ); ?>
 							</div>
 						</div>
@@ -115,6 +115,11 @@ document.addEventListener( 'DOMContentLoaded', function() {
 			const toggleButton = item.querySelector( '[data-faq-toggle]' );
 			const answerSection = item.querySelector( '[data-faq-answer]' );
 			const icon = item.querySelector( '[data-faq-icon]' );
+
+			const isExpanded = toggleButton.getAttribute( 'aria-expanded' ) === 'true';
+			if ( isExpanded ) {
+				answerSection.style.maxHeight = answerSection.scrollHeight + 'px';
+			}
 
 			toggleButton.addEventListener( 'click', function() {
 				const isExpanded = toggleButton.getAttribute( 'aria-expanded' ) === 'true';
