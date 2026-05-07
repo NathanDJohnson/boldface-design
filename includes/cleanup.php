@@ -67,6 +67,25 @@ remove_action( 'in_admin_header', 'wp_global_styles_render_svg_filters' );
 add_filter( 'wp_img_tag_add_auto_sizes', '__return_false' );
 
 /**
+ * Remove all core Gutenberg blocks, keep only Boldface blocks
+ */
+add_filter( 'allowed_block_types_all', function( $allowed_blocks, $editor_context ) {
+	// Get all registered blocks
+	$registered_blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
+	
+	// Keep only boldface-design blocks (blocks with namespace 'boldface-design/')
+	$allowed_blocks = array();
+	foreach ( $registered_blocks as $block_name => $block_type ) {
+		if ( strpos( $block_name, 'boldface-design/' ) === 0 ) {
+			$allowed_blocks[] = $block_name;
+		}
+	}
+	
+	return $allowed_blocks;
+}, 10, 2 );
+
+
+/**
  * Emoji Helper: TinyMCE
  */
 function boldface_disable_emojis_tinymce( $plugins ) {
@@ -119,3 +138,4 @@ add_filter('nav_menu_css_class', function($classes, $item, $args, $depth) {
 add_filter('nav_menu_item_title', function($title, $item, $args, $depth) {
     return strip_tags($title);
 }, 10, 4);
+
