@@ -15,25 +15,10 @@ $content = boldface_deorphan( get_field( 'content' ) ) ?: '';
 $image = get_field( 'image' );
 $video_embed = get_field( 'video_embed' ) ?: '';
 $media_position = get_field( 'media_position' ) ?: 'left';
-
 $background = get_field( 'background' ) ?: 'bg-white';
 
-// Determine text color based on background
-$text_color_class = 'text-mine-shaft';
-if ( in_array( $background, array( 'bg-gradient-abyss' , 'bg-denim', 'bg-mine-shaft' ), true ) ) {
-	$text_color_class = 'text-white';
-}
-
 // Build class name
-$class_name = "wp-block-boldface-design-text-media w-full px-sm md:px-lg py-2xl {$background} {$text_color_class}";
-
-if ( isset( $block['align'] ) ) {
-	$class_name .= ' align' . $block['align'];
-}
-
-if ( isset( $block['className'] ) ) {
-	$class_name .= ' ' . $block['className'];
-}
+$class_name = boldface_design_get_block_common_classes( 'text-media', $block );
 
 // Build ID
 $id = '';
@@ -51,7 +36,7 @@ if ( 'right' === $media_position ) {
 }
 ?>
 
-<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?>>
+<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo $id; ?>>
 	<div class="max-w-1280px mx-auto">
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-lg lg:gap-xl items-start">
 

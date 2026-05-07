@@ -15,13 +15,6 @@ $content = boldface_deorphan( get_field( 'content' ) ) ?: '';
 $post_type = get_field( 'post_type' ) ?: 'post';
 $sort_order = get_field( 'sort_order' ) ?: 'newest';
 $posts_per_page = intval( get_field( 'posts_per_page' ) ) ?: 6;
-$background = get_field( 'background' ) ?: 'bg-white';
-
-// Determine text color based on background
-$text_color_class = 'text-mine-shaft';
-if ( in_array( $background, array( 'bg-gradient-abyss', 'bg-denim', 'bg-mine-shaft' ), true ) ) {
-	$text_color_class = 'text-white';
-}
 
 // Set up query arguments
 $args = array(
@@ -45,15 +38,7 @@ if ( 'oldest' === $sort_order ) {
 $posts_query = new WP_Query( $args );
 
 // Build class name
-$class_name = "wp-block-boldface-design-archive max-w-none w-full px-sm md:px-lg py-2xl {$background} {$text_color_class}";
-
-if ( isset( $block['align'] ) ) {
-	$class_name .= ' align' . $block['align'];
-}
-
-if ( isset( $block['className'] ) ) {
-	$class_name .= ' ' . $block['className'];
-}
+$class_name = boldface_design_get_block_common_classes( 'archive', $block );
 
 // Build ID
 $id = '';
@@ -62,7 +47,7 @@ if ( isset( $block['anchor'] ) ) {
 }
 ?>
 
-<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?>>
+<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo $id; ?>>
 	<div class="max-w-1280px mx-auto">
 		<div class="mb-2xl">
 			<?php if ( $heading ) : ?>

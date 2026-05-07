@@ -17,22 +17,8 @@ $items = get_field( 'items' ) ?: array();
 $image = get_field( 'image' );
 $background = get_field( 'background' ) ?: 'bg-white';
 
-// Determine text color based on background
-$text_color_class = 'text-mine-shaft';
-if ( in_array( $background, array( 'bg-gradient-abyss', 'bg-denim', 'bg-mine-shaft' ), true ) ) {
-	$text_color_class = 'text-white';
-}
-
 // Build class name
-$class_name = "wp-block-boldface-design-ordered-list w-full px-sm md:px-lg py-2xl {$background} {$text_color_class}";
-
-if ( isset( $block['align'] ) ) {
-	$class_name .= ' align' . $block['align'];
-}
-
-if ( isset( $block['className'] ) ) {
-	$class_name .= ' ' . $block['className'];
-}
+$class_name = boldface_design_get_block_common_classes( 'ordered-list', $block );
 
 // Build ID
 $id = '';
@@ -41,7 +27,7 @@ if ( isset( $block['anchor'] ) ) {
 }
 ?>
 
-<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?>>
+<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo $id; ?>>
 	<div class="max-w-1280px mx-auto">
 		<!-- Header Section -->
 		<div class="mb-2xl">

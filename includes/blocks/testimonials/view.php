@@ -15,15 +15,7 @@ $featured_testimonial = get_field( 'featured_testimonial' ) ?: array();
 $testimonials         = get_field( 'testimonials' ) ?: array();
 
 // Build class name
-$class_name = 'wp-block-boldface-design-testimonials bg-white w-full px-sm md:px-lg py-2xl';
-
-if ( isset( $block['align'] ) ) {
-	$class_name .= ' align' . $block['align'];
-}
-
-if ( isset( $block['className'] ) ) {
-	$class_name .= ' ' . $block['className'];
-}
+$class_name = boldface_design_get_block_common_classes( 'testimonials', $block );
 
 // Build ID
 $id = '';
@@ -32,7 +24,7 @@ if ( isset( $block['anchor'] ) ) {
 }
 ?>
 
-<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?>>
+<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo $id; ?>>
 	<div class="max-w-1100px mx-auto">
 		<?php if ( $heading ) : ?>
 			<h2 class="text-observatory text-center mb-2xl"><?php echo wp_kses_post( $heading ); ?></h2>

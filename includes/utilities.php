@@ -327,20 +327,34 @@ function boldface_design_is_dark_background( $background_color ) {
 	return in_array( $background_color, $dark_backgrounds, true );
 }
 
+/** 
+ * Get text color class based on background color for better contrast
+ * 
+ * @param string $background_color The background color class (e.g. 'bg-white', 'bg-denim')
+ * @return string The text color class (e.g. 'text-mine-shaft' for light backgrounds, 'text-white' for dark backgrounds)
+ */
 function boldface_design_get_text_color_from_background_color( $background_color ) {
 	return boldface_design_is_dark_background( $background_color ) ? 'text-white' : 'text-mine-shaft';
 }
 
-function boldface_design_get_block_common_classes( string $block_name, array $block ) {
-	$background = get_field( 'background' ) ?: 'bg-white';
+/** 
+ * Get block classes based on background color and common styles
+ * 
+ * @param string $block_name The name of the block (e.g. 'wysiwyg')
+ * @param array $block The block data array from the render callback
+ * @return string The complete class string for the block
+ */
+function boldface_design_get_block_common_classes( string $block_name, array $block, $background = null ) {
+	$background = $background ?? get_field( 'background' ) ?: 'bg-white';
 
 	// Determine text color based on background
-	$text_color_class = 'text-mine-shaft';
-	if ( in_array( $background, array( 'bg-gradient-abyss', 'bg-denim', 'bg-mine-shaft' ), true ) ) {
-		$text_color_class = 'text-white';
-	}
+	$text_color_class = boldface_design_get_text_color_from_background_color( $background );
 
-	$class_name = "wp-block-boldface-design-{$block_name} w-full px-sm md:px-lg py-2xl {$background} {$text_color_class}";
+	$class_name = "wp-block-boldface-design wp-block-boldface-design-{$block_name} w-full px-sm md:px-lg py-2xl {$background} {$text_color_class}";
+
+	if ( isset( $block['className'] ) ) {
+		$class_name .= ' ' . $block['className'];
+	}
 
 	return $class_name;
 }

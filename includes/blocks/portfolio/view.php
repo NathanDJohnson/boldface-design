@@ -21,15 +21,7 @@ $gallery_images       = get_field( 'gallery_images' ) ?: array();
 $action_buttons       = get_field( 'action_buttons' ) ?: array();
 
 // Build class name
-$class_name = 'wp-block-boldface-design-portfolio bg-observatory w-full px-sm md:px-lg py-2xl';
-
-if ( isset( $block['align'] ) ) {
-	$class_name .= ' align' . $block['align'];
-}
-
-if ( isset( $block['className'] ) ) {
-	$class_name .= ' ' . $block['className'];
-}
+$class_name = boldface_design_get_block_common_classes( 'portfolio', $block, 'bg-observatory' );
 
 // Build ID
 $id = '';
@@ -38,7 +30,7 @@ if ( isset( $block['anchor'] ) ) {
 }
 ?>
 
-<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?>>
+<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo $id; ?>>
     <div class="max-w-1100px mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-2xl items-start">
             <div>

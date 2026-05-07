@@ -29,15 +29,7 @@ $gallery      = get_field( 'gallery' ) ?: array();
 $key_stats    = get_field( 'key_stats' ) ?: '';
 
 // Build class name
-$class_name = 'wp-block-boldface-design-case-study-details bg-white w-full px-sm md:px-lg py-2xl text-mine-shaft';
-
-if ( isset( $block['align'] ) ) {
-	$class_name .= ' align' . $block['align'];
-}
-
-if ( isset( $block['className'] ) ) {
-	$class_name .= ' ' . $block['className'];
-}
+$class_name = boldface_design_get_block_common_classes( 'case-study-details', $block );
 
 // Build ID
 $id = '';
@@ -46,7 +38,7 @@ if ( isset( $block['anchor'] ) ) {
 }
 ?>
 
-<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?>>
+<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo $id; ?>>
 	<div class="max-w-1280px mx-auto">
 		
         <?php if ( $heading ) : ?>

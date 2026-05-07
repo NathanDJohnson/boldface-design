@@ -16,18 +16,8 @@ $service_items    = get_field( 'service_items' ) ?: array();
 $description      = boldface_deorphan( get_field( 'description' ) ) ?: '';
 $content          = boldface_deorphan( get_field( 'content' ) ) ?: '';
 
-$text_color_class = boldface_design_get_text_color_from_background_color( $background );
-
 // Build class name
-$class_name = "wp-block-boldface-design-features max-w-none w-full px-sm md:px-lg py-2xl {$background} {$text_color_class}";
-
-if ( isset( $block['align'] ) ) {
-	$class_name .= ' align' . $block['align'];
-}
-
-if ( isset( $block['className'] ) ) {
-	$class_name .= ' ' . $block['className'];
-}
+$class_name = boldface_design_get_block_common_classes( 'features', $block );
 
 // Build ID
 $id = '';
@@ -36,7 +26,7 @@ if ( isset( $block['anchor'] ) ) {
 }
 ?>
 
-<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?>>
+<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo $id; ?>>
 	<div class="container mx-auto">
 		<div class="text-left">
 			<?php if ( $description ) : ?>

@@ -25,15 +25,11 @@ $secondary_cta_url		   = get_field( 'secondary_cta_url' ) ?: '';
 $poster_url = ( ! empty( $background_image ) ) ? $background_image['url'] : '';
 
 // Build class name
-$class_name = 'wp-block-boldface-design-hero bg-[#fdf8fc] relative w-full flex items-center justify-center bg-cover bg-center overflow-hidden hero-block';
-
-if ( isset( $block['align'] ) ) {
-	$class_name .= ' align' . $block['align'];
+$background = 'bg-gradient-abyss';
+if ( $background_image || $background_video ) {
+	$background = 'bg-[#fdf8fc]';
 }
-
-if ( isset( $block['className'] ) ) {
-	$class_name .= ' ' . $block['className'];
-}
+$class_name = boldface_design_get_block_common_classes( 'hero', $block, $background );
 
 // Build ID
 $id = '';

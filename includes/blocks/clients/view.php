@@ -17,15 +17,7 @@ $logos          = get_field( 'logos' ) ?: array();
 $proof_chips    = get_field( 'proof_chips' ) ?: array();
 
 // Build class name
-$class_name = 'wp-block-boldface-design-clients bg-whisper text-mine-shaft w-full px-sm md:px-lg py-2xl';
-
-if ( isset( $block['align'] ) ) {
-	$class_name .= ' align' . $block['align'];
-}
-
-if ( isset( $block['className'] ) ) {
-	$class_name .= ' ' . $block['className'];
-}
+$class_name = boldface_design_get_block_common_classes( 'clients', $block, 'bg-whisper' );
 
 // Build ID
 $id = '';
@@ -34,7 +26,7 @@ if ( isset( $block['anchor'] ) ) {
 }
 ?>
 
-<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?>>
+<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo $id; ?>>
 	<?php if ( $heading ) : ?>		
         <div class="max-w-1100px mx-auto">
             <h2 class="text-center"><?php echo wp_kses_post( $heading ); ?></h2>

@@ -20,15 +20,7 @@ $form_heading       = 'form' === $display_mode ? get_field( 'form_heading' ) : '
 $form_content       = 'form' === $display_mode ? get_field( 'form_content' ) : '';
 
 // Build class name
-$class_name = 'wp-block-boldface-design-cta bg-gradient-abyss w-full px-sm md:px-lg py-2xl';
-
-if ( isset( $block['align'] ) ) {
-	$class_name .= ' align' . $block['align'];
-}
-
-if ( isset( $block['className'] ) ) {
-	$class_name .= ' ' . $block['className'];
-}
+$class_name = boldface_design_get_block_common_classes( 'cta', $block, 'bg-gradient-abyss' );
 
 // Build ID
 $id = '';
@@ -37,7 +29,7 @@ if ( isset( $block['anchor'] ) ) {
 }
 ?>
 
-<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?>>
+<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo $id; ?>>
 	<div class="max-w-1100px mx-auto text-center">
 		<?php if ( 'above' === $heading_placement && $heading ) : ?>
 			<h2 class="text-white mb-lg"><?php echo wp_kses_post( nl2br( $heading ) ); ?></h2>

@@ -49,16 +49,7 @@ $card_header_color = boldface_design_is_dark_background( $background ) ? 'text-s
 $card_subtitle_color = boldface_design_is_dark_background( $background ) ? 'text-whisper' : 'text-mine-shaft';
 
 // Build class name
-$class_name = 'wp-block-boldface-design-value-props w-full px-sm md:px-lg py-2xl';
-$class_name .= " $background $text_color";
-
-if ( isset( $block['align'] ) ) {
-	$class_name .= ' align' . $block['align'];
-}
-
-if ( isset( $block['className'] ) ) {
-	$class_name .= ' ' . $block['className'];
-}
+$class_name = boldface_design_get_block_common_classes( 'value-props', $block );
 
 // Build ID
 $id = '';
@@ -67,7 +58,7 @@ if ( isset( $block['anchor'] ) ) {
 }
 ?>
 
-<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?>>
+<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo $id; ?>>
 	<div class="max-w-1100px mx-auto text-center">
 		<?php if ( $intro_heading ) : ?>
 			<h2 class="mb-lg text-left"><?php echo wp_kses_post( $intro_heading ); ?></h2>

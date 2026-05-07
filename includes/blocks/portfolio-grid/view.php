@@ -16,15 +16,7 @@ $default_filter    = get_field( 'default_filter' ) ?: 'all';
 $projects_per_page = intval( get_field( 'projects_per_page' ) ) ?: -1;
 
 // Build class name
-$class_name = 'wp-block-boldface-design-portfolio-grid bg-white w-full px-sm md:px-lg py-2xl';
-
-if ( isset( $block['align'] ) ) {
-	$class_name .= ' align' . $block['align'];
-}
-
-if ( isset( $block['className'] ) ) {
-	$class_name .= ' ' . $block['className'];
-}
+$class_name = boldface_design_get_block_common_classes( 'portfolio-grid', $block );
 
 // Build ID
 $id = '';
@@ -52,7 +44,7 @@ $projects_query = new WP_Query( $args );
 $all_projects = $projects_query->posts;
 ?>
 
-<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?>>
+<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo $id; ?>>
 	<div class="max-w-1280px mx-auto">
         <?php if ( $heading || $content ) : ?>
             <div class="mb-2xl">

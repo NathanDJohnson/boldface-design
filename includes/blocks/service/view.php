@@ -20,15 +20,7 @@ $text_color     = boldface_design_get_text_color_from_background_color( $backgro
 
 
 // Build class name
-$class_name = "wp-block-boldface-design-service w-full px-sm md:px-lg py-2xl {$background} {$text_color}";
-
-if ( isset( $block['align'] ) ) {
-	$class_name .= ' align' . $block['align'];
-}
-
-if ( isset( $block['className'] ) ) {
-	$class_name .= ' ' . $block['className'];
-}
+$class_name = boldface_design_get_block_common_classes( 'service', $block );
 
 // Build ID
 $id = '';
@@ -52,7 +44,7 @@ if ( in_array( $background, array( 'bg-gradient-abyss', 'bg-observatory', 'bg-de
 }
 ?>
 
-<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?>>
+<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo $id; ?>>
 	<div class="max-w-1280px mx-auto">
 		<div class="grid grid-cols-1 md:grid-cols-5 gap-lg lg:gap-xl items-center">
 

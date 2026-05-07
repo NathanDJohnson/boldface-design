@@ -13,24 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 $heading    = boldface_deorphan( get_field( 'heading' ) ) ?: '';
 $content    = boldface_deorphan( get_field( 'content' ) ) ?: '';
 $faq_items  = get_field( 'faq_items' ) ?: array();
-$background = get_field( 'background' ) ?: 'bg-white';
-
-// Determine text color based on background
-$text_color_class = 'text-mine-shaft';
-if ( in_array( $background, array( 'bg-gradient-abyss', 'bg-denim', 'bg-mine-shaft', 'bg-observatory' ), true ) ) {
-	$text_color_class = 'text-white';
-}
 
 // Build class name
-$class_name = "wp-block-boldface-design-faq max-w-none w-full px-sm md:px-lg py-2xl {$background} {$text_color_class}";
-
-if ( isset( $block['align'] ) ) {
-	$class_name .= ' align' . $block['align'];
-}
-
-if ( isset( $block['className'] ) ) {
-	$class_name .= ' ' . $block['className'];
-}
+$class_name = boldface_design_get_block_common_classes( 'faq', $block );
 
 // Build ID
 $id = '';
@@ -41,7 +26,7 @@ if ( isset( $block['anchor'] ) ) {
 }
 ?>
 
-<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?>>
+<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo $id; ?>>
 	<div class="container max-w-1100px mx-auto">
 		<?php if ( $heading ) : ?>
 			<h2 class="mb-lg text-center"><?php echo wp_kses_post( $heading ); ?></h2>

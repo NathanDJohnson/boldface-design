@@ -956,6 +956,22 @@ img {
   padding-bottom: 1.25rem;
 }
 
+.btn-text {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(7 165 153 / var(--tw-text-opacity, 1));
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.btn-text:hover {
+  --tw-text-opacity: 1;
+  color: rgb(5 130 121 / var(--tw-text-opacity, 1));
+}
+
 .btn-observatory {
   border-width: 2px;
   --tw-border-opacity: 1;
@@ -2243,34 +2259,31 @@ p ~ h2,
   width: 100%;
 }
 
-.is-front-page #masthead {
-  /* @apply hidden; */
-}
-
 /* Ensure full-width blocks stretch edge-to-edge */
 
-body.is-front-page header#masthead > div,
-section.wp-block-boldface-design-case-study,
-section.wp-block-boldface-design-case-study-details,
-section.wp-block-boldface-design-clients,
-section.wp-block-boldface-design-cta,
-section.wp-block-boldface-design-faq,
-section.wp-block-boldface-design-features,
-section.wp-block-boldface-design-hero,
-section.wp-block-boldface-design-ordered-list,
-section.wp-block-boldface-design-portfolio,
-section.wp-block-boldface-design-portfolio-grid,
-section.wp-block-boldface-design-services,
-section.wp-block-boldface-design-team,
-section.wp-block-boldface-design-testimonials,
-section.wp-block-boldface-design-text-media,
-section.wp-block-boldface-design-value-props,
-section.wp-block-boldface-design-wysiwyg {
+body.is-front-page header#masthead > div {
   position: relative;
   left: 50%;
   width: 100vw;
   --tw-translate-x: -50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.wp-block-boldface-design {
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.wp-block-boldface-design a:not([class*="btn"]) {
+  color: currentColor;
+  text-decoration-line: underline;
+}
+
+.wp-block-boldface-design a:not([class*="btn"]):hover {
+  text-decoration-line: none;
 }
 
 /* Block editor overrides */

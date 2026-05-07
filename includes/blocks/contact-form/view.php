@@ -15,15 +15,7 @@ $content = boldface_deorphan( get_field( 'content' ) ) ?: '';
 $form_id = get_field( 'form' );
 
 // Build class name
-$class_name = 'wp-block-boldface-design-contact-form bg-white text-mine-shaft w-full px-sm md:px-lg py-2xl';
-
-if ( isset( $block['align'] ) ) {
-	$class_name .= ' align' . $block['align'];
-}
-
-if ( isset( $block['className'] ) ) {
-	$class_name .= ' ' . $block['className'];
-}
+$class_name = boldface_design_get_block_common_classes( 'contact-form', $block );
 
 // Build ID
 $id = '';
@@ -32,7 +24,7 @@ if ( isset( $block['anchor'] ) ) {
 }
 ?>
 
-<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?>>
+<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo $id; ?>>
 	<div class="max-w-1280px mx-auto">
         <?php if ( $heading ) : ?>
             <h2 class="mb-lg"><?php echo wp_kses_post( $heading ); ?></h2>

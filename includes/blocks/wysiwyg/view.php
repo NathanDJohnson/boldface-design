@@ -11,22 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Get field values
 $heading = boldface_deorphan( get_field( 'heading' ) ) ?: '';
-$content = boldface_deorphan( get_field( 'content' ) ) ?: '';
+$content = get_field( 'content' ) ?: '';
 $background = get_field( 'background' ) ?: 'bg-white';
 
-// Determine text color based on background
-$text_color_class = boldface_design_get_text_color_from_background_color( $background );
-
 // Build class name
-$class_name = "wp-block-boldface-design-wysiwyg max-w-none w-full px-sm md:px-lg py-2xl {$background} {$text_color_class}";
-
-if ( isset( $block['align'] ) ) {
-	$class_name .= ' align' . $block['align'];
-}
-
-if ( isset( $block['className'] ) ) {
-	$class_name .= ' ' . $block['className'];
-}
+$class_name = boldface_design_get_block_common_classes( 'wysiwyg', $block );
 
 // Build ID
 $id = '';
@@ -35,14 +24,14 @@ if ( isset( $block['anchor'] ) ) {
 }
 ?>
 
-<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?>>
+<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo $id; ?>>
 	<div class="container text-left mx-auto">
         <?php if ( $heading ) : ?>
             <h2 class="mb-lg"><?php echo wp_kses_post( $heading ); ?></h2>
         <?php endif; ?>
 		<?php if ( $content ) : ?>
             <div class="text-body">
-			    <?php echo wp_kses_post( wpautop( $content ) ); ?>
+			    <?php echo wpautop( $content ); ?>
             </div>
 		<?php endif; ?>
 	</div>
