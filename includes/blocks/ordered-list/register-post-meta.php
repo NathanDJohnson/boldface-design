@@ -25,8 +25,9 @@ acf_add_local_field_group( array(
 			'type'              => 'select',
 			'required'          => 0,
 			'choices'           => array(
-				'one'  => esc_html__( 'One Column', 'boldface-design' ),
+				'one'   => esc_html__( 'One Column', 'boldface-design' ),
 				'two'   => esc_html__( 'Two Columns', 'boldface-design' ),
+				'three' => esc_html__( 'Three Columns', 'boldface-design' ),
 			),
 			'default_value'     => 'two',
 			'layout'            => 'horizontal',
@@ -105,5 +106,6 @@ acf_add_local_field_group( array(
 	'instruction_placement' => 'label',
 	'hide_on_screen'        => '',
 	'active'                => true,
+	'show_in_rest'          => true,
 	'description'           => esc_html__( 'ACF fields for the Ordered List Block', 'boldface-design' ),
 ) );

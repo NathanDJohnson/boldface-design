@@ -7,11 +7,32 @@ $crumbs = [
 		'name' => 'Home',
 	]
 ];
-if( is_singular( 'case-studies' ) ) {
-	$crumbs[] = [
-		'url' => '/case-studies/',
-		'name' => 'Case Studies',
-	];
+
+$post_id = get_the_ID();
+$post_type = get_post_type();
+
+// For hierarchical post types, get all ancestors
+if( is_post_type_hierarchical( $post_type ) ) {
+	$ancestors = get_post_ancestors( $post_id );
+	$ancestors = array_reverse( $ancestors );
+	
+	foreach( $ancestors as $ancestor_id ) {
+		$crumbs[] = [
+			'url' => get_permalink( $ancestor_id ),
+			'name' => get_the_title( $ancestor_id ),
+		];
+	}
+}
+// For non-hierarchical custom post types, check for pseudo-archive page
+else if( $post_type !== 'post' && $post_type !== 'page' ) {
+	$archive_page = get_page_by_path( $post_type, OBJECT, 'page' );
+	
+	if( $archive_page ) {
+		$crumbs[] = [
+			'url' => get_permalink( $archive_page->ID ),
+			'name' => get_the_title( $archive_page->ID ),
+		];
+	}
 }
 
 $crumbs[] = [
@@ -19,7 +40,7 @@ $crumbs[] = [
 ];
 ?>
 <div class="bg-whisper text-coal-mine w-full">
-	<div class="px-sm py-md max-w-1280px mx-auto [&_a]:text-base [&_a]:hover:no-underline [&_span]:text-base">
+	<div class="px-sm py-md max-w-1280px mx-auto [&_a]:text-base [&_a]:underline [&_a:hover]:no-underline [&_span]:text-base">
 		<?php foreach( $crumbs as $key => $crumb ) : ?>
 			<?php if( $key !== 0 ) : ?>
 				<span> / </span>

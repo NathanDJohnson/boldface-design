@@ -48,27 +48,31 @@ if ( isset( $block['anchor'] ) ) {
     <?php endif; ?>
 
     <?php if ( ! empty( $priority_logos ) ) : ?>
-        <div class="max-w-1280px mx-auto flex flex-wrap justify-center itens-center my-lg">
+        <div class="max-w-1280px mx-auto flex flex-wrap justify-center itens-center my-lg gap-y-xl">
             <?php foreach ( $priority_logos as $logo ) : ?>
                 <?php
                 $logo_image = $logo['logo'] ?? '';
                 $logo_alt   = $logo['alt_text'] ?? '';
                 ?>
                 <?php if ( $logo_image ) : ?>
-                    <div class="basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 flex items-center justify-center h-[100px]">
-                        <?php
-                        if( empty( $logo_alt ) ) {
-                            $logo_alt = $logo_image['alt'] ?? '';
-                        }
-                        if ( is_array( $logo_image ) ) {
-                            $logo_image = $logo_image['ID'];
-                        }
-                        
-                        echo wp_kses_post( wp_get_attachment_image( $logo_image, 'medium', false, array(
-                            'class' => 'h-full w-auto max-w-xs object-contain',
-                            'alt'   => ! empty( $logo_alt ) ? esc_attr( $logo_alt ) : '',
-                        ) ) );
-                        ?>
+                    <div class="basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5">
+                        <div class="flex items-center justify-center h-[100px] px-md">
+                            <?php
+                            if( empty( $logo_alt ) ) {
+                                $logo_alt = $logo_image['alt'] ?? '';
+                            }
+                            if ( is_array( $logo_image ) ) {
+                                $logo_image = $logo_image['ID'];
+                            }
+                            
+                            echo wp_kses_post( wp_get_attachment_image( $logo_image, 'medium', false, array(
+                                'class' => 'h-full w-auto max-w-xs object-contain',
+                                'alt'   => ! empty( $logo_alt ) ? esc_attr( $logo_alt ) : '',
+                                'loading' => 'lazy',
+                                'decoding' => 'async',
+                            ) ) );
+                            ?>
+                        </div>
                     </div>
                 <?php endif; ?>
             <?php endforeach; ?>

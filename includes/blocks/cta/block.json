@@ -17,6 +17,7 @@
     "supports": {
         "align": [
             "full"
-        ]
+        ],
+        "anchor": true
     }
 }

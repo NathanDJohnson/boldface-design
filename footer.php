@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						4678 White Rock Cir #5<br>
 						Boulder, CO 80301<br>
 						<a href="tel:+13035066650">(303) 506-6650</a><br>
-						<a href="mailto:hello@boldfacedesign.com">hello@boldfacedesign.com</a>
+						<!-- <a href="mailto:hello@boldfacedesign.com">hello@boldfacedesign.com</a> -->
 					</address>
 				</div>
 
@@ -33,12 +33,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 						wp_nav_menu( array(
 							'theme_location' => 'footer',
 							'fallback_cb'    => function() {
-								echo '<ul class="space-y-xs">';
+								echo '<ul class="space-y-xs list-none">';
 								echo '<li><a href="' . esc_url( home_url( '/' ) ) . '" class="text-abbey text-footer">Home</a></li>';
 								echo '</ul>';
 							},
 							'container'      => false,
-							'items_wrap'     => '<ul class="space-y-xs text-abbey [&_li]:text-footer">%3$s</ul>',
+							'items_wrap'     => '<ul class="space-y-xs list-none text-abbey [&_li]:text-footer">%3$s</ul>',
 							'depth'          => 1,
 						) );
 						?>
@@ -51,12 +51,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php
 						$facebook = 'https://www.facebook.com/BoldfaceDesign/';
 						$linkedin = 'https://www.linkedin.com/in/boldface/';
+						$behance  = 'https://www.behance.net/gallery/227568665/About-Carolyn';
 						?>
-						<a href="<?php echo esc_url( $facebook ); ?>" target="_blank" rel="noopener noreferrer" class="hover:opacity-75 transition" aria-label="Facebook">
+						<a href="<?php echo esc_url( $facebook ); ?>" target="_blank" rel="nofollow noopener noreferrer" class="hover:opacity-75 transition" aria-label="Facebook">
 							<img loading="lazy" decoding="async" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/facebook.svg' ); ?>" alt="Facebook" class="w-32px h-32px">
 						</a>
-						<a href="<?php echo esc_url( $linkedin ); ?>" target="_blank" rel="noopener noreferrer" class="hover:opacity-75 transition" aria-label="LinkedIn">
+						<a href="<?php echo esc_url( $linkedin ); ?>" target="_blank" rel="nofollow noopener noreferrer" class="hover:opacity-75 transition" aria-label="LinkedIn">
 							<img loading="lazy" decoding="async" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/linkedin.svg' ); ?>" alt="LinkedIn" class="w-32px h-32px">
+						</a>
+						<a href="<?php echo esc_url( $behance ); ?>" target="_blank" rel="nofollow noopener noreferrer" class="hover:opacity-75 transition" aria-label="Behance">
+							<img loading="lazy" decoding="async" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/behance.webp' ); ?>" alt="Behance" class="w-32px h-32px">
 						</a>
 					</div>
 					<div class="mt-md">

@@ -38,9 +38,8 @@ acf_add_local_field_group( array(
 			'key'               => 'field_case_study_description',
 			'label'             => esc_html__( 'Description', 'boldface-design' ),
 			'name'              => 'description',
-			'type'              => 'textarea',
-			'required'          => 1,
-			'rows'              => 5,
+			'type'              => 'wysiwyg',
+			'required'          => 0,
 			'placeholder'       => esc_html__( 'Enter the case study description', 'boldface-design' ),
 			'instructions'      => esc_html__( 'Main description text for the case study', 'boldface-design' ),
 		),
@@ -79,5 +78,6 @@ acf_add_local_field_group( array(
 	'instruction_placement' => 'label',
 	'hide_on_screen'        => '',
 	'active'                => true,
+	'show_in_rest'          => true,
 	'description'           => esc_html__( 'ACF fields for the Case Study Block', 'boldface-design' ),
 ) );

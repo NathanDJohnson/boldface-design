@@ -67,9 +67,10 @@ if ( isset( $block['anchor'] ) ) {
 			<div class="<?php echo esc_attr( $grid_cols ); ?>">
 				<?php foreach ( $service_items as $item ) : ?>
 					<?php
-					$image   = $item['image'] ?? '';
-					$title   = $item['title'] ?? '';
+					$image        = $item['image'] ?? '';
+					$title        = $item['title'] ?? '';
 					$item_content = $item['content'] ?? '';
+					$link         = $item['link'] ?? '';
 					?>
 					<div class="overflow-hidden">
 						<?php if ( $image ) : ?>
@@ -90,8 +91,22 @@ if ( isset( $block['anchor'] ) ) {
 							<?php endif; ?>
 
 							<?php if ( $item_content ) : ?>
-								<p class="text-body"><?php echo wp_kses_post( $item_content ); ?></p>
+								<div class="text-body"><?php echo wp_kses_post( $item_content ); ?></div>
 							<?php endif; ?>
+
+							<?php if ( $link ) : ?>
+								<?php
+								$link_class = 'text-abbey hover:text-mine-shaft transition';
+								if ( boldface_design_is_dark_background( $background ) ) {
+									$link_class = 'text-whisper hover:text-sulfur underline hover:no-underline transition';
+								}
+								?>
+                                <p class="mt-md">
+                                    <a href="<?php echo esc_url( $link['url'] ); ?>" class="<?php echo esc_attr( $link_class ); ?>" target="<?php echo esc_attr( $link['target'] ); ?>">
+                                        <?php echo esc_html( $link['title'] ); ?>
+                                    </a>
+                                </p>
+                            <?php endif; ?>
 						</div>
 					</div>
 				<?php endforeach; ?>

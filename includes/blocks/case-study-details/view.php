@@ -84,7 +84,7 @@ if ( isset( $block['anchor'] ) ) {
 		if ( ! empty( $gallery ) ) : 
 		?>
 			<div class="mb-2xl">
-				<div class="flex flex-wrap justify-center gap-lg">
+				<div class="flex flex-wrap justify-center mx-[-1rem]">
 					<?php foreach ( $gallery as $gallery_item ) : ?>
 						<?php
 						$image = $gallery_item['image'] ?? '';
@@ -94,7 +94,7 @@ if ( isset( $block['anchor'] ) ) {
 						$image_url = is_array( $image ) ? $image['url'] : $image;
 						$image_alt = is_array( $image ) ? ( $image['alt'] ?: 'Gallery image' ) : 'Gallery image';
 						?>
-						<a href="<?php echo esc_url( $image_url ); ?>" data-lightbox="case-study-gallery" class="md:basis-1/2 lg:basis-[calc(33%-1rem)] aspect-square block overflow-hidden rounded-lg">
+						<a href="<?php echo esc_url( $image_url ); ?>" data-lightbox="case-study-gallery" class="md:basis-1/2 lg:basis-1/3 xl:basis-1/6 aspect-square block overflow-hidden rounded-lg p-sm">
 							<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
 						</a>
 					<?php endforeach; ?>

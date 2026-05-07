@@ -15,10 +15,7 @@ $content = boldface_deorphan( get_field( 'content' ) ) ?: '';
 $background = get_field( 'background' ) ?: 'bg-white';
 
 // Determine text color based on background
-$text_color_class = 'text-mine-shaft';
-if ( in_array( $background, array( 'bg-gradient-abyss' , 'bg-denim', 'bg-mine-shaft' ), true ) ) {
-	$text_color_class = 'text-white';
-}
+$text_color_class = boldface_design_get_text_color_from_background_color( $background );
 
 // Build class name
 $class_name = "wp-block-boldface-design-wysiwyg max-w-none w-full px-sm md:px-lg py-2xl {$background} {$text_color_class}";

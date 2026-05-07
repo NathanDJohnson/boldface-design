@@ -62,5 +62,6 @@ acf_add_local_field_group( array(
 	'instruction_placement' => 'label',
 	'hide_on_screen'        => '',
 	'active'                => true,
+	'show_in_rest'          => true,
 	'description'           => esc_html__( 'ACF fields for the Contact Form Block', 'boldface-design' ),
 ) );

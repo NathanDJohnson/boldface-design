@@ -447,9 +447,12 @@ function boldface_body_class( $classes ) {
 	if ( is_singular() ) $classes[] = 'single';
 	if ( is_singular( 'post' ) ) $classes[] = 'single-post';
 	if ( is_singular( 'project' ) ) $classes[] = 'single-project';
-	if ( is_singular( 'case_study' ) ) $classes[] = 'single-case-study';
-	if ( is_page() ) $classes[] = 'is-page';
+	if ( is_singular( 'case-studies' ) ) $classes[] = 'single-case-study';
 	if ( is_front_page() ) $classes[] = 'is-front-page';
+
+	if( is_singular( array( 'page', 'case-studies' ) ) ) {
+		$classes[] = 'is-page';
+	}
 	return $classes;
 }
 add_filter( 'body_class', 'boldface_body_class' );
@@ -465,7 +468,6 @@ function boldface_post_class( $classes ) {
 	return $classes;
 }
 add_filter( 'post_class', 'boldface_post_class' );
-
 
 /**
  * Disable Yoast's Organization/Company schema 
@@ -518,7 +520,10 @@ add_action('wp_footer', function() {
  * @param string $text The input text to process
  * @return string The processed text with a non-breaking space before the last word
  */
-function boldface_deorphan( $text ) {
+function boldface_deorphan( ?string $text ) : string {
+	if( ! isset( $text ) || empty( $text ) ) {
+		return '';
+	}
 	$words = explode( ' ', $text );
 	if ( count( $words ) > 1 ) {
 		$last_word = array_pop( $words );

@@ -163,6 +163,20 @@
     @apply list-disc pl-5 mb-md last-of-type:mb-0;
   }
 
+  li {
+    @apply break-inside-avoid-column;
+  }
+
+  p ~ h2,
+  p ~ h3,
+  p ~ h4,
+  p ~ h5,
+  p ~ h6,
+  li ~ h2,
+  li ~ h3,
+  li ~ h4,
+  li ~ h5,
+  li ~ h6,
   p ~ p,
   p ~ li,
   li ~ p,
@@ -171,7 +185,7 @@
     @apply mt-md;
   }
 
-  section a {
+  .faq-answer a:not(.btn) {
     @apply text-observatory hover:text-cyprus transition-colors duration-200;
   }
 }
@@ -250,6 +264,7 @@ section.wp-block-boldface-design-hero,
 section.wp-block-boldface-design-ordered-list,
 section.wp-block-boldface-design-portfolio,
 section.wp-block-boldface-design-portfolio-grid,
+section.wp-block-boldface-design-services,
 section.wp-block-boldface-design-team,
 section.wp-block-boldface-design-testimonials,
 section.wp-block-boldface-design-text-media,

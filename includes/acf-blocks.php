@@ -69,6 +69,7 @@ function boldface_design_register_project_fields() {
 		'instruction_placement' => 'label',
 		'hide_on_screen'        => '',
 		'active'                => true,
+		'show_in_rest'          => true,
 		'description'           => esc_html__( 'ACF fields for the Project post type', 'boldface-design' ),
 	) );
 }

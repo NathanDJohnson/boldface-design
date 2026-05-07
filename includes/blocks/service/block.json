@@ -1,0 +1,22 @@
+{
+    "apiVersion": 3,
+    "name": "boldface-design/service",
+    "title": "Service",
+    "description": "A block to display a single service item with an image, title, description, and link.",
+    "category": "boldface-blocks",
+    "icon": "admin-tools",
+    "keywords": [
+        "service",
+        "feature",
+        "item"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "view.php"
+    },
+    "supports": {
+        "align": [
+            "full"
+        ]
+    }
+}

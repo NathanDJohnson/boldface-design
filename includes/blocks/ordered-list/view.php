@@ -61,6 +61,9 @@ if ( isset( $block['anchor'] ) ) {
 			if ( $columns === 'two' ) {
 				$grid_cols .= ' md:grid-cols-2';
 			}
+			if ( $columns === 'three' ) {
+				$grid_cols .= ' md:grid-cols-3';
+			}
 			?>
 			<div class="<?php echo esc_attr( $grid_cols ); ?>">
 				<?php foreach ( $items as $index => $item ) : ?>

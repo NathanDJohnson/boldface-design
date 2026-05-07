@@ -61,7 +61,7 @@ if ( 'right' === $media_position ) {
 					$img_url = is_array( $image ) ? $image['url'] : $image;
 					$img_alt = is_array( $image ) ? ( $image['alt'] ?: '' ) : '';
 					?>
-					<img src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $img_alt ); ?>" class="w-full h-auto object-cover rounded" />
+					<img src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $img_alt ); ?>" class="w-full h-auto object-cover rounded" loading="lazy" decoding="async" />
 				<?php elseif ( $video_embed ) : ?>
 					<div class="aspect-video rounded overflow-hidden bg-mine-shaft">
 						<?php echo wp_oembed_get( esc_url( $video_embed ) ); ?>

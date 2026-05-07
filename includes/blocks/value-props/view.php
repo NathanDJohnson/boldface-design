@@ -101,7 +101,7 @@ if ( isset( $block['anchor'] ) ) {
 							<?php endif; ?>
 						<?php endif; ?>
 
-						<?php if ( $title ) : ?>
+						<?php if ( $title !== '' && $title !== null ) : ?>
 							<h3 class="<?php echo wp_kses_post( $card_header_color ); ?> mb-sm"><?php echo wp_kses_post( $title ); ?></h3>
 						<?php endif; ?>
 
