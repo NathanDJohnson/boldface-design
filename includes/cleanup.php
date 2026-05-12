@@ -139,3 +139,17 @@ add_filter('nav_menu_item_title', function($title, $item, $args, $depth) {
     return strip_tags($title);
 }, 10, 4);
 
+
+/**
+ * Decode HTML entities in Yoast SEO schema output to prevent double encoding
+ */
+add_filter( 'wpseo_schema_website', function( $data ) {
+    if ( isset( $data['description'] ) ) {
+        $data['description'] = html_entity_decode( 
+            $data['description'], 
+            ENT_QUOTES, 
+            'UTF-8' 
+        );
+    }
+    return $data;
+} );

@@ -17,6 +17,7 @@ $subtitle				   = boldface_deorphan( get_field( 'subtitle' ) ) ?: '';
 $description               = boldface_deorphan( get_field( 'description' ) ) ?: '';
 $description_placement     = get_field( 'description_placement' ) ?: 'above';
 $background_image          = get_field( 'background_image' );
+$background_image_reduced_motion = get_field( 'background_image_reduced_motion' );
 $background_video          = get_field( 'background_video' );
 $background_video_fallback = get_field( 'background_video_fallback' );
 $cta_url                   = get_field( 'cta_url' ) ?: '';
@@ -71,12 +72,18 @@ $class_name .= ' ' . $min_height;
 
 <section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?> data-hero-video="<?php echo esc_attr( $video_url ); ?>">
 	<?php if ( $background_image ) : ?>
-		<?php echo wp_get_attachment_image( $background_image['ID'], 'full', false, array( 'class' => 'absolute inset-0 w-full h-full object-cover', 'fetchpriority' => 'high' ) ); ?>
+		<?php echo wp_get_attachment_image( $background_image['ID'], 'full', false, array( 'class' => 'absolute inset-0 w-full h-full object-cover motion-safe:block hidden', 'fetchpriority' => 'high' ) ); ?>
+	<?php endif; ?>
+	
+	<?php if ( $background_image_reduced_motion ) : ?>
+		<?php echo wp_get_attachment_image( $background_image_reduced_motion['ID'], 'full', false, array( 'class' => 'absolute inset-0 w-full h-full object-cover motion-reduce:block hidden', 'fetchpriority' => 'high' ) ); ?>
+	<?php elseif ( $background_image ) : ?>
+		<?php echo wp_get_attachment_image( $background_image['ID'], 'full', false, array( 'class' => 'absolute inset-0 w-full h-full object-cover motion-reduce:block hidden', 'fetchpriority' => 'high' ) ); ?>
 	<?php endif; ?>
 	
 	<?php if ( ! empty( $video_url ) || ! empty( $video_url_fallback ) ) : ?>
 		<video 
-			class="hero-video absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-200 opacity-0" 
+			class="hero-video absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-200 opacity-0 motion-safe:block hidden" 
 			autoplay 
 			muted 
 			playsinline 
@@ -88,7 +95,7 @@ $class_name .= ' ' . $min_height;
 	<?php endif; ?>
 
 	<?php if( ! empty( $video_url ) || ! empty( $bg_url ) ) : ?>
-		<div class="overlay absolute inset-0 bg-black/50 z-10 opacity-0 duration-1000"></div>
+		<div class="overlay absolute inset-0 bg-black/50 z-10 opacity-0 motion-safe:block hidden duration-1000"></div>
 	<?php endif; ?>
 
 	<div class="relative z-20 text-center px-lg py-xl lg:py-2xl text-white">

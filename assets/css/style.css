@@ -904,6 +904,21 @@ hr {
   padding: 0px;
 }
 
+.screen-reader-text:focus {
+  position: absolute;
+  z-index: 500;
+  margin: 0px;
+  height: auto;
+  width: auto;
+  overflow: visible;
+  white-space: normal;
+  --tw-bg-opacity: 1;
+  background-color: rgb(122 122 122 / var(--tw-bg-opacity, 1));
+  padding: 0.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
 img {
   height: auto;
   max-width: 100%;
@@ -2255,7 +2270,101 @@ p ~ h2,
 }
 
 .current-menu-item a::after,
-.menu-item:hover a::after {
+.menu-item > a:hover::after,
+.menu-item > a:focus::after {
+  width: 100%;
+}
+
+/* Submenu Styling */
+
+.menu-item-has-children {
+  position: relative;
+}
+
+.sub-menu {
+  position: absolute;
+  top: calc(100% + 2rem);
+  left: -50%;
+  margin: 0px;
+  margin-top: 0px;
+  height: auto;
+  max-height: 0px;
+  min-width: -moz-max-content;
+  min-width: max-content;
+  list-style-type: none;
+  overflow: hidden;
+  --tw-bg-opacity: 1;
+  background-color: rgb(199 218 58 / var(--tw-bg-opacity, 1));
+  padding: 0px;
+  transition-property: max-height;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+.menu-item-has-children > .sub-menu {
+  left: 50%;
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.menu-item-has-children:hover > .sub-menu,
+.menu-item-has-children:focus-within > .sub-menu {
+  max-height: 500px;
+}
+
+.menu-item-has-children::after {
+  content: '';
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: -2rem;
+  height: 2rem;
+  pointer-events: auto;
+}
+
+.menu-item-has-children:hover > .sub-menu,
+.menu-item-has-children:focus-within > .sub-menu,
+.sub-menu:hover {
+  display: inline-block;
+}
+
+.sub-menu .menu-item {
+  display: flex;
+  padding: 3px;
+}
+
+.sub-menu .menu-item a {
+  display: block;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.6;
+  font-weight: 500;
+  --tw-text-opacity: 1;
+  color: rgb(69 69 69 / var(--tw-text-opacity, 1));
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+
+.is-front-page .hero-block .sub-menu .menu-item a {
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+.sub-menu .menu-item a::after {
+  background-color: currentColor;
+  content: '';
+  width: 0;
+  height: 1px;
+  display: block;
+  transition: width 0.3s ease-in-out;
+}
+
+.sub-menu .menu-item > a:hover::after,
+.sub-menu .menu-item > a:focus::after {
   width: 100%;
 }
 
@@ -2393,6 +2502,10 @@ body.is-front-page header#masthead > div {
   #hero-logo {
     filter: brightness(0) invert(1);
   }
+
+  .wp-block-boldface-design-hero img.motion-reduce\:block {
+    filter: brightness(0.5);
+  }
 }
 
 .hero-video.ended {
@@ -2440,6 +2553,8 @@ input:where([type='text']), input:where(:not([type])), input:where([type='email'
   padding-bottom: 0.75rem;
   font-size: clamp(1rem, 2.5vw, 1.25rem);
   line-height: 1.6;
+  --tw-text-opacity: 1;
+  color: rgb(69 69 69 / var(--tw-text-opacity, 1));
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 200ms;
@@ -2660,6 +2775,18 @@ textarea {
 
 .group:hover .group-hover\:opacity-95 {
   opacity: 0.95;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .motion-safe\:block {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reduce\:block {
+    display: block;
+  }
 }
 
 @media not all and (min-width: 768px) {

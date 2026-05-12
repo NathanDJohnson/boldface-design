@@ -82,6 +82,16 @@ acf_add_local_field_group( array(
 			'preview_size'      => 'medium',
 		),
 		array(
+			'key'               => 'field_hero_background_image_reduced_motion',
+			'label'             => esc_html__( 'Background Image (Reduced Motion)', 'boldface-design' ),
+			'name'              => 'background_image_reduced_motion',
+			'type'              => 'image',
+			'required'          => 0,
+			'return_format'     => 'array',
+			'preview_size'      => 'medium',
+			'instructions'      => esc_html__( 'Optional alternate image that displays when the user has prefers-reduced-motion enabled.', 'boldface-design' ),
+		),
+		array(
 			'key'               => 'field_hero_background_video',
 			'label'             => esc_html__( 'Background Video', 'boldface-design' ),
 			'name'              => 'background_video',

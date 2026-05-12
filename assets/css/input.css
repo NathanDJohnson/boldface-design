@@ -99,6 +99,9 @@
   .screen-reader-text {
     @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap;
   }
+  .screen-reader-text:focus {
+    @apply absolute w-auto h-auto p-2 m-0 overflow-visible whitespace-normal bg-steel text-white z-[500];
+  }
 }
 
 /**
@@ -247,7 +250,73 @@
   transition: width 0.3s ease-in-out;
 }
 .current-menu-item a::after,
-.menu-item:hover a::after {
+.menu-item > a:hover::after,
+.menu-item > a:focus::after {
+  width: 100%;
+}
+
+/* Submenu Styling */
+.menu-item-has-children {
+  @apply relative;
+}
+
+.sub-menu {
+  @apply 
+    absolute 
+    top-[calc(100%+2rem)] 
+    -left-1/2
+    min-w-max 
+    mt-0 
+    bg-sulfur
+    p-0 
+    m-0 
+    list-none
+    max-h-0
+    h-auto
+    transition-[max-height]
+    duration-300
+    overflow-hidden
+}
+
+.menu-item-has-children > .sub-menu {
+  @apply left-1/2 -translate-x-1/2;
+}
+.menu-item-has-children:hover > .sub-menu,
+.menu-item-has-children:focus-within > .sub-menu {
+  @apply max-h-[500px];
+}
+
+.menu-item-has-children::after {
+  content: '';
+  @apply absolute left-0 right-0 h-xl -bottom-xl;
+  pointer-events: auto;
+}
+
+.menu-item-has-children:hover > .sub-menu,
+.menu-item-has-children:focus-within > .sub-menu,
+.sub-menu:hover {
+  @apply inline-block;
+}
+
+.sub-menu .menu-item {
+  @apply flex p-[3px];
+}
+
+.sub-menu .menu-item a {
+  @apply block px-lg py-sm text-body text-abbey font-medium transition-colors duration-200;
+}
+
+.sub-menu .menu-item a::after {
+  background-color: currentColor;
+  content: '';
+  width: 0;
+  height: 1px;
+  display: block;
+  transition: width 0.3s ease-in-out;
+}
+
+.sub-menu .menu-item > a:hover::after,
+.sub-menu .menu-item > a:focus::after {
   width: 100%;
 }
 
@@ -337,6 +406,9 @@ body.is-front-page header#masthead > div {
   #hero-logo {
     filter: brightness(0) invert(1);
   }
+  .wp-block-boldface-design-hero img.motion-reduce\:block {
+    filter: brightness(0.5);
+  }
 }
 
 .hero-video.ended {
@@ -352,7 +424,7 @@ body.is-front-page header.sticky-active {
 }
 
 input:where([type='text']), input:where(:not([type])), input:where([type='email']), input:where([type='url']), input:where([type='password']), input:where([type='number']), input:where([type='date']), input:where([type='datetime-local']), input:where([type='month']), input:where([type='search']), input:where([type='tel']), input:where([type='time']), input:where([type='week']), select:where([multiple]), textarea, select {
-  @apply border border-abbey rounded-md px-sm py-xs text-body focus:outline-none focus:ring-2 focus:ring-observatory focus:border-transparent transition-colors duration-200;
+  @apply border border-abbey text-abbey rounded-md px-sm py-xs text-body focus:outline-none focus:ring-2 focus:ring-observatory focus:border-transparent transition-colors duration-200;
 }
 
 .wpforms-label-hide {

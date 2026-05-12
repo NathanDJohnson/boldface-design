@@ -27,7 +27,7 @@
                         'theme_location' => 'primary',
                         'menu_id'        => 'primary-menu',
                         'fallback_cb'    => false,
-                        'depth'          => 1,
+                        'depth'          => 2,
                         'container'      => false,
                         'items_wrap'     => '<ul class="flex gap-lg m-0 p-0 list-none [&_li]:flex [&_li]:items-center [&_li]:text-mine-shaft [&_li]:font-medium [&_li]:text-center">%3$s</ul>',
                     ) );
