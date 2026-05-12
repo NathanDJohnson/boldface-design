@@ -1250,6 +1250,14 @@ p ~ h2,
   margin-top: 2rem;
 }
 
+.mt-sm {
+  margin-top: 1rem;
+}
+
+.mt-0 {
+  margin-top: 0px;
+}
+
 .line-clamp-2 {
   overflow: hidden;
   display: -webkit-box;
@@ -1623,6 +1631,10 @@ p ~ h2,
 
 .rounded-xl {
   border-radius: 0.75rem;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
 }
 
 .border {

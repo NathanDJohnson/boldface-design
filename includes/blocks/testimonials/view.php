@@ -61,13 +61,13 @@ if ( isset( $block['anchor'] ) ) {
 
                     <div class="flex-1 min-w-0">
                         <?php if ( $name ) : ?>
-                            <p class="text-mine-shaft truncate"><?php echo wp_kses_post( $name ); ?></p>
+                            <p class="text-mine-shaft mt-0 truncate"><?php echo wp_kses_post( $name ); ?></p>
                         <?php endif; ?>
                         <?php if ( $position ) : ?>
-                            <p class="text-steel truncate"><?php echo wp_kses_post( $position ); ?></p>
+                            <p class="text-steel mt-0 truncate"><?php echo wp_kses_post( $position ); ?></p>
                         <?php endif; ?>
                         <?php if ( $company ) : ?>
-                            <p class="text-observatory truncate"><?php echo wp_kses_post( $company ); ?></p>
+                            <p class="text-observatory mt-0 truncate"><?php echo wp_kses_post( $company ); ?></p>
                         <?php endif; ?>
                         <?php if ( $show_linkedin ) : ?>
                             <div class="mt-md">

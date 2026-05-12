@@ -1,0 +1,23 @@
+{
+  "apiVersion": 3,
+  "name": "boldface-design/before-after",
+  "title": "Before/After",
+  "description": "Display a before and after image comparison, with options for layout and styling",
+  "category": "boldface-blocks",
+  "icon": "images-alt2",
+  "keywords": [
+    "before",
+    "after",
+    "image",
+    "comparison"
+  ],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "view.php"
+  },
+  "supports": {
+    "align": [
+        "full"
+    ]
+  }
+}
