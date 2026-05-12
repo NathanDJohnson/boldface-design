@@ -1,4 +1,11 @@
 <?php
+$current_post_id = get_the_ID();
+$homepage_id     = (int) get_option( 'page_on_front' );
+
+if ( ( is_admin() && $current_post_id === $homepage_id ) ) {
+    return;
+}
+
 if( is_front_page() ) return;
 
 $crumbs = [

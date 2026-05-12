@@ -57,6 +57,16 @@ if ( $background_video_fallback ) {
 	}
 }
 
+// For admin preview, use the video URL as the background if available to give a better representation of the block in the editor. On the frontend, the video will be loaded via JavaScript to allow for better performance and to avoid issues with autoplay policies in browsers.
+if( is_admin() ) {
+	$video_url = '';
+
+	if ( $background_image_reduced_motion ) {
+		$background_image = $background_image_reduced_motion;
+	}
+	unset( $background_image_reduced_motion );
+}
+
 $bg_color = 'bg-gradient-abyss';
 if ( ! empty( $video_url ) || ! empty( $background_image ) ) {
 	$bg_color = 'bg-[#fdf8fc]';
