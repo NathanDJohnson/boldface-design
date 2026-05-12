@@ -358,3 +358,22 @@ function boldface_design_get_block_common_classes( string $block_name, array $bl
 
 	return $class_name;
 }
+
+/** 
+ * Helper function to prevent orphaning the last word in a string by adding a non-breaking space before it
+ * This is used in block views to ensure better typography and prevent single words from being left alone on a new line, which can look awkward. By replacing the last space with a non-breaking space, we ensure that the last two words stay together on the same line. This function can be applied to any string where we want to improve the appearance of text, such as headings or descriptions in our blocks.
+ * 
+ * @param string $text The input text to process
+ * @return string The processed text with a non-breaking space before the last word
+ */
+function boldface_deorphan( ?string $text ) : string {
+	if( ! isset( $text ) || empty( $text ) ) {
+		return '';
+	}
+	$words = explode( ' ', $text );
+	if ( count( $words ) > 1 ) {
+		$last_word = array_pop( $words );
+		return implode( ' ', $words ) . '&nbsp;' . $last_word;
+	}
+	return $text;
+}
