@@ -73,17 +73,6 @@ module.exports = {
         '1100px': '1100px',
         '1280px': '1280px',
       },
-      typography: (theme) => ({
-        DEFAULT: {
-          css: {
-            color: theme('colors.abbey'),
-            h1: { fontFamily: 'Calistoga' },
-            h2: { fontFamily: 'Calistoga' },
-            h3: { fontFamily: 'Calistoga' },
-            h4: { fontFamily: 'Calistoga' },
-          },
-        },
-      }),
       width: {
         '24px': '24px',
         '32px': '32px',
