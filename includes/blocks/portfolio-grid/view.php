@@ -10,10 +10,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get field values
-$heading           = boldface_deorphan( get_field( 'heading' ) ) ?: '';
-$content           = boldface_deorphan( get_field( 'content' ) ) ?: '';
-$default_filter    = get_field( 'default_filter' ) ?: 'all';
-$projects_per_page = intval( get_field( 'projects_per_page' ) ) ?: -1;
+$heading                = boldface_deorphan( get_field( 'heading' ) ) ?: '';
+$content                = boldface_deorphan( get_field( 'content' ) ) ?: '';
+$use_manual_selection   = get_field( 'use_manual_selection' ) ? true : false;
+$selected_projects_ids  = $use_manual_selection ? get_field( 'selected_projects' ) : array();
+$show_filters           = get_field( 'show_filters' ) ? true : false;
+$default_filter         = get_field( 'default_filter' ) ?: 'all';
+$projects_per_page      = intval( get_field( 'projects_per_page' ) ) ?: -1;
 
 // Build class name
 $class_name = boldface_design_get_block_common_classes( 'portfolio-grid', $block );
@@ -27,21 +30,30 @@ if ( isset( $block['anchor'] ) ) {
 // Get all skills for filter buttons
 $skills = get_terms( array(
 	'taxonomy'   => 'skills',
-	'hide_empty' => false,
+	'hide_empty' => true,
 	'orderby'    => 'name',
 	'order'      => 'ASC',
 ) );
 
-// Query all projects as ordered on edit screen
-$args = array(
-	'post_type'      => 'project',
-	'posts_per_page' => $projects_per_page,
-	'orderby'        => 'menu_order',
-	'order'          => 'DESC',
-);
+// Query projects based on selection mode
+if ( $use_manual_selection && ! empty( $selected_projects_ids ) ) {
+	// Use manually selected projects in the order selected
+	$all_projects = array_map( function( $post_id ) {
+		return get_post( $post_id );
+	}, $selected_projects_ids );
+	$all_projects = array_filter( $all_projects ); // Remove any null values
+} else {
+	// Query all projects as ordered on edit screen
+	$args = array(
+		'post_type'      => 'project',
+		'posts_per_page' => $projects_per_page,
+		'orderby'        => 'menu_order',
+		'order'          => 'DESC',
+	);
 
-$projects_query = new WP_Query( $args );
-$all_projects = $projects_query->posts;
+	$projects_query = new WP_Query( $args );
+	$all_projects = $projects_query->posts;
+}
 ?>
 
 <section class="<?php echo esc_attr( $class_name ); ?>" <?php echo $id; ?>>
@@ -60,7 +72,7 @@ $all_projects = $projects_query->posts;
             </div>
         <?php endif; ?>
 
-		<?php if ( ! is_wp_error( $skills ) && ! empty( $skills ) ) : ?>
+		<?php if ( $show_filters && ! is_wp_error( $skills ) && ! empty( $skills ) ) : ?>
             <span class="text-xs font-semibold uppercase tracking-wide text-mine-shaft block mb-sm">Filter by Category</span>
 
 			<select 
@@ -102,6 +114,10 @@ $all_projects = $projects_query->posts;
                         $project_skills = wp_get_post_terms( $project->ID, 'skills', array( 'fields' => 'ids' ) );
                         $skills_data = implode( ',', $project_skills );
                         $grid_class = $column_span === '2' ? 'md:col-span-2' : ( $column_span === '3' ? 'md:col-span-3' : '' );
+
+						if( $use_manual_selection ) {
+							$grid_class = 'md:col-span-1'; // Override to 1 column span when using manual selection to maintain grid integrity
+						}
 
                         /**
                          * Logic Check: Link Override
@@ -146,7 +162,7 @@ $all_projects = $projects_query->posts;
 								</p>
 							<?php endif; ?>
 
-							<?php if ( ! empty( $project_skills ) ) : ?>
+							<?php if ( ! empty( $project_skills ) && ! $use_manual_selection ) : ?>
 								<div class="flex flex-wrap gap-x-xs gap-y-xxs mt-md">
 									<?php foreach ( $project_skills as $skill_id ) : ?>
 										<?php
@@ -204,8 +220,9 @@ $all_projects = $projects_query->posts;
 		} );
 	}
 
-	// Desktop button click handler
+	// Only initialize filters if they are visible
 	if ( filterButtons.length ) {
+		// Desktop button click handler
 		filterButtons.forEach( button => {
 			button.addEventListener( 'click', function() {
 				// Remove active class from all buttons
@@ -224,29 +241,29 @@ $all_projects = $projects_query->posts;
 				filterPortfolio( termId );
 			} );
 		} );
-	}
 
-	// Mobile dropdown change handler
-	window.filterByMobileSelect = function( termId ) {
-		// Update active button on desktop (if viewing desktop too)
-		if ( filterButtons.length ) {
-			filterButtons.forEach( btn => btn.classList.remove( 'active' ) );
-			const activeButton = document.querySelector( `[data-term-id="${termId}"]` );
-			if ( activeButton ) {
-				activeButton.classList.add( 'active' );
+		// Mobile dropdown change handler
+		window.filterByMobileSelect = function( termId ) {
+			// Update active button on desktop (if viewing desktop too)
+			if ( filterButtons.length ) {
+				filterButtons.forEach( btn => btn.classList.remove( 'active' ) );
+				const activeButton = document.querySelector( `[data-term-id="${termId}"]` );
+				if ( activeButton ) {
+					activeButton.classList.add( 'active' );
+				}
 			}
-		}
 
-		// Filter
-		filterPortfolio( termId );
-	};
+			// Filter
+			filterPortfolio( termId );
+		};
 
-	// Initialize with default filter
-	const defaultTermId = '<?php echo esc_js( $default_filter ); ?>';
-	if ( defaultTermId && defaultTermId !== 'all' ) {
-		const defaultButton = document.querySelector( `[data-term-id="${defaultTermId}"]` );
-		if ( defaultButton ) {
-			defaultButton.click();
+		// Initialize with default filter
+		const defaultTermId = '<?php echo esc_js( $default_filter ); ?>';
+		if ( defaultTermId && defaultTermId !== 'all' ) {
+			const defaultButton = document.querySelector( `[data-term-id="${defaultTermId}"]` );
+			if ( defaultButton ) {
+				defaultButton.click();
+			}
 		}
 	}
 })();

@@ -370,6 +370,9 @@ function boldface_deorphan( ?string $text ) : string {
 	if( ! isset( $text ) || empty( $text ) ) {
 		return '';
 	}
+	// Replace hyphens with nonbreaking hyphens to prevent orphaning in hyphenated words
+	$text = str_replace( '-', '&#8209;', $text );
+	
 	$words = explode( ' ', $text );
 	if ( count( $words ) > 1 ) {
 		$last_word = array_pop( $words );
