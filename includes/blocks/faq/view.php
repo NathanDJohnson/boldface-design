@@ -103,7 +103,9 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
 			const isExpanded = toggleButton.getAttribute( 'aria-expanded' ) === 'true';
 			if ( isExpanded ) {
-				answerSection.style.maxHeight = answerSection.scrollHeight + 'px';
+				requestAnimationFrame( function() {
+					answerSection.style.maxHeight = answerSection.scrollHeight + 'px';
+				} );
 			}
 
 			toggleButton.addEventListener( 'click', function() {

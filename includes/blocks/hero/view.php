@@ -11,9 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Get field values
 $logo                      = get_field( 'logo' );
-$tagline 				   = boldface_deorphan( get_field( 'tagline' ) ) ?: '';
+$tagline                   = boldface_deorphan( get_field( 'tagline' ) ) ?: '';
 $title                     = boldface_deorphan( get_field( 'title' ) ) ?: '';
-$subtitle				   = boldface_deorphan( get_field( 'subtitle' ) ) ?: '';
+$subtitle                  = boldface_deorphan( get_field( 'subtitle' ) ) ?: '';
 $description               = boldface_deorphan( get_field( 'description' ) ) ?: '';
 $description_placement     = get_field( 'description_placement' ) ?: 'above';
 $background_image          = get_field( 'background_image' );
@@ -21,7 +21,7 @@ $background_image_reduced_motion = get_field( 'background_image_reduced_motion' 
 $background_video          = get_field( 'background_video' );
 $background_video_fallback = get_field( 'background_video_fallback' );
 $cta_url                   = get_field( 'cta_url' ) ?: '';
-$secondary_cta_url		   = get_field( 'secondary_cta_url' ) ?: '';
+$secondary_cta_url         = get_field( 'secondary_cta_url' ) ?: '';
 
 $poster_url = ( ! empty( $background_image ) ) ? $background_image['url'] : '';
 
@@ -80,15 +80,27 @@ if( is_front_page() ) {
 $class_name .= ' ' . $min_height;
 ?>
 
-<section class="<?php echo esc_attr( $class_name ); ?>" <?php echo wp_kses_post( $id ); ?> data-hero-video="<?php echo esc_attr( $video_url ); ?>">
-	<?php if ( $background_image ) : ?>
-		<?php echo wp_get_attachment_image( $background_image['ID'], 'full', false, array( 'class' => 'absolute inset-0 w-full h-full object-cover motion-safe:block hidden', 'fetchpriority' => 'high' ) ); ?>
-	<?php endif; ?>
+<section class="<?php echo esc_attr( $class_name ); ?> relative" <?php echo wp_kses_post( $id ); ?> data-hero-video="<?php echo esc_attr( $video_url ); ?>">
 	
-	<?php if ( $background_image_reduced_motion ) : ?>
-		<?php echo wp_get_attachment_image( $background_image_reduced_motion['ID'], 'full', false, array( 'class' => 'absolute inset-0 w-full h-full object-cover motion-reduce:block hidden', 'fetchpriority' => 'high' ) ); ?>
-	<?php elseif ( $background_image ) : ?>
-		<?php echo wp_get_attachment_image( $background_image['ID'], 'full', false, array( 'class' => 'absolute inset-0 w-full h-full object-cover motion-reduce:block hidden', 'fetchpriority' => 'high' ) ); ?>
+	<?php if ( $background_image ) : ?>
+		<picture class="absolute inset-0 w-full h-full object-cover">
+			<?php if ( $background_image_reduced_motion ) : ?>
+				<source srcset="<?php echo esc_url( $background_image_reduced_motion['url'] ); ?>" media="(prefers-reduced-motion: reduce)">
+			<?php endif; ?>
+			
+			<?php 
+				echo wp_get_attachment_image( 
+					$background_image['ID'], 
+					'full', 
+					false, 
+					array( 
+						'class'         => 'w-full h-full object-cover', 
+						'fetchpriority' => 'high',
+						'decoding'      => 'async'
+					) 
+				); 
+			?>
+		</picture>
 	<?php endif; ?>
 	
 	<?php if ( ! empty( $video_url ) || ! empty( $video_url_fallback ) ) : ?>
@@ -104,7 +116,7 @@ $class_name .= ' ' . $min_height;
 		</video>
 	<?php endif; ?>
 
-	<?php if( ! empty( $video_url ) || ! empty( $bg_url ) ) : ?>
+	<?php if( ! empty( $video_url ) || ! empty( $background_image ) ) : ?>
 		<div class="overlay absolute inset-0 bg-black/50 z-10 opacity-0 motion-safe:block hidden duration-1000"></div>
 	<?php endif; ?>
 
@@ -116,7 +128,7 @@ $class_name .= ' ' . $min_height;
 		?>
 		<?php endif; ?>
 
-		<div class="container flex flex-col">
+		<div class="container mx-auto flex flex-col">
 
 			<?php if ( $tagline ) : ?>
 				<div class="text-h3 mb-md"><?php echo wp_kses_post( $tagline ); ?></div>
@@ -175,16 +187,16 @@ if ( is_front_page() ) {
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const video = document.querySelector('.hero-video');
+	const video = document.querySelector('.hero-video');
 
-    if (video) {
-        video.addEventListener('playing', () => {
-            video.removeAttribute('loop');
-        }, { once: true });
+	if (video) {
+		video.addEventListener('playing', () => {
+			video.removeAttribute('loop');
+		}, { once: true });
 
-        video.addEventListener('ended', () => {
-            // console.log("Video finished one cycle.");
-        }, { once: true });
-    }
+		video.addEventListener('ended', () => {
+			// console.log("Video finished one cycle.");
+		}, { once: true });
+	}
 });
 </script>

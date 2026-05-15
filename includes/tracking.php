@@ -12,20 +12,51 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Enqueue Google Analytics tracking
- * Inject GA4 tracking script into the footer if GA4_ID is defined
+ * Inject GA4 tracking script lazily upon real user interaction
  */
 add_action('wp_footer', function() {
-	// GA4_ID should include G-
-    if (defined('GA4_ID')) {
+	if (defined('GA4_ID')) {
 		$id = GA4_ID;
 		?>
-		<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $id; ?>"></script>
 		<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-		gtag('config', '<?php echo $id; ?>');
+		(function() {
+			const ga4Id = '<?php echo esc_js($id); ?>';
+			let ga4Loaded = false;
+
+			function loadGA4() {
+				if (ga4Loaded) return;
+				ga4Loaded = true;
+
+				// Create the external tracking script element
+				const script = document.createElement('script');
+				script.src = `https://www.googletagmanager.com/gtag/js?id=${ga4Id}`;
+				script.async = true;
+				document.head.appendChild(script);
+
+				// Initialize the tracking data layer pipelines
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
+				gtag('config', ga4Id);
+
+				// Clean up remaining event listeners once active
+				removeListeners();
+			}
+
+			function removeListeners() {
+				window.removeEventListener('scroll', loadGA4);
+				window.removeEventListener('mousemove', loadGA4);
+				window.removeEventListener('touchstart', loadGA4);
+				document.removeEventListener('visibilitychange', loadGA4);
+			}
+
+			// Attach listeners to detect organic human interactions
+			window.addEventListener('scroll', loadGA4, { passive: true });
+			window.addEventListener('mousemove', loadGA4, { passive: true });
+			window.addEventListener('touchstart', loadGA4, { passive: true });
+			document.addEventListener('visibilitychange', loadGA4);
+		})();
 		</script>
-        <?php
-    }
+		<?php
+	}
 }, 20);

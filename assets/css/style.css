@@ -2264,7 +2264,7 @@ p ~ h2,
   }
 }
 
-.current-menu-item a {
+.current-menu-item > a {
   pointer-events: none;
 }
 
@@ -2377,6 +2377,10 @@ p ~ h2,
   height: 1px;
   display: block;
   transition: width 0.3s ease-in-out;
+}
+
+.sub-menu .current-menu-item > a::after {
+  width: 100%;
 }
 
 .sub-menu .menu-item > a:hover::after,
@@ -2799,12 +2803,6 @@ textarea {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .motion-reduce\:block {
-    display: block;
-  }
-}
-
 @media not all and (min-width: 768px) {
   .max-md\:w-full {
     width: 100%;
@@ -2830,16 +2828,16 @@ textarea {
     order: 2;
   }
 
+  .md\:col-span-1 {
+    grid-column: span 1 / span 1;
+  }
+
   .md\:col-span-2 {
     grid-column: span 2 / span 2;
   }
 
   .md\:col-span-3 {
     grid-column: span 3 / span 3;
-  }
-
-  .md\:col-span-1 {
-    grid-column: span 1 / span 1;
   }
 
   .md\:mb-2xl {

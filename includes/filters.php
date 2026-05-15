@@ -81,3 +81,43 @@ function boldface_post_class( $classes ) {
 	return $classes;
 }
 add_filter( 'post_class', 'boldface_post_class' );
+
+/**
+ * Fix SVG image dimensions when rendered via wp_get_attachment_image
+ * 
+ * Some SVGs may not have proper width/height attributes set, leading to display issues. This filter checks if the file is an SVG and attempts to extract dimensions from the file itself if the default dimensions are set to 1.
+ * 
+ * @param array $attr Attributes for the image tag
+ * @param WP_Post $attachment The attachment post object
+ * @param string|array $size The requested size of the image
+ * @return array Modified attributes with correct dimensions for SVGs
+ */
+function boldface_fix_svg_attachment_dimensions( $attr, $attachment, $size ) {
+    $file = get_attached_file( $attachment->ID );
+    $pathinfo = pathinfo( $file );
+    
+    if ( isset( $pathinfo['extension'] ) && 'svg' === strtolower( $pathinfo['extension'] ) ) {
+        // If the width/height are set to default 1s, extract the correct dimensions from the XML layout
+        if ( isset( $attr['width'] ) && '1' === (string) $attr['width'] ) {
+            if ( file_exists( $file ) ) {
+                $svg = simplexml_load_file( $file );
+                if ( $svg ) {
+                    $attributes = $svg->attributes();
+                    
+                    if ( isset( $attributes->viewBox ) ) {
+                        $viewbox = explode( ' ', (string) $attributes->viewBox );
+                        if ( isset( $viewbox[2] ) && isset( $viewbox[3] ) ) {
+                            $attr['width']  = (string) $viewbox[2];
+                            $attr['height'] = (string) $viewbox[3];
+                        }
+                    } elseif ( isset( $attributes->width ) && isset( $attributes->height ) ) {
+                        $attr['width']  = (string) $attributes->width;
+                        $attr['height'] = (string) $attributes->height;
+                    }
+                }
+            }
+        }
+    }
+    return $attr;
+}
+add_filter( 'wp_get_attachment_image_attributes', 'boldface_fix_svg_attachment_dimensions', 10, 3 );

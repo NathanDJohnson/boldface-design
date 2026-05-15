@@ -128,6 +128,18 @@ function boldface_design_minify_css( $css ) {
 }
 
 /**
+ * Preload fonts for better performance
+ */
+add_action( 'wp_head', function() {
+	?>
+	<link rel="preload" href="/wp-content/themes/boldface-design/assets/fonts/calistoga-v18-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="/wp-content/themes/boldface-design/assets/fonts/montserrat-v31-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="/wp-content/themes/boldface-design/assets/fonts/montserrat-v31-latin-500.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="/wp-content/themes/boldface-design/assets/fonts/montserrat-v31-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+	<?php
+}, 1 );
+
+/**
  * Inline minified CSS in the head for better performance
  */
 add_action( 'wp_head', function() {
@@ -151,6 +163,7 @@ add_filter( 'wp_calculate_image_srcset', '__return_false' );
 add_action( 'wp_head', function() {
 	if ( ! is_front_page() ) return;
 	?>
-	<link rel="preload" fetchpriority="high" as="image" href="https://boldfacedesign.com/wp-content/uploads/2026/03/hero-poster-scaled.jpg">
+	<link rel="preload" href="https://boldfacedesign.com/wp-content/uploads/2026/03/hero-poster-scaled.jpg" as="image" type="image/jpeg" fetchpriority="high" media="(prefers-reduced-motion: no-preference)">
+	<link rel="preload" href="https://boldfacedesign.com/wp-content/uploads/2026/05/hero-reduced-motion.jpg" as="image" type="image/jpeg" fetchpriority="high" media="(prefers-reduced-motion: reduce)">
 	<?php
 });

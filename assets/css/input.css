@@ -232,7 +232,7 @@
   }
 }
 
-.current-menu-item a {
+.current-menu-item > a {
   @apply pointer-events-none;
 }
 .menu-item {
@@ -313,6 +313,10 @@
   height: 1px;
   display: block;
   transition: width 0.3s ease-in-out;
+}
+
+.sub-menu .current-menu-item > a::after {
+  width: 100%;
 }
 
 .sub-menu .menu-item > a:hover::after,
