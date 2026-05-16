@@ -890,8 +890,6 @@ hr {
 
 /* WordPress alignment classes */
 
-/* WordPress block wrapper */
-
 /* Screen reader text */
 
 .screen-reader-text {
@@ -922,6 +920,10 @@ hr {
 img {
   height: auto;
   max-width: 100%;
+}
+
+.wp-block-image img {
+  display: block;
 }
 
 .font-montserrat {
@@ -1051,22 +1053,6 @@ img {
   color: rgb(69 69 69 / var(--tw-text-opacity, 1));
 }
 
-/* maybe cta??? */
-
-.single:not(.is-page) main {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-
-.single:not(.is-page) h1,
-  .single:not(.is-page) h2,
-  .single:not(.is-page) h3,
-  .single:not(.is-page) h4,
-  .single:not(.is-page) h5,
-  .single:not(.is-page) h6 {
-  margin-top: 1.5rem;
-}
-
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0px;
   margin-bottom: 1.25rem;
@@ -1085,6 +1071,11 @@ ul:last-of-type {
 li {
   -moz-column-break-inside: avoid;
        break-inside: avoid-column;
+}
+
+.wp-block-image {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
 }
 
 p ~ h2,
@@ -2119,66 +2110,7 @@ p ~ h2,
 /**
  * Fix responsive image styles for WordPress */
 
-/* WPForms */
-
-.wpforms-container {
-  /* @apply max-w-[500px] mx-auto my-2xl; */
-}
-
-.wpforms-submit {
-  display: block;
-  border-radius: 8px;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  font-size: 20px;
-  font-weight: 600;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
-}
-
-@media not all and (min-width: 768px) {
-  .wpforms-submit {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-@media (min-width: 768px) {
-  .wpforms-submit {
-    display: inline-block;
-  }
-}
-
-.wpforms-submit {
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-  border-width: 2px;
-  --tw-border-opacity: 1;
-  border-color: rgb(7 165 153 / var(--tw-border-opacity, 1));
-  --tw-bg-opacity: 1;
-  background-color: rgb(7 165 153 / var(--tw-bg-opacity, 1));
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-
-.wpforms-submit:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(5 130 121 / var(--tw-bg-opacity, 1));
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-
-.wpforms-field {
-  margin-bottom: 1.25rem;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-}
+/** Form styles */
 
 .wsf-field-wrapper {
   margin-bottom: 1.25rem;
@@ -2277,12 +2209,15 @@ p ~ h2,
 }
 
 .menu-item a::after {
-  background-color: currentColor;
-  content: '';
-  width: 0;
-  height: 1px;
   display: block;
-  transition: width 0.3s ease-in-out;
+  height: 1px;
+  width: 0px;
+  background-color: currentColor;
+  transition-property: width;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  --tw-content: '';
+  content: var(--tw-content);
 }
 
 .current-menu-item a::after,
@@ -2329,13 +2264,14 @@ p ~ h2,
 }
 
 .menu-item-has-children::after {
-  content: '';
+  pointer-events: auto;
   position: absolute;
   left: 0px;
   right: 0px;
   bottom: -2rem;
   height: 2rem;
-  pointer-events: auto;
+  --tw-content: '';
+  content: var(--tw-content);
 }
 
 .menu-item-has-children:hover > .sub-menu,
@@ -2371,24 +2307,22 @@ p ~ h2,
 }
 
 .sub-menu .menu-item a::after {
-  background-color: currentColor;
-  content: '';
-  width: 0;
-  height: 1px;
   display: block;
-  transition: width 0.3s ease-in-out;
+  height: 1px;
+  width: 0px;
+  background-color: currentColor;
+  transition-property: width;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  --tw-content: '';
+  content: var(--tw-content);
 }
 
-.sub-menu .current-menu-item > a::after {
-  width: 100%;
-}
-
+.sub-menu .current-menu-item > a::after,
 .sub-menu .menu-item > a:hover::after,
 .sub-menu .menu-item > a:focus::after {
   width: 100%;
 }
-
-/* Ensure full-width blocks stretch edge-to-edge */
 
 body.is-front-page header#masthead > div {
   position: relative;
@@ -2413,19 +2347,6 @@ body.is-front-page header#masthead > div {
 
 .wp-block-boldface-design a:not([class*="btn"]):hover {
   text-decoration-line: none;
-}
-
-/* Block editor overrides */
-
-:root :where(.editor-styles-wrapper)::after {
-  display: none !important;
-}
-
-.block-editor-block-list__block {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  width: 100%;
-  max-width: none;
 }
 
 @media not all and (min-width: 768px) {
@@ -2528,20 +2449,6 @@ body.is-front-page header#masthead > div {
   }
 }
 
-.hero-video.ended {
-  opacity: 1;
-  --tw-blur: blur(64px);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-body.is-front-page header.sticky-active {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  z-index: 50;
-}
-
 .wp-block-boldface-design-wysiwyg ul {
   list-style-type: disc;
   gap: 1.5rem;
@@ -2642,31 +2549,6 @@ textarea {
   background-color: rgb(5 130 121 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-
-/* Reserve the space in the document flow */
-
-.header-placeholder {
-  display: none;
-  visibility: hidden;
-}
-
-.is-front-page .header-placeholder {
-  display: block;
-  /* It exists, but it's 0px tall initially */
-  height: var(--header-height, 0px);
-}
-
-/* Ensure the sticky header doesn't cause a layout repaint */
-
-#masthead.sticky-active {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 50;
-  transform: translateZ(0);
-  /* Hardware acceleration */
 }
 
 /* Target the Google Booking button specifically */

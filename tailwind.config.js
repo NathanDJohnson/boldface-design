@@ -7,7 +7,8 @@ module.exports = {
     './assets/js/src/**/*.js',
   ],
   safelist: [
-    '.is-layout-flex',
+    'wp-block-image',
+    'is-layout-flex',
     'bg-gradient-abyss',
 		'bg-denim',
 		'bg-mine-shaft',

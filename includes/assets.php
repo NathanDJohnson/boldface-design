@@ -167,3 +167,15 @@ add_action( 'wp_head', function() {
 	<link rel="preload" href="https://boldfacedesign.com/wp-content/uploads/2026/05/hero-reduced-motion.jpg" as="image" type="image/jpeg" fetchpriority="high" media="(prefers-reduced-motion: reduce)">
 	<?php
 });
+
+/**
+ * Enqueue editor CSS on the block editor screen only
+ */
+add_action( 'enqueue_block_editor_assets', function() {
+	wp_enqueue_style(
+		'boldface-design-editor',
+		BOLDFACE_DESIGN_URI . '/assets/css/editor.css',
+		[],
+		BOLDFACE_DESIGN_VERSION
+	);
+});

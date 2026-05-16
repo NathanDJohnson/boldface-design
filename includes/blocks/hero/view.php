@@ -193,10 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		video.addEventListener('playing', () => {
 			video.removeAttribute('loop');
 		}, { once: true });
-
-		video.addEventListener('ended', () => {
-			// console.log("Video finished one cycle.");
-		}, { once: true });
 	}
 });
 </script>

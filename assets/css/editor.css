@@ -1,0 +1,8 @@
+:root :where(.editor-styles-wrapper)::after {
+    display: none !important;
+}
+.block-editor-block-list__block {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+}

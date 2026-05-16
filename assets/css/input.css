@@ -86,15 +86,6 @@
     @apply float-right ml-6 mb-4;
   }
 
-  /* WordPress block wrapper */
-  .wp-site-blocks {
-    @apply p-0;
-  }
-
-  .wp-block {
-    @apply m-0;
-  }
-
   /* Screen reader text */
   .screen-reader-text {
     @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap;
@@ -148,19 +139,6 @@
     @apply bg-transparent border-2 border-sulfur hover:bg-sulfur text-white hover:text-abbey;
   }
 
-  /* maybe cta??? */
-  .single:not(.is-page) main {
-    @apply my-2xl;
-  }
-  .single:not(.is-page) h1,
-  .single:not(.is-page) h2,
-  .single:not(.is-page) h3,
-  .single:not(.is-page) h4,
-  .single:not(.is-page) h5,
-  .single:not(.is-page) h6 {
-    @apply mt-lg;
-  }
-
   h1, h2, h3, h4, h5, h6 {
     @apply mt-0 mb-md;
   }
@@ -171,6 +149,10 @@
 
   li {
     @apply break-inside-avoid-column;
+  }
+
+  .wp-block-image {
+    @apply my-md;
   }
 
   p ~ h2,
@@ -196,18 +178,7 @@
   }
 }
 
-/* WPForms */
-.wpforms-container {
-  /* @apply max-w-[500px] mx-auto my-2xl; */
-}
-
-.wpforms-submit {
-  @apply btn btn-lg btn-observatory;
-}
-.wpforms-field {
-  @apply w-full flex flex-col mb-md;
-}
-
+/** Form styles */
 .wsf-field-wrapper {
   @apply mb-md;
 }
@@ -217,7 +188,6 @@
 .wsf-label {
   @apply sr-only;
 }
-
 .wsf-button {
   @apply btn btn-lg btn-observatory;
 }
@@ -242,17 +212,12 @@
   @apply inline-block;
 }
 .menu-item a::after {
-  background-color: currentColor;
-  content: '';
-  width: 0;
-  height: 1px;
-  display: block;
-  transition: width 0.3s ease-in-out;
+  @apply content-[''] block h-[1px] w-0 bg-current transition-[width] duration-300;
 }
 .current-menu-item a::after,
 .menu-item > a:hover::after,
 .menu-item > a:focus::after {
-  width: 100%;
+  @apply w-full;
 }
 
 /* Submenu Styling */
@@ -287,9 +252,7 @@
 }
 
 .menu-item-has-children::after {
-  content: '';
-  @apply absolute left-0 right-0 h-xl -bottom-xl;
-  pointer-events: auto;
+  @apply content-[''] absolute left-0 right-0 h-xl -bottom-xl pointer-events-auto;
 }
 
 .menu-item-has-children:hover > .sub-menu,
@@ -307,24 +270,15 @@
 }
 
 .sub-menu .menu-item a::after {
-  background-color: currentColor;
-  content: '';
-  width: 0;
-  height: 1px;
-  display: block;
-  transition: width 0.3s ease-in-out;
+  @apply content-[''] block h-[1px] w-0 bg-current transition-[width] duration-300;
 }
 
-.sub-menu .current-menu-item > a::after {
-  width: 100%;
-}
-
+.sub-menu .current-menu-item > a::after,
 .sub-menu .menu-item > a:hover::after,
 .sub-menu .menu-item > a:focus::after {
-  width: 100%;
+  @apply w-full;
 }
 
-/* Ensure full-width blocks stretch edge-to-edge */
 body.is-front-page header#masthead > div {
   @apply relative w-screen left-[50%] -translate-x-1/2;
 }
@@ -335,14 +289,6 @@ body.is-front-page header#masthead > div {
 
 .wp-block-boldface-design a:not([class*="btn"]) {
   @apply underline text-current hover:no-underline;
-}
-
-/* Block editor overrides */
-:root :where(.editor-styles-wrapper)::after {
-  @apply !hidden;
-}
-.block-editor-block-list__block {
-  @apply w-full max-w-none my-0;
 }
 
 #primary-menu {
@@ -415,14 +361,6 @@ body.is-front-page header#masthead > div {
   }
 }
 
-.hero-video.ended {
-  @apply opacity-100 blur-3xl;
-}
-
-body.is-front-page header.sticky-active {
-  @apply fixed top-0 left-0 right-0 z-50;
-}
-
 .wp-block-boldface-design-wysiwyg ul {
   @apply list-disc pl-5 md:columns-2 xl:columns-3 gap-lg;
 }
@@ -440,27 +378,6 @@ textarea {
 
 .filter-btn.active {
   @apply btn-observatory;
-}
-
-/* Reserve the space in the document flow */
-.header-placeholder {
-    display: none;
-    visibility: hidden;
-}
-
-.is-front-page .header-placeholder {
-    display: block; /* It exists, but it's 0px tall initially */
-    height: var(--header-height, 0px);
-}
-
-/* Ensure the sticky header doesn't cause a layout repaint */
-#masthead.sticky-active {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 50;
-    transform: translateZ(0); /* Hardware acceleration */
 }
 
 /* Target the Google Booking button specifically */
