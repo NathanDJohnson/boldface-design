@@ -2324,6 +2324,11 @@ p ~ h2,
   width: 100%;
 }
 
+.mobile-menu-open {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
 body.is-front-page header#masthead > div {
   position: relative;
   left: 50%;
@@ -2378,6 +2383,44 @@ body.is-front-page header#masthead > div {
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .menu-item-has-children {
+    width: 100% !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .menu-item-has-children > .sub-menu,
+  .menu-item-has-children.submenu-open > .sub-menu {
+    position: relative !important;
+    top: auto !important;
+    left: 0px !important;
+    margin-top: 1rem !important;
+    margin-left: 1.25rem !important;
+    display: block !important;
+    --tw-translate-x: -0px !important;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
+    background-color: transparent !important;
+    max-height: 500px;
+    opacity: 1;
+    overflow: visible;
+  }
+
+  .menu-item-has-children:not(.submenu-open) > .sub-menu {
+    display: none;
+  }
+
+  .sub-menu .menu-item {
+    margin: 0px;
+    padding: 2px;
+  }
+
+  .sub-menu .menu-item a {
+    padding-left: 1.5rem;
+    text-align: left;
   }
 }
 

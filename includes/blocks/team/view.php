@@ -92,7 +92,7 @@ if ( isset( $block['anchor'] ) ) {
 
                             <?php if ( $link ) : ?>
                                 <p class="mb-md">
-                                    <a rel="noopener noreferrer" href="<?php echo esc_url( $link['url'] ); ?>" class="inline-block text-observatory hover:text-cyprus underline" target="<?php echo esc_attr( $link['target'] ); ?>">
+                                    <a rel="noopener noreferrer" href="<?php echo esc_url( $link['url'] ); ?>" class="inline-block text-observatory hover:text-cyprus underline" target="_blank">
                                         <?php echo esc_html( $link['title'] ); ?>
                                     </a>
                                 </p>

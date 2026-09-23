@@ -71,6 +71,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 							</a>
 						</p>
 					</div>
+					<div class="mt-md">
+						<p class="text-abbey text-footer">
+							<a href="<?php echo esc_url( home_url( '/' ) ); ?>sitemap/" class="">Sitemap</a>
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>

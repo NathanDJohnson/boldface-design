@@ -98,8 +98,35 @@ function boldface_design_mobile_menu_script() {
 				const isExpanded = this.getAttribute( 'aria-expanded' ) === 'true';
 				this.setAttribute( 'aria-expanded', ! isExpanded );
 				primaryMenu.classList.toggle( 'toggled' );
+				document.body.classList.toggle( 'mobile-menu-open' );
 			} );
 		}
+
+		const submenuParents = document.querySelectorAll( '.menu-item-has-children > a' );
+		submenuParents.forEach( function( link ) {
+			link.addEventListener( 'click', function( event ) {
+				if ( window.innerWidth >= 768 ) {
+					return;
+				}
+
+				const parentItem = this.parentElement;
+				const isOpen = parentItem.classList.contains( 'submenu-open' );
+				event.preventDefault();
+
+				document.querySelectorAll( '.menu-item-has-children' ).forEach( function( item ) {
+					if ( item !== parentItem ) {
+						item.classList.remove( 'submenu-open' );
+						const childLink = item.querySelector( '> a' );
+						if ( childLink ) {
+							childLink.setAttribute( 'aria-expanded', 'false' );
+						}
+					}
+				} );
+
+				parentItem.classList.toggle( 'submenu-open', ! isOpen );
+				this.setAttribute( 'aria-expanded', String( ! isOpen ) );
+			} );
+		} );
 	} );
 	</script>
 	<?php
