@@ -70,6 +70,10 @@ add_filter( 'wp_img_tag_add_auto_sizes', '__return_false' );
  * Remove all core Gutenberg blocks, keep only Boldface blocks
  */
 add_filter( 'allowed_block_types_all', function( $allowed_blocks, $editor_context ) {
+    if ( isset( $editor_context->post ) && 'project' === $editor_context->post->post_type ) {
+        return true;
+    }
+
 	// Get all registered blocks
 	$registered_blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
 	

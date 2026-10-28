@@ -183,14 +183,35 @@
   @apply mb-md;
 }
 .wsf-field {
-  @apply w-full flex flex-col;
+  @apply w-full flex flex-col transition-none duration-200;
+}
+.wsf-field::placeholder {
+  @apply text-transparent;
 }
 .wsf-label {
+  @apply absolute top-0 left-0 w-full h-full text-[1.2rem] text-[#777] px-sm py-[0.9rem] pointer-events-none transition-all duration-200;
+}
+select ~ .wsf-label {
   @apply sr-only;
 }
+
+.wsf-field:focus,
+.wsf-field:not(:placeholder-shown) {
+  @apply pt-md;
+}
+.wsf-field:focus ~ .wsf-label,
+.wsf-field:not(:placeholder-shown) ~ .wsf-label {
+  @apply text-[0.8rem] px-sm py-0 top-[0.25rem] left-0 text-observatory;
+}
+
 .wsf-button {
   @apply btn btn-lg btn-observatory;
 }
+.wsf-required-wrapper,
+.wsf-hidden-element {
+  @apply hidden;
+}
+
 
 /**
  * Responsive utility overrides
@@ -438,4 +459,21 @@ textarea {
 #google-button button:hover {
     opacity: 0.9 !important;
     /* Add any specific hover color you use here */
+}
+
+.alignleft {
+  float: left;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.alignright {
+  float: right;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.aligncenter {
+  margin-left: auto;
+  margin-right: auto;
 }

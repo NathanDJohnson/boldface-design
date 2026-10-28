@@ -41,7 +41,7 @@ if( boldface_design_is_dark_background( $background ) ) {
 
 $align_class = ' text-left';
 if ( 'center' === $text_alignment ) {
-	$align_class = ' text-center';
+	$align_class = ' text-center [&_img]:mx-auto';
 }
 $column_class .= $align_class;
 
